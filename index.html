@@ -4,6 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Ensayo Manual Único</title>
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#2c3f70">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Manual Único">
 <meta name="description" content="Ensayos de alternativas para preparar la evaluación de conocimientos basada en el Manual Único para Tribunales. Plataforma independiente.">
 <style>
 :root{
@@ -83,6 +89,10 @@ td.num{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
 .ans.ok{color:var(--ok)} .ans.bad{color:var(--bad)}
 footer{margin-top:24px;font-size:.78rem;color:var(--muted);text-align:center}
 .hidden{display:none}
+.share{display:flex;flex-direction:column;gap:8px;margin-top:14px}
+a.btn{display:block;text-decoration:none}
+.btn.wa{background:#1f8a4c;border-color:#1f8a4c;color:#fff}
+.sim{border:1.5px solid var(--accent)}
 /* ----- fondo opcional (se activa si existe fondo.jpg) ----- */
 html.has-bg,html.has-bg body{background:transparent}
 .has-bg body::before{content:"";position:fixed;inset:0;z-index:-2;background:url("fondo.jpg") center/cover no-repeat}
@@ -183,8 +193,15 @@ function home(keepScroll){
     <p class="muted">${QS.length} preguntas de alternativas, organizadas por los ${CH.length} capítulos del manual, con la explicación de cada respuesta.</p>
   </section>
   `;
+  const sec_sim = `  <section class="card stack sim">
+    <h2>Simulación tipo examen</h2>
+    <p class="muted" style="margin:0">${SIM.n} preguntas de todos los temas, una a una y sin volver atrás, con ${SIM.min} minutos y sin pausa. El resultado aparece al final.</p>
+    <button class="btn primary" id="startSim">Comenzar simulación</button>
+    <p class="small muted" style="margin:0">El Poder Judicial no publica el número de preguntas ni el tiempo exacto, que se informan al citar. Esta simulación es una aproximación.</p>
+  </section>
+  `;
   const sec_exam = `  <section class="card stack">
-    <h2>Ensayo cronometrado</h2>
+    <h2>Ensayo personalizado</h2>
     <div>
       <div class="small muted" style="margin-bottom:6px">Número de preguntas</div>
       <div class="chips" id="nChips">${[10,20,40].map(n=>`<button class="chip ${cfg.n===n?"on":""}" data-n="${n}">${n}</button>`).join("")}</div>
@@ -232,7 +249,7 @@ function home(keepScroll){
       <div class="stat"><b>${pct===null?"—":pct+"%"}</b><span>de respuestas correctas</span></div>
     </div>
     ${DB.h.length ? `<table style="margin-top:12px"><tr><th>Fecha</th><th>Ensayo</th><th class="num">Resultado</th></tr>
-      ${DB.h.slice(-5).reverse().map(h=>`<tr><td>${esc(h.d)}</td><td>${h.n} preguntas</td><td class="num">${h.r}/${h.n}</td></tr>`).join("")}</table>` : ""}
+      ${DB.h.slice(-5).reverse().map(h=>`<tr><td>${esc(h.d)}</td><td>${h.s?"Simulación · ":""}${h.n} preguntas</td><td class="num">${h.r}/${h.n}</td></tr>`).join("")}</table>` : ""}
     ${answered ? `<p style="margin:12px 0 0"><button class="linkish small" id="resetBtn">Borrar mi avance</button></p>` : ""}
     <p class="small muted" style="margin:10px 0 0">El avance se guarda solo en este navegador.</p>
   </section>
@@ -241,12 +258,13 @@ function home(keepScroll){
   `;
   const wide = WIDE.matches;
   app.innerHTML = wide
-    ? `<div class="cols"><div class="col">${sec_hero}${sec_exam}${sec_wrong}${sec_avance}${sec_notice}</div><div class="col">${sec_temas}</div></div>`
-    : sec_hero+sec_exam+sec_temas+sec_wrong+sec_avance+sec_notice;
+    ? `<div class="cols"><div class="col">${sec_hero}${sec_sim}${sec_exam}${sec_wrong}${sec_avance}${sec_notice}</div><div class="col">${sec_temas}</div></div>`
+    : sec_hero+sec_sim+sec_exam+sec_temas+sec_wrong+sec_avance+sec_notice;
 
   app.querySelectorAll("#nChips .chip").forEach(b=>b.onclick=()=>{cfg.n=+b.dataset.n;home();});
   app.querySelectorAll("#tChips .chip").forEach(b=>b.onclick=()=>{cfg.min=+b.dataset.m;home();});
   document.getElementById("startExam").onclick=()=>startExam();
+  document.getElementById("startSim").onclick=()=>startSim();
   app.querySelectorAll("[data-ch]").forEach(b=>b.onclick=()=>startPractice(+b.dataset.ch, +b.dataset.t));
   app.querySelectorAll("[data-open]").forEach(b=>b.onclick=()=>{const i=+b.dataset.open; openCh=(openCh===i?null:i); home(true);});
   const sel=document.getElementById("examTopic"); if(sel) sel.onchange=()=>{cfg.c=+sel.value;};
@@ -283,6 +301,20 @@ function confirmReset(){
 }
 
 /* ---------- inicio de modos ---------- */
+const SIM = {n:28, min:30};
+const SITE_URL = "https://abgdanielm.github.io/ensayo-manual-unico/";
+function shareText(r,n){
+  const kind = S && S.sim ? "la simulación" : "un ensayo";
+  return `Saqué ${r}/${n} en ${kind} del Manual Único para entrar al Poder Judicial. ¿Cuánto sacas tú? Practica gratis aquí: ${SITE_URL}`;
+}
+function shareLink(r,n){ return "https://wa.me/?text="+encodeURIComponent(shareText(r,n)); }
+function startSim(){
+  const pool = shuffle(QS).slice(0, SIM.n);
+  S = {mode:"exam", sim:true, items: pool.map(prep), i:0, limit: SIM.min*60, start: Date.now()};
+  exitBtn.classList.remove("hidden");
+  timerId=setInterval(tick,1000);
+  renderQ();
+}
 function startExam(){
   const src = cfg.c===-1 ? QS : QS.filter(q=>q.c===cfg.c);
   const pool = shuffle(src).slice(0, Math.min(cfg.n, src.length));
@@ -332,7 +364,7 @@ function renderQ(){
   const last = S.i===n-1;
   let nav;
   if(exam){
-    nav = `<div class="navq"><button class="btn" id="prevBtn" ${S.i===0?"disabled":""}>Anterior</button>
+    nav = `<div class="navq">${S.sim?"":`<button class="btn" id="prevBtn" ${S.i===0?"disabled":""}>Anterior</button>`}
       <button class="btn primary" id="nextBtn" ${answered?"":"disabled"}>${last?"Terminar ensayo":"Siguiente"}</button></div>
       <p class="small muted" style="margin-top:10px;text-align:center">${S.items.filter(x=>x.chosen!==null).length} de ${n} respondidas</p>`;
   } else {
@@ -373,7 +405,7 @@ function finish(timeUp){
   const r = items.filter(it=>it.chosen===it.correct).length;
   const blank = items.filter(it=>it.chosen===null).length;
   const secs=(Date.now()-S.start)/1000;
-  if(exam){ DB.h.push({d:today(), n, r}); if(DB.h.length>50) DB.h=DB.h.slice(-50); save(); }
+  if(exam){ DB.h.push({d:today(), n, r, s:!!S.sim}); if(DB.h.length>50) DB.h=DB.h.slice(-50); save(); }
   const byCh={};
   items.forEach(it=>{const c=it.q.c; byCh[c]=byCh[c]||{r:0,n:0}; byCh[c].n++; if(it.chosen===it.correct) byCh[c].r++;});
   const pct=Math.round(100*r/n);
@@ -392,15 +424,21 @@ function finish(timeUp){
     <table style="margin-top:6px"><tr><th>Capítulo</th><th class="num">Correctas</th></tr>
       ${Object.keys(byCh).sort((a,b)=>a-b).map(c=>`<tr><td>${esc(CH[c])}</td><td class="num">${byCh[c].r}/${byCh[c].n}</td></tr>`).join("")}
     </table>
+    ${exam ? `<div class="share">
+      <a class="btn wa" href="${shareLink(r,n)}" target="_blank" rel="noopener">Compartir resultado por WhatsApp</a>
+      <button class="btn ghost small" id="copyBtn">Copiar mensaje</button>
+    </div>` : ""}
     <div class="row" style="margin-top:14px">
       <button class="btn" id="homeBtn">Inicio</button>
-      <button class="btn primary" id="againBtn">${S.mode==="exam"?"Nuevo ensayo":S.mode==="wrong"?"Repasar de nuevo":"Repetir capítulo"}</button>
+      <button class="btn primary" id="againBtn">${S.sim?"Nueva simulación":S.mode==="exam"?"Nuevo ensayo":S.mode==="wrong"?"Repasar de nuevo":"Repetir capítulo"}</button>
     </div>
   </section>
   ${exam ? `<section class="card"><h2>Revisión</h2>${review}</section>` : ""}`;
   document.getElementById("homeBtn").onclick=home;
-  const mode=S.mode, ch=S.ch, tt=S.t;
-  document.getElementById("againBtn").onclick=()=>{ if(mode==="exam") startExam(); else if(mode==="wrong"){ wrongIds().length?startWrong():home(); } else startPractice(ch, tt); };
+  const cb=document.getElementById("copyBtn");
+  if(cb) cb.onclick=async()=>{ try{ await navigator.clipboard.writeText(shareText(r,n)); cb.textContent="Mensaje copiado"; }catch(e){ cb.textContent="No se pudo copiar"; } };
+  const mode=S.mode, ch=S.ch, tt=S.t, sim=S.sim;
+  document.getElementById("againBtn").onclick=()=>{ if(sim) startSim(); else if(mode==="exam") startExam(); else if(mode==="wrong"){ wrongIds().length?startWrong():home(); } else startPractice(ch, tt); };
   exitBtn.classList.add("hidden");
   window.scrollTo(0,0);
 }
