@@ -135,7 +135,8 @@ html.has-bg,html.has-bg body{background:transparent}
   <main id="app"></main>
   <footer>
     Plataforma independiente, sin vinculación con el Poder Judicial ni con la Corporación Administrativa del Poder Judicial.<br>
-    Preguntas elaboradas a partir del Manual Único para Tribunales (versión octubre 2025). Verifica siempre con el texto oficial.
+    Preguntas elaboradas a partir del Manual Único para Tribunales (versión octubre 2025). Verifica siempre con el texto oficial.<br>
+    <a href="privacidad.html" style="color:inherit">Política de privacidad</a>
   </footer>
 </div>
 
@@ -461,6 +462,8 @@ exitBtn.onclick=()=>{
 (function(){ const img=new Image(); img.onload=()=>document.documentElement.classList.add("has-bg"); img.src="fondo.jpg"; })();
 document.getElementById("homeLink").onclick=()=>{ if(S) exitBtn.onclick(); else home(); };
 home();
+// Funciona sin internet una vez abierta (necesario para instalarla como app)
+if("serviceWorker" in navigator && location.protocol==="https:"){ navigator.serviceWorker.register("sw.js").catch(()=>{}); }
 </script>
 </body>
 </html>
