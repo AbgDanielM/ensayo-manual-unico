@@ -195,7 +195,11 @@ function home(keepScroll){
   `;
   const sec_sim = `  <section class="card stack sim">
     <h2>Simulación tipo examen</h2>
-    <p class="muted" style="margin:0">${SIM.n} preguntas de todos los temas, una a una y sin volver atrás, con ${SIM.min} minutos y sin pausa. El resultado aparece al final.</p>
+    <p class="muted" style="margin:0">${SIM.n} preguntas de todos los temas, una a una y sin volver atrás, con tiempo corriendo y sin pausa. El resultado aparece al final.</p>
+    <div>
+      <div class="small muted" style="margin-bottom:6px">Tiempo de la simulación</div>
+      <div class="chips" id="simChips">${[30,45,60,90].map(m=>`<button class="chip ${SIM.min===m?"on":""}" data-sm="${m}">${m} min</button>`).join("")}</div>
+    </div>
     <button class="btn primary" id="startSim">Comenzar simulación</button>
     <p class="small muted" style="margin:0">El Poder Judicial no publica el número de preguntas ni el tiempo exacto, que se informan al citar. Esta simulación es una aproximación.</p>
   </section>
@@ -265,6 +269,7 @@ function home(keepScroll){
   app.querySelectorAll("#tChips .chip").forEach(b=>b.onclick=()=>{cfg.min=+b.dataset.m;home();});
   document.getElementById("startExam").onclick=()=>startExam();
   document.getElementById("startSim").onclick=()=>startSim();
+  app.querySelectorAll("#simChips .chip").forEach(b=>b.onclick=()=>{SIM.min=+b.dataset.sm;home(true);});
   app.querySelectorAll("[data-ch]").forEach(b=>b.onclick=()=>startPractice(+b.dataset.ch, +b.dataset.t));
   app.querySelectorAll("[data-open]").forEach(b=>b.onclick=()=>{const i=+b.dataset.open; openCh=(openCh===i?null:i); home(true);});
   const sel=document.getElementById("examTopic"); if(sel) sel.onchange=()=>{cfg.c=+sel.value;};
@@ -301,7 +306,7 @@ function confirmReset(){
 }
 
 /* ---------- inicio de modos ---------- */
-const SIM = {n:28, min:30};
+const SIM = {n:28, min:60};
 const SITE_URL = "https://abgdanielm.github.io/ensayo-manual-unico/";
 function shareText(r,n){
   const kind = S && S.sim ? "la simulación" : "un ensayo";
