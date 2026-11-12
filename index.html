@@ -83,6 +83,27 @@ td.num{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
 .ans.ok{color:var(--ok)} .ans.bad{color:var(--bad)}
 footer{margin-top:24px;font-size:.78rem;color:var(--muted);text-align:center}
 .hidden{display:none}
+/* ----- fondo opcional (se activa si existe fondo.jpg) ----- */
+html.has-bg,html.has-bg body{background:transparent}
+.has-bg body::before{content:"";position:fixed;inset:0;z-index:-2;background:url("fondo.jpg") center/cover no-repeat}
+.has-bg body::after{content:"";position:fixed;inset:0;z-index:-1;background:var(--bg);opacity:.35}
+.has-bg header.top{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:12px 16px;box-shadow:var(--shadow)}
+.has-bg footer{background:var(--card);border-radius:12px;padding:10px 14px;opacity:.95}
+/* ----- computador ----- */
+@media (min-width:1000px){
+  html,body{font-size:17.5px}
+  .wrap{max-width:1180px;padding:28px 32px 70px}
+  .cols{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}
+  .card{padding:22px 24px}
+  h1{font-size:1.85rem}
+  #app>section.card{max-width:880px;margin-left:auto;margin-right:auto}
+  .q{font-size:1.3rem}
+  .opt{padding:15px 16px}
+  .opt:hover:not([disabled]){border-color:var(--accent)}
+  .btn:hover:not([disabled]),.sub:hover,.chip:hover{filter:brightness(.97)}
+  .navq{max-width:460px;margin-left:auto}
+  footer{max-width:880px;margin-left:auto;margin-right:auto}
+}
 .area .chev{float:right;font-size:.75rem;color:var(--muted);margin-top:4px}
 .area.open .areaBtn{border-color:var(--accent)}
 .subs{margin:8px 0 4px 10px;padding-left:10px;border-left:2px solid var(--accent-soft)}
@@ -148,6 +169,8 @@ function stopTimer(){ if(timerId){ clearInterval(timerId); timerId=null; } }
 let cfg = {n:20, min:30, c:-1};
 let openCh = null;
 const TP = BANK.topics;
+const WIDE = window.matchMedia("(min-width: 1000px)");
+try{ WIDE.addEventListener("change",()=>{ if(!S) home(true); }); }catch(e){}
 function home(keepScroll){
   const y = window.scrollY;
   stopTimer(); S=null; exitBtn.classList.add("hidden");
@@ -155,13 +178,12 @@ function home(keepScroll){
   const tot = Object.values(DB.q).reduce((a,s)=>({r:a.r+s.r,w:a.w+s.w}),{r:0,w:0});
   const pct = (tot.r+tot.w) ? Math.round(100*tot.r/(tot.r+tot.w)) : null;
   const wrong = wrongIds().length;
-  app.innerHTML = `
-  <section class="card">
+  const sec_hero = `  <section class="card">
     <h1>Practica para el examen del Manual Único</h1>
     <p class="muted">${QS.length} preguntas de alternativas, organizadas por los ${CH.length} capítulos del manual, con la explicación de cada respuesta.</p>
   </section>
-
-  <section class="card stack">
+  `;
+  const sec_exam = `  <section class="card stack">
     <h2>Ensayo cronometrado</h2>
     <div>
       <div class="small muted" style="margin-bottom:6px">Número de preguntas</div>
@@ -181,8 +203,8 @@ function home(keepScroll){
     <button class="btn primary" id="startExam">Comenzar ensayo</button>
     <p class="small muted" style="margin:0">Las respuestas se corrigen al final, como en el examen. Si eliges un tema con menos preguntas que las pedidas, el ensayo usa todas las del tema.</p>
   </section>
-
-  <section class="card stack" id="temas">
+  `;
+  const sec_temas = `  <section class="card stack" id="temas">
     <h2>Practicar por tema</h2>
     <p class="small muted">Los temas siguen el índice del manual. Toca uno para ver sus subtemas. Corrección inmediata después de cada pregunta.</p>
     ${weakHtml()}
@@ -196,14 +218,14 @@ function home(keepScroll){
         </div>`:""}
       </div>`;}).join("")}
   </section>
-
-  <section class="card stack">
+  `;
+  const sec_wrong = `  <section class="card stack">
     <h2>Repasar mis errores</h2>
     <p class="small muted">${wrong ? `Tienes ${wrong} pregunta${wrong===1?"":"s"} que respondiste mal la última vez.` : "Aquí aparecerán las preguntas que respondas mal."}</p>
     <button class="btn" id="startWrong" ${wrong?"":"disabled"}>Repasar errores</button>
   </section>
-
-  <section class="card">
+  `;
+  const sec_avance = `  <section class="card">
     <h2>Mi avance</h2>
     <div class="grid2">
       <div class="stat"><b>${answered}/${QS.length}</b><span>preguntas vistas</span></div>
@@ -214,7 +236,13 @@ function home(keepScroll){
     ${answered ? `<p style="margin:12px 0 0"><button class="linkish small" id="resetBtn">Borrar mi avance</button></p>` : ""}
     <p class="small muted" style="margin:10px 0 0">El avance se guarda solo en este navegador.</p>
   </section>
-  <div class="notice">Plataforma independiente. No es un sitio del Poder Judicial y las preguntas no son las del examen oficial: están elaboradas a partir del texto del manual para practicar.</div>`;
+  `;
+  const sec_notice = `  <div class="notice">Plataforma independiente. No es un sitio del Poder Judicial y las preguntas no son las del examen oficial: están elaboradas a partir del texto del manual para practicar.</div>
+  `;
+  const wide = WIDE.matches;
+  app.innerHTML = wide
+    ? `<div class="cols"><div class="col">${sec_hero}${sec_exam}${sec_wrong}${sec_avance}${sec_notice}</div><div class="col">${sec_temas}</div></div>`
+    : sec_hero+sec_exam+sec_temas+sec_wrong+sec_avance+sec_notice;
 
   app.querySelectorAll("#nChips .chip").forEach(b=>b.onclick=()=>{cfg.n=+b.dataset.n;home();});
   app.querySelectorAll("#tChips .chip").forEach(b=>b.onclick=()=>{cfg.min=+b.dataset.m;home();});
@@ -386,6 +414,8 @@ exitBtn.onclick=()=>{
   document.getElementById("eNo").onclick=()=>document.getElementById("exitBox").remove();
   document.getElementById("eYes").onclick=home;
 };
+// Fondo: si existe fondo.jpg junto a esta página, se muestra detrás del contenido.
+(function(){ const img=new Image(); img.onload=()=>document.documentElement.classList.add("has-bg"); img.src="fondo.jpg"; })();
 document.getElementById("homeLink").onclick=()=>{ if(S) exitBtn.onclick(); else home(); };
 home();
 </script>
