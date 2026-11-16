@@ -124,9 +124,22 @@ html.has-bg,html.has-bg body{background:transparent}
 .sel{width:100%;padding:12px;border-radius:12px;border:1px solid var(--line);background:var(--card);color:var(--ink);font:inherit}
 .navq{display:flex;gap:10px;margin-top:6px}
 .linkish{background:none;border:none;color:var(--accent);font:inherit;font-weight:600;cursor:pointer;padding:0}
+#splash{position:fixed;inset:0;z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;background:#162854;color:#fdf6e6;transition:opacity .45s ease}
+#splash.hide{opacity:0;pointer-events:none}
+#splash img{width:min(46vw,220px);height:auto;border-radius:22%;box-shadow:0 10px 30px rgba(0,0,0,.45);animation:spIn .7s ease both}
+#splash .t{font-size:clamp(26px,7vw,40px);font-weight:800;letter-spacing:.3px;animation:spIn .7s .15s ease both}
+#splash .s{font-size:clamp(13px,3.6vw,16px);opacity:.8;animation:spIn .7s .3s ease both}
+#splash .by{position:absolute;bottom:max(28px,env(safe-area-inset-bottom));font-size:13px;opacity:.65;letter-spacing:1px}
+#splash .bar{width:120px;height:4px;border-radius:4px;background:rgba(253,246,230,.2);overflow:hidden;margin-top:6px}
+#splash .bar i{display:block;height:100%;width:0;background:#f0c45a;border-radius:4px;animation:spBar 1.8s ease forwards}
+@keyframes spIn{from{opacity:0;transform:translateY(12px) scale(.96)}to{opacity:1;transform:none}}
+@keyframes spBar{to{width:100%}}
 </style>
 </head>
 <body>
+<div id="splash" aria-hidden="true"><img src="icon-512.png" alt=""><div class="t">Manual Único</div><div class="s">Ensaya · Practica · Aprueba</div><div class="bar"><i></i></div><div class="by">AYMARADAN</div></div>
+<script>(function(){var sp=document.getElementById("splash");var seen=false;try{seen=sessionStorage.getItem("mu-splash")==="1";sessionStorage.setItem("mu-splash","1");}catch(e){}
+if(seen){sp.remove();return;}setTimeout(function(){sp.classList.add("hide");setTimeout(function(){sp.remove();},500);},1900);})();</script>
 <div class="wrap">
   <header class="top">
     <div class="brand" id="homeLink">Manual Único<small>Preparación para la evaluación de conocimientos</small></div>
