@@ -2,363 +2,432 @@
 <html lang="es">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Manual Único</title>
 <link rel="icon" type="image/png" href="favicon.png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="manifest" href="manifest.webmanifest">
-<meta name="theme-color" content="#2c3f70">
+<meta name="theme-color" content="#162854">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Manual Único">
 <meta name="description" content="Ensayos de alternativas para preparar la evaluación de conocimientos basada en el Manual Único para Tribunales. Plataforma independiente.">
 <style>
 :root{
-  --bg:#fdf6e6; --card:#fffdf8; --ink:#1e2433; --muted:#5d6478; --line:#e9dfc9;
-  --accent:#2c3f70; --accent-ink:#ffffff; --accent-soft:#e4e9f4;
-  --ok:#1f7a4a; --ok-soft:#e3f2e7; --bad:#b3372b; --bad-soft:#fbe7e3; --warn:#9a6a1c;
-  --radius:14px; --shadow:0 1px 2px rgba(30,36,51,.06),0 4px 14px rgba(30,36,51,.06);
+  --navy:#162854; --navy2:#24467e; --gold:#f0c45a; --gold-ink:#8a5f00;
+  --bg:#f4f1ea; --card:#ffffff; --ink:#1e2433; --muted:#5d6478; --line:#e3e6ee; --soft:#e6ebf6;
+  --ok:#1f7a4a; --ok-soft:#e7f4ec; --bad:#c0392b; --bad-soft:#fbe9e7;
+  --shadow:0 2px 12px rgba(22,40,84,.08);
 }
-@media (prefers-color-scheme:dark){
-  :root{--bg:#141a2b;--card:#1c2338;--ink:#eef0f6;--muted:#a6adc2;--line:#2d3650;
-  --accent:#8ea6e0;--accent-ink:#10162a;--accent-soft:#26304d;--ok:#5cc98e;--ok-soft:#1c3328;
-  --bad:#f08a7e;--bad-soft:#3a2226;--warn:#e0b24f;}
-}
-*{box-sizing:border-box}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{margin:0;background:var(--bg);color:var(--ink);
-  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
-  font-size:17px;line-height:1.45;-webkit-text-size-adjust:100%}
-.wrap{max-width:680px;margin:0 auto;padding:18px 16px 60px}
-header.top{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:14px}
-.brand{font-weight:750;font-size:1.15rem;letter-spacing:-.01em;cursor:pointer}
-.brand small{display:block;font-weight:500;font-size:.78rem;color:var(--muted);letter-spacing:0}
-.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow);margin-bottom:14px}
-h1{font-size:1.55rem;line-height:1.2;margin:0 0 8px;letter-spacing:-.02em}
-h2{font-size:1.1rem;margin:0 0 10px}
-p{margin:0 0 10px}
-.muted{color:var(--muted)}
-.small{font-size:.86rem}
-.btn{appearance:none;border:1px solid var(--line);background:var(--card);color:var(--ink);
-  border-radius:12px;padding:13px 16px;font:inherit;font-weight:600;cursor:pointer;width:100%;text-align:center}
-.btn:active{transform:scale(.99)}
-.btn.primary{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
-.btn.ghost{background:transparent}
-.btn[disabled]{opacity:.45;cursor:default}
-.row{display:flex;gap:10px}
-.row>*{flex:1}
-.mode{display:block;text-align:left;padding:16px}
-.mode b{display:block;font-size:1.02rem;margin-bottom:2px}
-.mode span{color:var(--muted);font-weight:450;font-size:.9rem}
-.stack>*+*{margin-top:10px}
+  font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  font-size:16px;line-height:1.45;-webkit-text-size-adjust:100%}
+button{font:inherit}
+/* barra superior */
+.topbar{position:sticky;top:0;z-index:50;background:var(--navy);color:#fff;height:56px;display:flex;align-items:center;justify-content:center;padding:0 56px;padding-top:env(safe-area-inset-top);box-sizing:content-box}
+.topbar h1{margin:0;font-size:1.12rem;font-weight:800;letter-spacing:.2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;cursor:pointer}
+.tb-btn{position:absolute;top:calc(env(safe-area-inset-top) + 8px);width:40px;height:40px;border-radius:12px;border:0;background:transparent;color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer}
+.tb-btn svg{width:24px;height:24px}
+.tb-btn.left{left:8px}.tb-btn.right{right:8px}
+.hidden{display:none!important}
+/* inicio */
+.hero{background:var(--navy);color:#fff;text-align:center;padding:10px 22px 48px}
+.hero h2{margin:0;font-size:1.6rem;line-height:1.15;font-weight:900;letter-spacing:-.3px}
+.hero h2 span{color:var(--gold)}
+.hero p{margin:8px 0 0;font-size:.9rem;opacity:.85}
+.sheet{background:var(--bg);border-radius:26px 26px 0 0;margin-top:-28px;padding:16px 14px 30px;position:relative}
+.wrap{max-width:720px;margin:0 auto}
+.tile{display:flex;gap:14px;align-items:flex-start;width:100%;text-align:left;background:var(--card);border:0;border-radius:20px;padding:16px 16px 16px 14px;margin-bottom:12px;box-shadow:var(--shadow);cursor:pointer;color:var(--ink);position:relative}
+.tile:active{transform:scale(.99)}
+.tile.hl{background:var(--soft)}
+.tile .ic{flex:0 0 44px;height:44px;display:flex;align-items:center;justify-content:center}
+.tile .ic svg{width:42px;height:42px}
+.tile h3{margin:0 0 3px;font-size:1.12rem;font-weight:800;color:var(--navy)}
+.tile p{margin:0;font-size:.88rem;color:var(--muted);line-height:1.38}
+.tile .badge{position:absolute;right:14px;top:-8px;background:var(--gold);color:var(--navy);font-size:.68rem;font-weight:800;padding:3px 9px;border-radius:7px}
+.tile[disabled]{opacity:.55;cursor:default}
+.notice{font-size:.8rem;color:var(--muted);text-align:center;margin:18px 6px 0;line-height:1.45}
+.notice a{color:inherit}
+/* pantallas internas */
+.page{padding:16px 14px 110px}
+.card{background:var(--card);border-radius:20px;padding:18px;box-shadow:var(--shadow);margin-bottom:14px}
+.card h2{margin:0 0 6px;font-size:1.15rem;color:var(--navy);font-weight:800}
+.lbl{font-size:.8rem;color:var(--muted);margin:14px 0 7px;font-weight:600}
 .chips{display:flex;flex-wrap:wrap;gap:8px}
-.chip{border:1px solid var(--line);background:var(--card);border-radius:999px;padding:8px 13px;font:inherit;font-size:.9rem;cursor:pointer;color:var(--ink)}
-.chip.on{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
-.notice{border-left:4px solid var(--warn);background:var(--card);padding:12px 14px;border-radius:10px;font-size:.86rem;color:var(--muted);border:1px solid var(--line);border-left-width:4px}
-.bar{height:6px;background:var(--line);border-radius:6px;overflow:hidden;margin:6px 0 14px}
-.bar i{display:block;height:100%;background:var(--accent);width:0;transition:width .25s}
-.qmeta{display:flex;justify-content:space-between;align-items:center;font-size:.85rem;color:var(--muted);gap:10px}
-.tag{display:inline-block;background:var(--accent-soft);color:var(--accent);border-radius:999px;padding:3px 10px;font-size:.78rem;font-weight:650}
-.q{font-size:1.12rem;font-weight:650;margin:12px 0 14px;line-height:1.4}
-.opt{display:flex;gap:12px;align-items:flex-start;width:100%;text-align:left;background:var(--card);border:1.5px solid var(--line);
-  border-radius:12px;padding:13px 14px;margin-bottom:10px;font:inherit;color:var(--ink);cursor:pointer}
-.opt .k{flex:0 0 28px;height:28px;border-radius:50%;border:1.5px solid var(--line);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.85rem;color:var(--muted)}
-.opt.sel{border-color:var(--accent);background:var(--accent-soft)}
-.opt.sel .k{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
-.opt.ok{border-color:var(--ok);background:var(--ok-soft)}
-.opt.ok .k{background:var(--ok);border-color:var(--ok);color:#fff}
-.opt.bad{border-color:var(--bad);background:var(--bad-soft)}
-.opt.bad .k{background:var(--bad);border-color:var(--bad);color:#fff}
+.chip{border:1.5px solid var(--line);background:#fff;border-radius:999px;padding:8px 14px;font-size:.9rem;cursor:pointer;color:var(--ink);font-weight:600}
+.chip.on{background:var(--navy);border-color:var(--navy);color:#fff}
+.sel{width:100%;padding:12px;border-radius:12px;border:1.5px solid var(--line);background:#fff;color:var(--ink);font:inherit}
+.small{font-size:.82rem}.muted{color:var(--muted)}
+.btn{appearance:none;border:0;border-radius:14px;padding:14px 16px;font-weight:800;cursor:pointer;width:100%;text-align:center;font-size:.98rem;display:flex;align-items:center;justify-content:center;gap:8px;text-decoration:none}
+.btn.navy{background:var(--navy);color:#fff}
+.btn.green{background:var(--ok);color:#fff}
+.btn.gold{background:var(--gold);color:var(--navy)}
+.btn.light{background:var(--soft);color:var(--navy)}
+.btn.wa{background:#1f8a4c;color:#fff}
+.btn[disabled]{opacity:.45;cursor:default}
+.row{display:flex;gap:10px}.row>*{flex:1}
+.linkish{background:none;border:none;color:var(--navy2);font-weight:700;cursor:pointer;padding:0}
+/* modal elegir modo */
+.dim{position:fixed;inset:0;z-index:80;background:rgba(11,20,48,.62);display:flex;align-items:center;justify-content:center;padding:18px}
+.modal{background:#fff;border-radius:22px;overflow:hidden;width:100%;max-width:440px;animation:pop .2s ease}
+@keyframes pop{from{transform:scale(.96);opacity:0}to{transform:none;opacity:1}}
+.mh{background:var(--navy2);color:#fff;padding:16px 18px;font-weight:800;font-size:1.08rem;display:flex;justify-content:space-between;align-items:center}
+.mh button{background:none;border:0;color:#fff;font-size:1.3rem;cursor:pointer;line-height:1}
+.mopt{margin:14px;border:2px solid var(--line);border-radius:16px;padding:15px}
+.mopt h4{margin:0 0 4px;font-size:1.08rem;font-weight:800}
+.mopt p{margin:0 0 12px;font-size:.88rem;color:var(--muted);line-height:1.4}
+.mopt.g{border-color:var(--ok)}.mopt.g h4{color:var(--ok)}
+.mopt.y h4{color:#b8860b}
+/* temas */
+.area{background:#fff;border-radius:18px;box-shadow:var(--shadow);margin-bottom:10px;overflow:hidden}
+.areaBtn{display:flex;justify-content:space-between;align-items:center;gap:10px;width:100%;text-align:left;background:none;border:0;padding:15px 16px;cursor:pointer;color:var(--ink)}
+.areaBtn b{display:block;color:var(--navy);font-size:1rem}
+.areaBtn span{font-size:.82rem;color:var(--muted)}
+.chev{color:var(--muted);font-size:.8rem}
+.subs{padding:0 12px 12px}
+.sub{display:block;width:100%;text-align:left;background:var(--bg);border:0;border-radius:12px;padding:11px 13px;margin-bottom:8px;cursor:pointer;color:var(--ink)}
+.sub b{display:block;font-size:.93rem}.sub span{font-size:.8rem;color:var(--muted)}
+.weak{background:var(--soft);border-radius:16px;padding:14px;font-size:.92rem;margin-bottom:12px}
+/* pregunta */
+.qhead{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;gap:10px}
+.pill{background:var(--navy);color:#fff;font-weight:800;font-size:.85rem;padding:7px 14px;border-radius:20px;white-space:nowrap}
+.tm{border:1.5px solid var(--bad);color:var(--bad);font-weight:800;font-size:.85rem;padding:6px 11px;border-radius:10px;background:#fff;font-variant-numeric:tabular-nums}
+.tm.mode{border-color:var(--line);color:var(--muted)}
+.prog{height:5px;background:#dfe3ec;border-radius:5px;overflow:hidden;margin:-4px 0 12px}
+.prog i{display:block;height:100%;background:var(--gold);border-radius:5px;transition:width .25s}
+.topic{display:inline-block;font-size:.72rem;font-weight:700;color:var(--navy2);background:var(--soft);padding:4px 10px;border-radius:8px;margin-bottom:10px}
+.q{font-size:1.1rem;font-weight:800;color:var(--ink);line-height:1.38;margin:0 0 14px}
+.opt{display:flex;gap:12px;align-items:center;width:100%;text-align:left;background:#fff;border:1.5px solid var(--line);border-radius:16px;padding:12px;margin-bottom:10px;color:var(--ink);cursor:pointer;font-size:.95rem;line-height:1.35}
+.opt .k{flex:0 0 34px;height:34px;border-radius:50%;background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.9rem}
+.opt.sel{border-color:var(--navy2);background:var(--soft)}
+.opt.ok{border-color:var(--ok);background:var(--ok-soft)}.opt.ok .k{background:var(--ok)}
+.opt.bad{border-color:var(--bad);background:var(--bad-soft)}.opt.bad .k{background:var(--bad)}
 .opt[disabled]{cursor:default}
-.fb{border-radius:12px;padding:13px 14px;margin:4px 0 12px;font-size:.95rem}
-.fb.ok{background:var(--ok-soft);color:var(--ink);border:1px solid var(--ok)}
-.fb.bad{background:var(--bad-soft);color:var(--ink);border:1px solid var(--bad)}
+.fb{border-radius:12px;padding:12px 14px;margin:4px 0 4px;font-size:.92rem;line-height:1.45;border-left:5px solid}
+.fb.ok{background:var(--ok-soft);border-color:var(--ok)}
+.fb.bad{background:var(--bad-soft);border-color:var(--bad)}
 .fb b{display:block;margin-bottom:3px}
-.timer{font-variant-numeric:tabular-nums;font-weight:700}
-.timer.low{color:var(--bad)}
-.score{font-size:3rem;font-weight:800;letter-spacing:-.03em;line-height:1}
+.fb.ok b{color:var(--ok)}.fb.bad b{color:var(--bad)}
+.dock{position:fixed;left:0;right:0;bottom:0;z-index:40;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:linear-gradient(180deg,rgba(244,241,234,0),var(--bg) 35%)}
+.dock .in{max-width:720px;margin:0 auto}
+.dock .btn{background:linear-gradient(90deg,var(--navy2),var(--navy));color:#fff;border-radius:16px;padding:15px;box-shadow:0 6px 18px rgba(22,40,84,.25)}
+.dock .btn[disabled]{opacity:.5}
+.dock .cnt{text-align:center;font-size:.78rem;color:var(--muted);margin-bottom:6px}
+/* resultado */
+.score{font-size:3rem;font-weight:900;letter-spacing:-.03em;line-height:1;color:var(--navy)}
 .grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.stat{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:12px}
-.stat b{display:block;font-size:1.35rem}
-.stat span{font-size:.8rem;color:var(--muted)}
-table{width:100%;border-collapse:collapse;font-size:.9rem}
+.stat{background:var(--bg);border-radius:14px;padding:12px}
+.stat b{display:block;font-size:1.35rem;color:var(--navy)}.stat span{font-size:.8rem;color:var(--muted)}
+table{width:100%;border-collapse:collapse;font-size:.88rem}
 td,th{padding:8px 4px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
-th{color:var(--muted);font-weight:600;font-size:.8rem}
+th{color:var(--muted);font-weight:600;font-size:.78rem}
 td.num{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
 .rev{border-top:1px solid var(--line);padding-top:12px;margin-top:12px}
-.rev .q{font-size:1rem;margin:6px 0 8px}
-.ans{font-size:.92rem;margin:3px 0}
-.ans.ok{color:var(--ok)} .ans.bad{color:var(--bad)}
-footer{margin-top:24px;font-size:.78rem;color:var(--muted);text-align:center}
-.hidden{display:none}
+.rev .q{font-size:.98rem;margin:6px 0 8px}
+.ans{font-size:.9rem;margin:3px 0}.ans.ok{color:var(--ok)}.ans.bad{color:var(--bad)}
 .share{display:flex;flex-direction:column;gap:8px;margin-top:14px}
-a.btn{display:block;text-decoration:none}
-.btn.wa{background:#1f8a4c;border-color:#1f8a4c;color:#fff}
-.sim{border:1.5px solid var(--accent)}
-/* ----- fondo opcional (se activa si existe fondo.jpg) ----- */
-html.has-bg,html.has-bg body{background:transparent}
-.has-bg body::before{content:"";position:fixed;inset:0;z-index:-2;background:url("fondo.jpg") center/cover no-repeat}
-.has-bg body::after{content:"";position:fixed;inset:0;z-index:-1;background:var(--bg);opacity:.35}
-.has-bg header.top{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:12px 16px;box-shadow:var(--shadow)}
-.has-bg footer{background:var(--card);border-radius:12px;padding:10px 14px;opacity:.95}
-/* ----- computador ----- */
-@media (min-width:1000px){
-  html,body{font-size:17.5px}
-  .wrap{max-width:1180px;padding:28px 32px 70px}
-  .cols{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}
-  .card{padding:22px 24px}
-  h1{font-size:1.85rem}
-  #app>section.card{max-width:880px;margin-left:auto;margin-right:auto}
-  .q{font-size:1.3rem}
-  .opt{padding:15px 16px}
-  .opt:hover:not([disabled]){border-color:var(--accent)}
-  .btn:hover:not([disabled]),.sub:hover,.chip:hover{filter:brightness(.97)}
-  .navq{max-width:460px;margin-left:auto}
-  footer{max-width:880px;margin-left:auto;margin-right:auto}
-}
-.area .chev{float:right;font-size:.75rem;color:var(--muted);margin-top:4px}
-.area.open .areaBtn{border-color:var(--accent)}
-.subs{margin:8px 0 4px 10px;padding-left:10px;border-left:2px solid var(--accent-soft)}
-.sub{display:block;width:100%;text-align:left;background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:11px 13px;margin-bottom:8px;font:inherit;color:var(--ink);cursor:pointer}
-.sub b{display:block;font-size:.95rem}
-.sub span{font-size:.82rem;color:var(--muted)}
-.weak{background:var(--accent-soft);border-radius:12px;padding:13px 14px;font-size:.93rem}
-.sel{width:100%;padding:12px;border-radius:12px;border:1px solid var(--line);background:var(--card);color:var(--ink);font:inherit}
-.navq{display:flex;gap:10px;margin-top:6px}
-.linkish{background:none;border:none;color:var(--accent);font:inherit;font-weight:600;cursor:pointer;padding:0}
-#splash{position:fixed;inset:0;z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;background:#162854;color:#fdf6e6;transition:opacity .45s ease}
+/* menú lateral */
+.drawer{position:fixed;inset:0;z-index:90;display:flex}
+.drawer .bk{flex:1;background:rgba(11,20,48,.5)}
+.drawer nav{width:min(82vw,320px);background:#fff;padding:calc(14px + env(safe-area-inset-top)) 8px 20px;order:-1;animation:slide .2s ease;overflow-y:auto;display:flex;flex-direction:column}
+@keyframes slide{from{transform:translateX(-30px);opacity:0}to{transform:none;opacity:1}}
+.dhead{display:flex;align-items:center;gap:12px;padding:6px 10px 16px;border-bottom:1px solid var(--line);margin-bottom:8px}
+.dhead img{width:58px;height:58px;border-radius:14px}
+.dhead b{display:block;color:var(--navy);font-size:1.1rem}.dhead span{font-size:.78rem;color:var(--muted);letter-spacing:1px}
+.ditem{display:flex;align-items:center;gap:14px;width:100%;text-align:left;background:none;border:0;padding:11px 10px;border-radius:12px;cursor:pointer;color:var(--ink);font-weight:600;font-size:1rem;text-decoration:none}
+.ditem:hover,.ditem.on{background:var(--soft)}
+.ditem svg{flex:0 0 26px;width:26px;height:26px}
+.ditem .go{margin-left:auto;color:var(--muted);font-weight:400}
+.dsep{height:1px;background:var(--line);margin:8px 6px}
+.dfoot{margin-top:auto;padding:14px 10px 0;font-size:.74rem;color:var(--muted);line-height:1.4}
+.star{border:1.5px solid #e2b23a;background:#fff;border-radius:10px;width:40px;height:34px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:#e2b23a}
+.star svg{width:20px;height:20px}.star.on{background:#fff5d6}
+.qhead .rt{display:flex;gap:8px;align-items:center}
+/* pantalla de bienvenida (crema) */
+#splash{position:fixed;inset:0;z-index:9999;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;background:#fbf6ec;transition:opacity .45s ease}
 #splash.hide{opacity:0;pointer-events:none}
-#splash img{width:min(46vw,220px);height:auto;border-radius:22%;box-shadow:0 10px 30px rgba(0,0,0,.45);animation:spIn .7s ease both}
-#splash .t{font-size:clamp(26px,7vw,40px);font-weight:800;letter-spacing:.3px;animation:spIn .7s .15s ease both}
-#splash .s{font-size:clamp(13px,3.6vw,16px);opacity:.8;animation:spIn .7s .3s ease both}
-#splash .by{position:absolute;bottom:max(28px,env(safe-area-inset-bottom));font-size:13px;opacity:.65;letter-spacing:1px}
-#splash .bar{width:120px;height:4px;border-radius:4px;background:rgba(253,246,230,.2);overflow:hidden;margin-top:6px}
-#splash .bar i{display:block;height:100%;width:0;background:#f0c45a;border-radius:4px;animation:spBar 1.8s ease forwards}
-@keyframes spIn{from{opacity:0;transform:translateY(12px) scale(.96)}to{opacity:1;transform:none}}
+#splash .bgp{position:absolute;inset:0;background:url("fondo.jpg") center/cover;opacity:.16}
+#splash .sc{position:relative;width:min(104vw,560px);margin-top:-6vh;animation:spIn .7s ease both}
+#splash .tt{position:relative;text-align:center;line-height:.95;margin-top:-4px;font-weight:900;letter-spacing:-1px;animation:spIn .7s .12s ease both}
+#splash .tt b{display:block;font-size:clamp(46px,14vw,72px);color:var(--navy);text-shadow:0 4px 0 #c9d2e8}
+#splash .tt span{display:block;font-size:clamp(50px,15vw,78px);color:#e0a920;text-shadow:0 4px 0 var(--navy)}
+#splash .tg{position:relative;margin-top:14px;font-weight:600;font-size:clamp(13px,3.8vw,16px);letter-spacing:.5px;color:#40507a;animation:spIn .7s .24s ease both}
+#splash .ld{position:relative;width:120px;height:4px;border-radius:4px;margin-top:26px;overflow:hidden;background:rgba(22,40,84,.13)}
+#splash .ld i{display:block;width:0;height:100%;border-radius:4px;background:var(--navy);animation:spBar 1.8s ease forwards}
+#splash .by{position:absolute;bottom:calc(26px + env(safe-area-inset-bottom));font-weight:700;font-size:12px;letter-spacing:4px;color:#6a7699}
+@keyframes spIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
 @keyframes spBar{to{width:100%}}
+/* computador */
+@media (min-width:900px){
+  .hero{padding:18px 22px 60px}.hero h2{font-size:2rem}
+  .tiles{display:grid;grid-template-columns:1fr 1fr;gap:0 14px}
+  .tile:hover,.area:hover{box-shadow:0 4px 18px rgba(22,40,84,.14)}
+  .opt:hover:not([disabled]){border-color:var(--navy2)}
+  .page{padding-top:24px}
+}
 </style>
 </head>
 <body>
-<div id="splash" aria-hidden="true"><img src="icon-512.png" alt=""><div class="t">Manual Único</div><div class="s">Ensaya · Practica · Aprueba</div><div class="bar"><i></i></div><div class="by">AYMARADAN</div></div>
+<div id="splash" aria-hidden="true"><div class="bgp"></div><img class="sc" src="splash-scene.png" alt=""><div class="tt"><b>Manual</b><span>Único</span></div><div class="tg">Ensaya · Practica · Aprueba</div><div class="ld"><i></i></div><div class="by">AYMARADAN</div></div>
 <script>(function(){var sp=document.getElementById("splash");var seen=false;try{seen=sessionStorage.getItem("mu-splash")==="1";sessionStorage.setItem("mu-splash","1");}catch(e){}
-if(seen){sp.remove();return;}setTimeout(function(){sp.classList.add("hide");setTimeout(function(){sp.remove();},500);},1900);})();</script>
-<div class="wrap">
-  <header class="top">
-    <div class="brand" id="homeLink">Manual Único<small>Preparación para la evaluación de conocimientos</small></div>
-    <button class="linkish hidden" id="exitBtn">Salir</button>
-  </header>
-  <main id="app"></main>
-  <footer>
-    Plataforma independiente, sin vinculación con el Poder Judicial ni con la Corporación Administrativa del Poder Judicial.<br>
-    Preguntas elaboradas a partir del Manual Único para Tribunales (versión octubre 2025). Verifica siempre con el texto oficial.<br>
-    <a href="privacidad.html" style="color:inherit">Política de privacidad</a>
-  </footer>
-</div>
+if(seen){sp.remove();return;}setTimeout(function(){sp.classList.add("hide");setTimeout(function(){sp.remove();},500);},2000);})();</script>
+
+<header class="topbar">
+  <button class="tb-btn left" id="menuBtn" aria-label="Menú"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+  <button class="tb-btn left hidden" id="backBtn" aria-label="Volver"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg></button>
+  <h1 id="homeLink">Manual Único</h1>
+  <button class="tb-btn right hidden" id="exitBtn" aria-label="Salir"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+</header>
+<main id="app"></main>
+<div id="dock"></div>
 
 <script>
 const BANK = {"chapters": ["I. Sección general", "II. Estructura de los tribunales reformados", "III. Proceso y procedimientos", "IV. Procedimientos civiles", "V. Juzgados de Familia", "VI. Juzgados del Trabajo", "VII. Proceso penal", "VIII. Cortes de Apelaciones", "IX. Corte Suprema"], "questions": [{"c": 0, "s": "1.1 Poder Ejecutivo", "q": "¿Qué edad mínima se exige para ser elegido Presidente de la República?", "o": ["35 años cumplidos", "30 años cumplidos", "40 años cumplidos", "21 años cumplidos"], "e": "El manual exige, entre otros requisitos, tener cumplidos treinta y cinco años de edad.", "t": 0}, {"c": 0, "s": "1.1 Poder Ejecutivo", "q": "La potestad reglamentaria que permite al Presidente normar materias que no son de ley se denomina:", "o": ["Potestad reglamentaria autónoma", "Potestad reglamentaria de ejecución", "Potestad legislativa delegada", "Potestad de iniciativa exclusiva"], "e": "La autónoma permite normar materias que no sean de ley; la de ejecución complementa o detalla las leyes.", "t": 0}, {"c": 0, "s": "1.1 Poder Ejecutivo", "q": "¿Con acuerdo de qué órgano nombra el Presidente al Contralor General de la República?", "o": ["Del Senado", "De la Cámara de Diputados", "De la Corte Suprema", "Del Congreso Pleno"], "e": "Entre las atribuciones gubernativas está nombrar al Contralor General con acuerdo del Senado.", "t": 0}, {"c": 0, "s": "1.2 Poder Legislativo", "q": "¿Cuántos diputados integran la Cámara y cuánto dura su cargo?", "o": ["155 diputados, por 4 años", "120 diputados, por 4 años", "155 diputados, por 8 años", "50 diputados, por 4 años"], "e": "La Cámara está integrada por 155 diputados que duran cuatro años, con posibilidad de reelección.", "t": 0}, {"c": 0, "s": "1.2 Poder Legislativo", "q": "¿Qué edad mínima se requiere para ser elegido diputado?", "o": ["21 años", "18 años", "25 años", "35 años"], "e": "Se requiere ser ciudadano con derecho a sufragio, tener 21 años, enseñanza media y dos años de residencia en la región.", "t": 0}, {"c": 0, "s": "1.2 Poder Legislativo", "q": "¿Cuántos senadores integran el Senado y cuánto dura su cargo?", "o": ["50 senadores, por 8 años", "50 senadores, por 4 años", "38 senadores, por 8 años", "155 senadores, por 8 años"], "e": "El Senado está integrado por 50 senadores que duran ocho años, con posibilidad de reelección.", "t": 0}, {"c": 0, "s": "1.2 Poder Legislativo", "q": "¿Qué órgano tiene la atribución exclusiva de fiscalizar los actos del Gobierno?", "o": ["La Cámara de Diputados", "El Senado", "El Congreso Pleno", "La Contraloría General de la República"], "e": "Fiscalizar los actos del gobierno e iniciar acusaciones constitucionales son funciones exclusivas de la Cámara; el Senado no puede fiscalizar.", "t": 0}, {"c": 0, "s": "1.2 Poder Legislativo", "q": "Si el Presidente no se pronuncia sobre un proyecto aprobado por ambas Cámaras, ¿en qué plazo se entiende que lo aprueba?", "o": ["30 días desde que lo recibió", "10 días desde que lo recibió", "15 días desde que lo recibió", "60 días desde que lo recibió"], "e": "En la etapa de sanción, si no dice nada en 30 días desde que recibió el proyecto, se entiende que lo aprueba.", "t": 0}, {"c": 0, "s": "1.2 Poder Legislativo", "q": "¿En qué plazo debe publicarse la ley en el Diario Oficial una vez tramitado el decreto promulgatorio?", "o": ["5 días", "10 días", "15 días", "30 días"], "e": "El decreto promulgatorio se dicta dentro de 10 días y la publicación debe hacerse en 5 días desde que queda tramitado.", "t": 0}, {"c": 0, "s": "1.2 Poder Legislativo", "q": "Si el Presidente califica un proyecto con 'suma urgencia', ¿en qué plazo debe terminar su discusión y votación en la Cámara requerida?", "o": ["15 días", "30 días", "6 días", "10 días"], "e": "Urgencia simple: 30 días; suma urgencia: 15 días; discusión inmediata: 6 días.", "t": 0}, {"c": 0, "s": "1.2 Poder Legislativo", "q": "Cuando la iniciativa de ley proviene de parlamentarios, se denomina:", "o": ["Moción", "Mensaje", "Indicación", "Oficio"], "e": "Si inicia el Presidente se habla de Mensaje; si inician los parlamentarios, de Moción.", "t": 0}, {"c": 0, "s": "1.3 Poder Judicial", "q": "El principio según el cual, por regla general, los tribunales actúan a requerimiento de parte es el principio de:", "o": ["Pasividad", "Inexcusabilidad", "Legalidad", "Territorialidad"], "e": "La pasividad supone que los tribunales actúan a requerimiento de parte, salvo excepciones como la oficialidad en familia.", "t": 1}, {"c": 0, "s": "1.3 Poder Judicial", "q": "Según el principio de inamovilidad, ¿a qué edad cesan los jueces en sus funciones?", "o": ["75 años", "70 años", "65 años", "80 años"], "e": "La cesación ocurre por cumplir 75 años, incapacidad legal sobreviniente, renuncia o deposición por causa legalmente sentenciada.", "t": 1}, {"c": 0, "s": "1.3 Poder Judicial", "q": "El principio que obliga a los jueces a resolver los asuntos de su competencia aun a falta de ley se llama:", "o": ["Inexcusabilidad", "Inamovilidad", "Pasividad", "Responsabilidad"], "e": "Ante falta de ley deben aplicar el espíritu general de la legislación y la equidad natural.", "t": 1}, {"c": 0, "s": "1.3 Poder Judicial", "q": "¿Cuál de los siguientes NO es un delito que la Constitución menciona en la responsabilidad ministerial de los jueces?", "o": ["Malversación de caudales públicos", "Cohecho", "Prevaricación", "Torcida administración de justicia"], "e": "Los delitos mencionados son cohecho, falta de observancia de las leyes que reglan el proceso, prevaricación y torcida administración de justicia.", "t": 1}, {"c": 0, "s": "1.3 Poder Judicial", "q": "¿Cuántos ministros integran la Corte Suprema?", "o": ["21", "17", "15", "25"], "e": "La Corte Suprema está compuesta por 21 miembros llamados Ministros.", "t": 1}, {"c": 0, "s": "1.3 Poder Judicial", "q": "El Presidente de la Corte Suprema dura en sus funciones:", "o": ["Dos años, sin posibilidad de reelección", "Dos años, con una reelección", "Cuatro años, sin reelección", "Tres años, con reelección"], "e": "Es elegido por los propios ministros y dura dos años, no pudiendo ser reelegido.", "t": 1}, {"c": 0, "s": "1.3 Poder Judicial", "q": "¿Sobre cuál de estos tribunales la Corte Suprema NO ejerce superintendencia directiva, correccional y económica?", "o": ["El Tribunal Constitucional", "Los Juzgados de Familia", "Los Tribunales de Juicio Oral en lo Penal", "Las Cortes de Apelaciones"], "e": "Se excluyen el Tribunal Constitucional, el TRICEL, los tribunales electorales regionales y los tribunales militares en tiempo de guerra.", "t": 1}, {"c": 0, "s": "1.3 Poder Judicial", "q": "¿Cuántas Cortes de Apelaciones existen en Chile?", "o": ["17", "16", "15", "21"], "e": "Existen 17 Cortes de Apelaciones; la Región Metropolitana tiene dos: Santiago y San Miguel.", "t": 1}, {"c": 0, "s": "1.3 Poder Judicial", "q": "¿Cómo se determina la integración de las salas de los Tribunales de Juicio Oral en lo Penal?", "o": ["Mediante sorteo anual en el mes de enero", "Por designación de la Corte de Apelaciones cada semestre", "Por antigüedad de los jueces", "Por el Comité de Jueces cada mes"], "e": "Las salas tienen tres miembros y su integración, incluidos los alternos, se determina por sorteo anual en enero.", "t": 1}, {"c": 0, "s": "1.3 Poder Judicial", "q": "¿Cuántos Juzgados de Cobranza Laboral y Previsional existen actualmente?", "o": ["Cuatro: Concepción, San Miguel, Santiago y Valparaíso", "Tres: Santiago, Valparaíso y Concepción", "Cinco: Santiago, San Miguel, Valparaíso, Concepción y Antofagasta", "Dos: Santiago y San Miguel"], "e": "Donde no existen, esa competencia la ejercen los juzgados de letras del trabajo.", "t": 1}, {"c": 0, "s": "1.3 Poder Judicial", "q": "Los Juzgados de Garantía actúan y resuelven:", "o": ["Unipersonalmente", "En salas de tres jueces", "En pleno", "En salas de dos jueces"], "e": "Se conforman por uno o más jueces que actúan y resuelven unipersonalmente, bajo supervigilancia de las Cortes de Apelaciones.", "t": 1}, {"c": 0, "s": "2. Derechos fundamentales", "q": "Según el manual, ¿quiénes son ciudadanos?", "o": ["Los chilenos que han cumplido 18 años y no han sido condenados a pena aflictiva", "Los chilenos que han cumplido 21 años y no han sido condenados a pena aflictiva", "Los chilenos y extranjeros que han cumplido 18 años y tienen domicilio en Chile", "Los chilenos que han cumplido 18 años y están inscritos voluntariamente en el Servel"], "e": "La calidad de ciudadano otorga el derecho a sufragio y a optar a cargos de elección popular.", "t": 2}, {"c": 0, "s": "2. Derechos fundamentales", "q": "¿Qué requisito de residencia deben cumplir los extranjeros para votar en Chile?", "o": ["Estar avecindados en Chile por más de cinco años", "Tener residencia temporal vigente", "Estar avecindados por más de dos años", "Tener nacionalidad por gracia"], "e": "Además deben tener 18 años y no haber sido condenados a pena aflictiva.", "t": 2}, {"c": 0, "s": "3.1 Acceso a información pública", "q": "Presentada una solicitud de acceso a información pública, ¿cuál es el plazo máximo para responder?", "o": ["20 días hábiles, prorrogables excepcionalmente por 10 días hábiles", "10 días hábiles, prorrogables excepcionalmente por 5 días hábiles", "30 días corridos, prorrogables excepcionalmente por 10 días corridos", "15 días hábiles, sin posibilidad de prórroga"], "e": "La prórroga excepcional de 10 días hábiles debe comunicarse al solicitante.", "t": 2}, {"c": 0, "s": "3.1 Acceso a información pública", "q": "Si la información es denegada o no se entrega a tiempo, ¿qué plazo hay para presentar amparo ante el Consejo para la Transparencia?", "o": ["15 días hábiles", "10 días hábiles", "30 días corridos", "5 días hábiles"], "e": "Recibido el amparo, el Consejo pide informe al organismo, que tiene 10 días hábiles para responder.", "t": 2}, {"c": 0, "s": "3.1 Acceso a información pública", "q": "Contra la resolución del Consejo para la Transparencia procede:", "o": ["Recurso de ilegalidad ante la Corte de Apelaciones, en 15 días corridos", "Recurso de protección ante la Corte Suprema, en 30 días", "Recurso de queja ante la Contraloría, en 10 días", "Recurso de apelación ante el juzgado civil, en 5 días"], "e": "La interposición de este recurso suspende los efectos de la resolución que da lugar al acceso a la información.", "t": 2}, {"c": 0, "s": "3.2 Transparencia y Poder Judicial", "q": "¿Desde cuándo el Poder Judicial se sumó voluntariamente al Portal de Transparencia del Estado?", "o": ["Desde diciembre de 2013", "Desde la entrada en vigencia de la Ley 20.285 en 2009", "Desde 2008", "Desde 2024"], "e": "La Ley 20.285 solo le exige transparencia activa; la pasiva la asumió voluntariamente en diciembre de 2013. Su Comisión de Transparencia existe desde 2008.", "t": 2}, {"c": 0, "s": "3.2 Transparencia y Poder Judicial", "q": "¿Qué Auto Acordado regula el acceso a las carpetas electrónicas judiciales y el buscador de jurisprudencia?", "o": ["Auto Acordado 164-2024", "Auto Acordado 37-2021", "Auto Acordado 71-2016", "Auto Acordado 85-2019"], "e": "Equilibra transparencia y publicidad con la protección de datos personales, y regula la anonimización de sentencias.", "t": 2}, {"c": 0, "s": "3.3 Ética judicial", "q": "El principio de ética judicial que exige templanza y austeridad, evitando toda ostentación, es:", "o": ["Sobriedad", "Dignidad", "Prudencia", "Integridad"], "e": "La sobriedad exige templanza y austeridad en el cargo y en la vida social.", "t": 2}, {"c": 0, "s": "3.3 Ética judicial", "q": "¿Cómo está conformada la Comisión de Ética de la Corte Suprema?", "o": ["Por el Presidente de la Corte Suprema y dos ministros titulares nombrados por el Pleno", "Por tres ministros titulares elegidos por sorteo entre los miembros del Pleno", "Por el Presidente de la Corte Suprema, el Fiscal Judicial y un ministro titular", "Por cinco ministros titulares nombrados por el Pleno, uno por cada sala"], "e": "Los dos ministros son nombrados por el Pleno a proposición del Presidente, quien la preside.", "t": 2}, {"c": 0, "s": "3.3 Ética judicial", "q": "Respecto del ejercicio de la abogacía, los funcionarios del Poder Judicial:", "o": ["No pueden ejercerla, salvo para defender causas personales o de su cónyuge, conviviente civil, ascendientes, descendientes o hermanos", "Pueden ejercerla libremente, siempre que sea fuera del horario de trabajo del tribunal", "Pueden ejercerla, pero solo ante tribunales de una jurisdicción distinta de la suya", "Pueden ejercerla con autorización previa de la Corte de Apelaciones respectiva"], "e": "Es una de las prohibiciones del cargo, junto con expresar o insinuar juicio sobre asuntos que deben fallar y adquirir bienes subastados por la CAPJ.", "t": 2}, {"c": 1, "s": "1. Comité de Jueces", "q": "En los tribunales con más de cinco jueces, ¿cómo se compone el Comité de Jueces según la regulación en materia penal?", "o": ["Por cinco jueces elegidos por la mayoría del tribunal, cada dos años", "Por todos los jueces del tribunal", "Por tres jueces designados por la Corte de Apelaciones", "Por los cinco jueces más antiguos, cada año"], "e": "En tribunales con cinco jueces o menos, el Comité se integra por todos ellos.", "t": 0}, {"c": 1, "s": "1. Comité de Jueces", "q": "¿Quién designa al administrador del tribunal en un tribunal con Comité de Jueces?", "o": ["El Comité de Jueces, de una terna presentada por el Juez Presidente", "El Juez Presidente, de una terna del Comité", "La Corporación Administrativa del Poder Judicial", "El Presidente de la Corte de Apelaciones"], "e": "Es una de las funciones del art. 23 del COT.", "t": 0}, {"c": 1, "s": "1. Comité de Jueces", "q": "En un juzgado con uno o dos jueces, ¿quién resuelve la remoción del administrador?", "o": ["El Presidente de la Corte de Apelaciones respectiva", "El juez más antiguo del tribunal respectivo", "El Juez Presidente del tribunal respectivo", "El Director de la Corporación Administrativa del Poder Judicial"], "e": "Las atribuciones de las letras b), c) y e) del art. 23 COT pasan al Presidente de la Corte de Apelaciones.", "t": 0}, {"c": 1, "s": "1. Comité de Jueces", "q": "Si hay empate en una votación del Comité de Jueces:", "o": ["Decide el voto del Juez Presidente", "Decide el juez más antiguo", "Se repite la votación al día siguiente", "Resuelve la Corte de Apelaciones"], "e": "Los acuerdos se adoptan por mayoría y el empate lo dirime el Juez Presidente.", "t": 0}, {"c": 1, "s": "2. Juez Presidente", "q": "¿Cuánto dura el Juez Presidente en su cargo?", "o": ["Dos años, pudiendo ser reelegido por un nuevo período", "Un año, sin poder ser reelegido para el período siguiente", "Dos años, sin poder ser reelegido para el período siguiente", "Cuatro años, pudiendo ser reelegido indefinidamente"], "e": "Es elegido de entre los miembros del Comité de Jueces.", "t": 0}, {"c": 1, "s": "2. Juez Presidente", "q": "¿Cuál de estas es una atribución del Juez Presidente según el art. 24 del COT?", "o": ["Calificar al personal, teniendo a la vista la evaluación del Administrador", "Distribuir las causas a las salas conforme al procedimiento aprobado", "Llevar la contabilidad del tribunal y rendir cuenta de los fondos", "Elaborar el presupuesto anual del tribunal sin intervención del Comité"], "e": "Distribuir causas, llevar la contabilidad y elaborar el presupuesto son funciones del Administrador (art. 389 B COT).", "t": 0}, {"c": 1, "s": "2. Juez Presidente", "q": "En un tribunal conformado por dos jueces, ¿cómo se radican las atribuciones de Juez Presidente?", "o": ["Anualmente en uno de ellos, empezando por el más antiguo", "En el juez de mayor edad, de forma permanente mientras sirva el cargo", "Semestralmente en uno de ellos, empezando por el menos antiguo", "En ambos de forma conjunta, decidiendo siempre por unanimidad"], "e": "Se aplican las mismas excepciones que en los tribunales de un solo juez.", "t": 0}, {"c": 1, "s": "3. Administrador de Tribunal", "q": "¿Hasta qué mes debe el Administrador presentar el presupuesto anual al Juez Presidente?", "o": ["Mayo del año anterior al ejercicio", "Diciembre del año anterior", "Marzo del mismo año", "Enero del año del ejercicio"], "e": "El presupuesto debe contener una propuesta detallada de la inversión de los recursos del ejercicio siguiente.", "t": 0}, {"c": 1, "s": "3. Administrador de Tribunal", "q": "¿Cuál de estas funciones corresponde al Administrador de Tribunal?", "o": ["Distribuir las causas a las salas conforme a un procedimiento objetivo y general aprobado", "Aprobar el procedimiento objetivo y general de distribución de causas", "Calificar al personal del tribunal, con la evaluación del Juez Presidente", "Presidir el Comité de Jueces y fijar las materias de sus sesiones"], "e": "El Administrador distribuye; el Comité aprueba el procedimiento; el Juez Presidente califica y preside el Comité.", "t": 0}, {"c": 1, "s": "4. Unidades administrativas", "q": "¿En qué tribunal reformado NO existe la unidad de sala?", "o": ["Juzgados de cobranza laboral y previsional", "Tribunales de juicio oral en lo penal", "Juzgados de familia", "Juzgados de garantía"], "e": "La unidad de sala está en todos los tribunales reformados, excepto en los de cobranza laboral y previsional.", "t": 1}, {"c": 1, "s": "4. Unidades administrativas", "q": "La unidad de apoyo a testigos y peritos existe solo en:", "o": ["Los Tribunales de Juicio Oral en lo Penal", "Los Juzgados de Garantía", "Los Juzgados de Familia", "Todos los tribunales reformados"], "e": "Atiende, informa y orienta a testigos y peritos citados a declarar en el juicio oral.", "t": 1}, {"c": 1, "s": "4. Unidades administrativas", "q": "¿Qué unidad es propia de los Juzgados de Familia?", "o": ["Unidad de cumplimiento", "Unidad de liquidación", "Unidad de testigos y peritos", "Unidad de causas reservadas"], "e": "Se encarga del cumplimiento de las resoluciones, especialmente las que requieren cumplimiento sostenido en el tiempo.", "t": 1}, {"c": 1, "s": "4. Unidades administrativas", "q": "La unidad que calcula el monto de la deuda, reajustes, intereses y multas en materias de cobranza es la:", "o": ["Unidad de liquidación", "Unidad de servicios", "Unidad de cumplimiento", "Unidad de administración de causas"], "e": "Existe en los tribunales que conocen materias de cobranza laboral y previsional.", "t": 1}, {"c": 1, "s": "4. Unidades administrativas", "q": "¿Qué unidad se encarga del ingreso y número de rol de las causas nuevas y de las estadísticas básicas del tribunal?", "o": ["Unidad de administración de causas", "Unidad de atención de público", "Unidad de servicios", "Unidad de sala"], "e": "También maneja notificaciones, fechas y salas de audiencias y el archivo judicial básico.", "t": 1}, {"c": 1, "s": "5. Auxiliares", "q": "¿Quiénes son ministros de fe encargados de hacer saber a las partes, fuera de la oficina del secretario, las resoluciones de los tribunales?", "o": ["Los receptores", "Los procuradores del número", "Los archiveros", "Los relatores"], "e": "También reciben informaciones sumarias de testigos y actúan como ministros de fe en la prueba testimonial y la absolución de posiciones.", "t": 2}, {"c": 1, "s": "5. Auxiliares", "q": "Los receptores adscritos a la Corte de Apelaciones de Santiago pueden ejercer también en el territorio de:", "o": ["La Corte de Apelaciones de San Miguel", "La Corte de Apelaciones de Valparaíso", "La Corte de Apelaciones de Rancagua", "Cualquier Corte del país"], "e": "Y viceversa; en general pueden actuar en otra comuna dentro del territorio de la misma Corte.", "t": 2}, {"c": 1, "s": "5. Auxiliares", "q": "En caso de ausencia del Juez de Letras, ¿quién lo subroga?", "o": ["El Secretario del respectivo juzgado", "El Oficial 1° del juzgado", "El juez del juzgado más cercano", "El Administrador del tribunal"], "e": "A su vez, según el art. 500 del COT, el secretario puede ser subrogado por el Oficial 1°.", "t": 2}, {"c": 1, "s": "5. Auxiliares", "q": "¿Qué auxiliares de la administración de justicia representan en juicio a las partes?", "o": ["Los procuradores del número", "Los receptores", "Los defensores públicos", "Los notarios"], "e": "Deben avisar a los abogados sobre el estado de los asuntos y las resoluciones dictadas.", "t": 2}, {"c": 1, "s": "5. Auxiliares", "q": "Los defensores públicos (auxiliares del COT) representan en asuntos judiciales a:", "o": ["Incapaces, ausentes y fundaciones de beneficencia u obras pías sin representante", "Imputados y condenados que carecen de abogado en el proceso penal", "Trabajadores sin recursos en juicios laborales y previsionales", "Víctimas de violencia intrafamiliar y niños bajo medidas de protección"], "e": "No deben confundirse con la Defensoría Penal Pública, que entrega defensa penal a imputados y condenados.", "t": 2}, {"c": 1, "s": "5. Auxiliares", "q": "¿Qué órgano asesora a los jueces con competencia en asuntos de familia?", "o": ["El Consejo Técnico", "La Fiscalía Judicial", "El Comité de Jueces", "La Unidad de cumplimiento"], "e": "Está compuesto por profesionales que asesoran individual o colectivamente a los jueces de familia.", "t": 2}, {"c": 1, "s": "6. Personal", "q": "¿En qué escalafón se agrupan los cargos de Administrador de Tribunal, Jefe de Unidad y Consejero Técnico?", "o": ["Escalafón secundario", "Escalafón primario", "Escalafón de empleados", "Escalafón especial"], "e": "El secundario incluye además a defensores públicos, notarios, conservadores, archiveros, procuradores y receptores.", "t": 2}, {"c": 1, "s": "6. Personal", "q": "Los jueces de juzgado o tribunal de ciudad capital de provincia pertenecen a la:", "o": ["Cuarta categoría del escalafón primario", "Tercera categoría del escalafón primario", "Quinta categoría del escalafón primario", "Segunda categoría del escalafón primario"], "e": "Tercera: jueces de ciudad asiento de Corte; quinta: jueces de comuna o agrupación de comunas.", "t": 2}, {"c": 1, "s": "6. Personal", "q": "El empleado nombrado para ocupar una plaza vacante mientras se provee con un titular es:", "o": ["Interino", "Suplente", "A contrata", "Titular"], "e": "El suplente, en cambio, reemplaza a un titular o interino que está impedido de desempeñar el cargo.", "t": 2}, {"c": 1, "s": "6. Personal", "q": "¿Hasta qué fecha duran como máximo los empleos a contrata en el Poder Judicial?", "o": ["Hasta el 31 de diciembre de cada año", "Hasta el 30 de junio de cada año", "Un año desde el nombramiento", "Hasta el 31 de marzo del año siguiente"], "e": "Expiran automáticamente en esa fecha, salvo que se haya propuesto la prórroga con treinta días de anticipación.", "t": 2}, {"c": 2, "s": "2. Capacidad procesal", "q": "La capacidad o conjunto de requisitos que permiten a una persona formular peticiones ante un tribunal se denomina:", "o": ["Ius postulandi", "Capacidad para ser parte", "Capacidad de goce", "Legitimación activa"], "e": "La capacidad para ser parte es la de goce; la capacidad procesal es la de ejercicio; el ius postulandi permite formular peticiones.", "t": 0}, {"c": 2, "s": "2.2 Comparecencia", "q": "¿En qué momento debe constituirse el patrocinio?", "o": ["En la primera presentación ante el tribunal", "En la contestación de la demanda", "Antes de la audiencia preparatoria", "Al momento de notificarse la demanda"], "e": "Se cumple poniendo el abogado su firma, nombre, apellidos y domicilio.", "t": 0}, {"c": 2, "s": "2.2 Comparecencia", "q": "Si el patrocinio se otorga mediante firma electrónica simple:", "o": ["Debe ratificarse ante el ministro de fe del tribunal por videoconferencia", "No produce efecto alguno y debe otorgarse nuevamente por escrito", "Debe ratificarse ante notario dentro de tercero día desde su presentación", "Basta con adjuntar al escrito el certificado de título del abogado"], "e": "Lo mismo ocurre con el mandato judicial otorgado con firma electrónica simple.", "t": 0}, {"c": 2, "s": "2.2 Comparecencia", "q": "En el proceso penal, el patrocinio de los Defensores Públicos:", "o": ["Se entiende constituido por el solo ministerio de la ley", "Debe constituirse por escritura pública", "Debe ratificarse ante el juez de garantía", "Requiere firma electrónica avanzada del imputado"], "e": "Es una regla especial del nuevo proceso penal.", "t": 0}, {"c": 2, "s": "2.2 Comparecencia", "q": "¿Cuál de estas personas NO puede ser mandatario judicial según el manual?", "o": ["Un estudiante de segundo año de Derecho", "Un procurador del número", "Un egresado de Derecho realizando su práctica profesional", "Un estudiante inscrito en cuarto año de Derecho"], "e": "Pueden serlo los estudiantes de 3°, 4° o 5° año, además de abogados, procuradores del número y ciertos egresados.", "t": 0}, {"c": 2, "s": "2.2 Comparecencia", "q": "¿Hasta cuándo pueden actuar como mandatarios judiciales los egresados de Derecho que cursaron 5° año?", "o": ["Hasta tres años después de rendir los exámenes correspondientes", "Hasta un año después de rendir los exámenes correspondientes", "Hasta obtener el título de abogado, sin límite de tiempo", "Hasta cinco años después de rendir los exámenes correspondientes"], "e": "Es una de las categorías de mandatarios judiciales enumeradas en el manual.", "t": 0}, {"c": 2, "s": "2.2 Comparecencia", "q": "Para que opere la renuncia del mandatario judicial:", "o": ["Debe ponerse en conocimiento del mandante junto con el estado del juicio y transcurrir el término de emplazamiento", "Basta presentar un escrito al tribunal, sin necesidad de avisar al mandante", "Debe aceptarla el tribunal por resolución fundada, previa audiencia del mandante", "Debe notificarse al demandado por cédula y transcurrir el plazo de tres días"], "e": "El mandato termina por cumplimiento del encargo, revocación, renuncia o muerte del mandatario.", "t": 0}, {"c": 2, "s": "3. Emplazamiento", "q": "¿Cuáles son los dos elementos del emplazamiento?", "o": ["Notificación válida de la demanda y transcurso del plazo para hacer valer los derechos", "Presentación válida de la demanda y contestación dentro del plazo legal", "Notificación por cédula de la demanda y celebración de la audiencia de conciliación", "Admisibilidad de la demanda y resolución que recibe la causa a prueba"], "e": "No basta conocer la demanda: la notificación debe ser válida.", "t": 0}, {"c": 2, "s": "3. Emplazamiento", "q": "¿Cuál es, por lo general, el plazo de emplazamiento en el procedimiento civil ordinario según el manual?", "o": ["18 días", "10 días", "15 días", "30 días"], "e": "Desde la notificación válida corre un plazo variable, que en el ordinario civil suele ser de 18 días.", "t": 0}, {"c": 2, "s": "4. Tramitación digital", "q": "¿Qué ley establece la tramitación digital de los procedimientos judiciales?", "o": ["Ley N° 20.886", "Ley N° 21.394", "Ley N° 20.285", "Ley N° 19.968"], "e": "Fue publicada el 18 de diciembre de 2015 y prohíbe los registros paralelos o expedientes físicos.", "t": 1}, {"c": 2, "s": "4. Tramitación digital", "q": "El principio según el cual los actos firmados electrónicamente valen lo mismo que en soporte papel es el de:", "o": ["Equivalencia funcional del soporte electrónico", "Fidelidad de los registros electrónicos", "Cooperación entre los tribunales y auxiliares", "Actualización de los sistemas informáticos"], "e": "La fidelidad, en cambio, se refiere al registro íntegro y en orden sucesivo de las actuaciones en la carpeta electrónica.", "t": 1}, {"c": 2, "s": "4. Tramitación digital", "q": "¿Qué Auto Acordado es el más relevante en materia de tramitación electrónica?", "o": ["Acta N° 85-2019", "Acta N° 164-2024", "Acta N° 53-2020", "Acta N° 71-2016"], "e": "Regula el buscador de causas, la Oficina Judicial Virtual, la georreferenciación de receptores y el estado diario electrónico.", "t": 1}, {"c": 2, "s": "4. Tramitación digital", "q": "Si la parte contraria objeta un documento presentado electrónicamente cuyo formato original no es electrónico:", "o": ["Debe presentarse materialmente en el tribunal y queda bajo custodia del ministro de fe", "Se tiene por no presentado y la parte debe acompañarlo nuevamente en forma electrónica", "Debe autenticarse ante notario y luego subirse nuevamente a la carpeta electrónica", "El tribunal debe digitalizarlo nuevamente y certificar su conformidad con el original"], "e": "Lo mismo aplica siempre a los títulos ejecutivos cuyo formato original no sea electrónico.", "t": 1}, {"c": 2, "s": "4.2 Comparecencia remota", "q": "¿Qué ley estableció el marco jurídico vigente sobre comparecencia remota?", "o": ["Ley N° 21.394", "Ley N° 20.886", "Ley N° 21.226", "Ley N° 20.720"], "e": "Estableció un régimen de funcionamiento excepcional y otro permanente.", "t": 1}, {"c": 2, "s": "4.2 Comparecencia remota", "q": "En el régimen permanente, fuera del ámbito penal, ¿hasta cuándo debe la parte pedir comparecer de forma remota?", "o": ["Hasta dos días antes de la audiencia", "Hasta el día anterior a la audiencia", "Hasta cinco días antes de la audiencia", "Al inicio de la misma audiencia"], "e": "La 'prueba viva' (testigos, absolución de posiciones) solo puede rendirse en dependencias del tribunal.", "t": 1}, {"c": 2, "s": "4.2 Comparecencia remota", "q": "En materia penal, la modalidad semipresencial NO procede respecto de:", "o": ["Las audiencias de juicio", "Las audiencias de control de detención", "Las audiencias de formalización", "Las audiencias de revisión de medidas cautelares"], "e": "En juicio, la declaración remota de imputado, víctima, testigos y peritos solo se autoriza en casos excepcionales.", "t": 1}, {"c": 2, "s": "4.2 Comparecencia remota", "q": "En materia penal, ¿cuál es la duración máxima total del sistema de funcionamiento de excepcionalidad, incluidas sus prórrogas?", "o": ["Dos años", "Un año", "Seis meses", "Tres años"], "e": "Dura como máximo un año, prorrogable si se mantienen las circunstancias, sin superar dos años en total.", "t": 1}, {"c": 2, "s": "5. Plazos", "q": "¿Hasta qué momento corren los plazos?", "o": ["Hasta la medianoche del último día del plazo", "Hasta el cierre del horario de atención del tribunal", "Hasta las 14:00 horas del último día", "Hasta el inicio del día siguiente hábil"], "e": "Los dos principios de cómputo son: deben ser completos y corren hasta la medianoche del último día.", "t": 2}, {"c": 2, "s": "6. Actuaciones judiciales", "q": "En materia penal, si un plazo de días para los intervinientes vence en día feriado:", "o": ["Se entiende ampliado hasta las 24 horas del día siguiente que no sea feriado", "Vence igualmente ese día, a las 24 horas, sin ampliación alguna", "Se suspende hasta que el tribunal fije una nueva fecha de vencimiento", "Se entiende ampliado por tres días hábiles contados desde el feriado"], "e": "En lo penal todos los días y horas son hábiles y los plazos no se suspenden por feriados, salvo esta regla de vencimiento.", "t": 2}, {"c": 2, "s": "7. Notificaciones", "q": "¿Qué tipo de notificación debe usarse como primera notificación al demandado?", "o": ["Notificación personal", "Notificación por el estado diario", "Notificación por cédula", "Notificación tácita"], "e": "El receptor informa personalmente la presentación y la resolución, entregando copia íntegra.", "t": 2}, {"c": 2, "s": "7. Notificaciones", "q": "Para practicar la notificación personal subsidiaria, la persona no debe haber sido encontrada en su domicilio en:", "o": ["Dos días distintos", "Tres días distintos", "Un día", "Cinco días hábiles seguidos"], "e": "El receptor certifica el domicilio y que la persona está en el lugar del juicio, y deja las copias en el domicilio en la segunda búsqueda.", "t": 2}, {"c": 2, "s": "7. Notificaciones", "q": "¿Cuál es la regla general de notificación?", "o": ["La notificación por el estado diario", "La notificación personal", "La notificación por cédula", "La notificación por avisos"], "e": "Los estados se mantienen al menos tres días en la web del Poder Judicial.", "t": 2}, {"c": 2, "s": "7. Notificaciones", "q": "La resolución que recibe la causa a prueba en un juicio civil se notifica, por ejemplo:", "o": ["Por cédula", "Por el estado diario", "Por avisos", "Personalmente"], "e": "También puede enviarse al medio electrónico señalado por las partes, previa solicitud.", "t": 2}, {"c": 2, "s": "7. Notificaciones", "q": "¿Cuándo procede la notificación por avisos?", "o": ["Cuando la individualidad o residencia de las personas es difícil de determinar o su número dificulta la diligencia", "Cuando el demandado no contesta la demanda dentro del término de emplazamiento", "Siempre que lo pida el demandante, sin necesidad de justificar la solicitud", "Cuando el receptor no encuentra al demandado en su domicilio en una búsqueda"], "e": "Se publica en diarios del lugar del juicio, de la cabecera de provincia o de la capital regional.", "t": 2}, {"c": 2, "s": "7. Notificaciones", "q": "La notificación que opera cuando la persona realiza en el proceso cualquier gestión que supone conocimiento de la resolución, distinta de alegar su nulidad, es la:", "o": ["Notificación tácita", "Notificación ficta", "Notificación subsidiaria", "Notificación por el estado diario"], "e": "La ficta, en cambio, opera cuando se alega y declara la nulidad de una notificación.", "t": 2}, {"c": 2, "s": "8. Resoluciones judiciales", "q": "¿Cuáles son las partes de una sentencia definitiva, como regla general?", "o": ["Expositiva, considerativa y resolutiva", "Introductoria, probatoria y decisoria", "Vistos, oídos y resolución", "Expositiva, probatoria y resolutiva"], "e": "La parte resolutiva debe pronunciarse sobre todas las acciones y excepciones.", "t": 3}, {"c": 2, "s": "8. Resoluciones judiciales", "q": "Las resoluciones mediante las cuales el tribunal solo da curso al procedimiento se denominan:", "o": ["Decretos", "Autos", "Sentencias interlocutorias", "Sentencias definitivas"], "e": "Deben señalar el trámite específico por el cual se da curso al procedimiento.", "t": 3}, {"c": 2, "s": "8. Resoluciones judiciales", "q": "El efecto por el cual una sentencia definitiva o interlocutoria, una vez notificada a alguna parte, ya no puede ser modificada por el tribunal que la dictó es:", "o": ["El desasimiento del tribunal", "La cosa juzgada", "La ejecutoria", "La preclusión"], "e": "La cosa juzgada, en cambio, exige que la resolución esté firme o ejecutoriada.", "t": 3}, {"c": 2, "s": "8. Resoluciones judiciales", "q": "Si contra una sentencia no procede recurso alguno, ¿desde cuándo queda firme o ejecutoriada?", "o": ["Desde que se notifica a las partes", "Desde que se notifica el cúmplase", "Desde que transcurren 10 días", "Desde que se archiva la causa"], "e": "Si proceden recursos y se dedujeron, desde que se notifica el decreto que la manda cumplir; si no se dedujeron, desde que vencen los plazos.", "t": 3}, {"c": 2, "s": "8. Resoluciones judiciales", "q": "Las resoluciones que pueden cumplirse a pesar de existir recursos pendientes en su contra son las que:", "o": ["Causan ejecutoria", "Están firmes", "Producen desasimiento", "Producen cosa juzgada"], "e": "Es un estado distinto del de las resoluciones firmes o ejecutoriadas.", "t": 3}, {"c": 3, "s": "1. Juicio ordinario", "q": "¿A qué asuntos contenciosos se aplica el juicio ordinario civil de mayor cuantía según el manual?", "o": ["A los de cuantía superior a 500 UTM y a los no apreciables en dinero sin procedimiento especial", "A los de cuantía superior a 100 UTM y a los no apreciables en dinero sin procedimiento especial", "Solo a los asuntos no apreciables en dinero, cualquiera sea su naturaleza", "A los de cuantía superior a 1.000 UF y a los que tengan procedimiento especial"], "e": "Además es un procedimiento supletorio para gestiones sin regla especial.", "t": 0}, {"c": 3, "s": "1. Juicio ordinario", "q": "La pérdida o extinción de un derecho procesal por haberlo ejercido o por no hacerlo en tiempo y forma se denomina:", "o": ["Preclusión", "Prescripción", "Caducidad del mandato", "Desasimiento"], "e": "Toma especial importancia en el juicio ordinario por ser un procedimiento desconcentrado.", "t": 0}, {"c": 3, "s": "1.1 Período de discusión", "q": "¿Qué escritos componen el período de discusión del juicio ordinario?", "o": ["Demanda, contestación, réplica y dúplica", "Demanda, contestación y conciliación", "Demanda, excepciones dilatorias y sentencia", "Demanda, réplica y observaciones a la prueba"], "e": "Le siguen el llamado a conciliación, la prueba, la discusión sobre la prueba, el fallo y la ejecución.", "t": 0}, {"c": 3, "s": "1.1 Período de discusión", "q": "Si la demanda no contiene la designación del tribunal o la individualización del demandante o del demandado, el juez:", "o": ["Puede de oficio no darle curso, expresando el defecto", "Debe declararla nula de oficio, expresando el defecto", "Debe darle curso igualmente y ordenar subsanar el defecto", "Debe remitirla a la Corte de Apelaciones para que resuelva"], "e": "Son los tres primeros requisitos del art. 254 CPC.", "t": 0}, {"c": 3, "s": "1.1 Período de discusión", "q": "Si la demanda se amplía después de notificada pero antes de la contestación:", "o": ["La modificación se considera demanda nueva para su notificación y el plazo para contestar corre desde esa notificación", "No se permite ninguna modificación una vez notificada, y debe presentarse una demanda nueva", "Se tiene por no presentada la demanda original y el demandante debe notificar la nueva", "El demandado debe contestar dentro del plazo original, que corre desde la primera notificación"], "e": "Antes de notificarse, la demanda puede retirarse y se tiene por no presentada.", "t": 0}, {"c": 3, "s": "1.1 Período de discusión", "q": "Las excepciones que se refieren a la corrección del procedimiento sin afectar el fondo son las:", "o": ["Excepciones dilatorias", "Excepciones perentorias", "Excepciones anómalas", "Excepciones mixtas"], "e": "Deben oponerse todas en la misma oportunidad, antes de la contestación.", "t": 0}, {"c": 3, "s": "1.1 Período de discusión", "q": "¿Cuál de estas es una excepción anómala, que puede oponerse después de la contestación?", "o": ["La prescripción extintiva", "La incompetencia del tribunal", "La ineptitud del libelo", "La falta de capacidad del demandante"], "e": "Son anómalas la prescripción extintiva, la cosa juzgada, la transacción y el pago efectivo fundado en antecedente escrito.", "t": 0}, {"c": 3, "s": "1.1 Período de discusión", "q": "¿Hasta cuándo pueden oponerse las excepciones anómalas en primera instancia?", "o": ["Hasta la citación para oír sentencia", "Hasta la contestación de la demanda", "Hasta el vencimiento del término probatorio", "Hasta la dúplica"], "e": "En segunda instancia, hasta la vista de la causa.", "t": 0}, {"c": 3, "s": "1.1 Período de discusión", "q": "¿De qué plazo dispone el demandante para presentar la réplica?", "o": ["6 días, plazo fatal", "10 días, plazo fatal", "3 días, plazo fatal", "15 días, plazo no fatal"], "e": "El demandado tiene el mismo plazo fatal de 6 días para la dúplica.", "t": 0}, {"c": 3, "s": "1.2 Conciliación", "q": "El acta de conciliación total o parcial en el juicio ordinario:", "o": ["Se estima como sentencia ejecutoriada para todos los efectos legales", "Debe ser aprobada por la Corte de Apelaciones para producir efectos", "Solo tiene el valor de un instrumento privado entre las partes", "Debe reducirse a escritura pública para tener mérito ejecutivo"], "e": "La suscriben el juez, las partes que lo deseen y el secretario.", "t": 0}, {"c": 3, "s": "1.3 Período de prueba", "q": "¿Cómo se notifica la resolución que recibe la causa a prueba?", "o": ["Por cédula", "Por el estado diario", "Personalmente", "Por avisos"], "e": "Fija los hechos sustanciales, pertinentes y controvertidos sobre los que recaerá la prueba.", "t": 1}, {"c": 3, "s": "1.3 Período de prueba", "q": "¿Cuánto dura el término probatorio ordinario en el juicio ordinario civil?", "o": ["20 días", "10 días", "8 días", "30 días"], "e": "Es un plazo legal, común y fatal; las partes pueden acordar reducirlo.", "t": 1}, {"c": 3, "s": "1.3 Período de prueba", "q": "¿Cada cuánto tiempo determina la Corte Suprema la tabla de emplazamiento?", "o": ["Cada 5 años", "Cada año", "Cada 2 años", "Cada 10 años"], "e": "Fija los días de aumento considerando distancias y facilidades de comunicación.", "t": 1}, {"c": 3, "s": "1.3 Período de prueba", "q": "Para obtener un término probatorio especial por entorpecimiento, el obstáculo debe reclamarse:", "o": ["Al presentarse o dentro de los 3 días siguientes", "Dentro de los 10 días siguientes", "Al vencer el término probatorio", "En cualquier momento antes de la sentencia"], "e": "El término especial dura tantos días como dure el entorpecimiento.", "t": 1}, {"c": 3, "s": "1.3.2 Medios de prueba", "q": "¿Cuál de los siguientes NO es un medio de prueba del procedimiento civil según el manual?", "o": ["La declaración jurada notarial", "La absolución de posiciones", "La inspección personal del tribunal", "Las presunciones"], "e": "Los medios son: instrumentos, testigos, absolución de posiciones, inspección personal, informes de peritos y presunciones.", "t": 1}, {"c": 3, "s": "1.3.2 Instrumentos", "q": "Los instrumentos públicos se acompañan 'con citación'. ¿Qué plazo tiene la contraparte para objetarlos?", "o": ["3 días", "6 días", "5 días", "10 días"], "e": "Se cuenta desde la notificación de la resolución que tuvo por acompañado el documento.", "t": 1}, {"c": 3, "s": "1.3.2 Instrumentos", "q": "Un instrumento privado emanado de la parte se tiene por reconocido si, puesto en conocimiento de la contraria, no se alega su falsedad o falta de integridad dentro de:", "o": ["Seis días", "Tres días", "Diez días", "Quince días"], "e": "El tribunal debe apercibir a la parte con el reconocimiento tácito si nada expone en ese plazo (art. 346 CPC).", "t": 1}, {"c": 3, "s": "1.3.2 Instrumentos", "q": "Si se presenta un documento electrónico que no puede percibirse directamente en la carpeta, el tribunal cita a una audiencia de percepción documental para:", "o": ["El 6° día", "El 3° día", "El 10° día", "El día hábil siguiente"], "e": "Si la parte no lleva los medios técnicos, se apercibe con tenerlo por no presentado.", "t": 1}, {"c": 3, "s": "1.3.2 Testigos", "q": "¿Dentro de qué plazo debe presentarse la lista de testigos en el juicio ordinario?", "o": ["Dentro de los 5 días siguientes a la última notificación de la resolución que recibe la causa a prueba", "Dentro de los 2 primeros días del término probatorio, contados desde su inicio", "Junto con la demanda o la contestación, según quien ofrezca los testigos", "Hasta el último día del término probatorio, antes de la audiencia de testigos"], "e": "Debe acompañarse además una minuta de puntos de prueba.", "t": 1}, {"c": 3, "s": "1.3.2 Testigos", "q": "¿Cuándo deben oponerse las tachas a los testigos?", "o": ["Antes de que los testigos presten declaración", "Después de la declaración", "En el escrito de observaciones a la prueba", "En la contestación de la demanda"], "e": "Las tachas son el medio para hacer efectivas las inhabilidades de los testigos.", "t": 1}, {"c": 3, "s": "1.3.2 Absolución de posiciones", "q": "¿Cuántas veces pueden las partes exigir la absolución de posiciones en primera instancia?", "o": ["Hasta dos veces, y una más si se alegan hechos nuevos", "Una sola vez, y otra más si se alegan hechos nuevos", "Hasta tres veces, y una más si se alegan hechos nuevos", "Sin límite, mientras no se haya citado a oír sentencia"], "e": "En segunda instancia, una vez.", "t": 1}, {"c": 3, "s": "1.3.2 Absolución de posiciones", "q": "La confesión sobre hechos personales del confesante:", "o": ["Produce plena prueba en su contra", "Solo constituye un indicio", "Debe complementarse con testigos", "Se aprecia según la sana crítica"], "e": "Si los hechos no son personales, también prueba, pero puede destruirse con otro medio.", "t": 1}, {"c": 3, "s": "1.3.2 Peritos", "q": "Si las partes no se ponen de acuerdo en la persona del perito y lo nombra el tribunal, el nombramiento NO puede recaer en:", "o": ["Ninguna de las dos primeras personas propuestas por cada parte", "Un perito que resida fuera del territorio jurisdiccional del tribunal", "Un perito que no tenga título profesional en la materia", "Un perito que ya haya informado en otro juicio entre las mismas partes"], "e": "El tribunal aprecia el informe pericial según las reglas de la sana crítica.", "t": 1}, {"c": 3, "s": "1.3.2 Presunciones", "q": "Las presunciones judiciales que deduce el juez deben ser:", "o": ["Graves, precisas y concordantes", "Legales y de derecho", "Simples y directas", "Plenas y documentadas"], "e": "Una sola presunción puede constituir plena prueba si tiene gravedad y precisión suficientes.", "t": 1}, {"c": 3, "s": "1.4 Trámites posteriores", "q": "Vencido el término de prueba en el juicio ordinario, ¿qué plazo tienen las partes para hacer observaciones a la prueba?", "o": ["10 días", "6 días", "5 días", "20 días"], "e": "Luego el tribunal cita a las partes a oír sentencia.", "t": 1}, {"c": 3, "s": "1.4 Trámites posteriores", "q": "¿En qué plazo debe dictarse la sentencia definitiva en el juicio ordinario?", "o": ["60 días desde que la causa queda en estado de sentencia", "30 días desde que la causa queda en estado de sentencia", "10 días desde que la causa queda en estado de sentencia", "90 días desde que la causa queda en estado de sentencia"], "e": "Si no la dicta en ese plazo, el juez incurre en responsabilidad funcionaria.", "t": 1}, {"c": 3, "s": "1.4 Trámites posteriores", "q": "¿Qué plazo hay para cumplir las medidas para mejor resolver?", "o": ["20 días desde la notificación de la resolución que las decreta", "10 días desde la notificación de la resolución que las decreta", "60 días desde la notificación de la resolución que las decreta", "5 días desde la notificación de la resolución que las decreta"], "e": "Si no se cumplen, se tienen por no decretadas y el tribunal dicta sentencia sin más trámite.", "t": 1}, {"c": 3, "s": "1.5 Término del juicio", "q": "La forma autocompositiva en que las partes negocian directamente y lo presentan en un escrito aprobado por el juez es:", "o": ["El avenimiento", "La conciliación", "La transacción", "El allanamiento"], "e": "En la conciliación, en cambio, el juez propone bases de arreglo.", "t": 2}, {"c": 3, "s": "1.5 Término del juicio", "q": "¿Cómo se notifica la sentencia definitiva de primera instancia en el juicio ordinario?", "o": ["Por cédula", "Por el estado diario", "Personalmente", "Por correo electrónico"], "e": "La anotación en el estado diario no implica notificación.", "t": 2}, {"c": 3, "s": "1.5.2 Recursos", "q": "¿Cuál es el plazo para apelar de una sentencia definitiva en materia civil?", "o": ["10 días hábiles", "5 días hábiles", "15 días hábiles", "3 días hábiles"], "e": "Por regla general son 5 días hábiles; si es sentencia definitiva, 10.", "t": 2}, {"c": 3, "s": "1.5.2 Recursos", "q": "El recurso contra la resolución que concede una apelación improcedente o en un efecto distinto al debido es el:", "o": ["Falso recurso de hecho", "Verdadero recurso de hecho", "Recurso de reposición", "Recurso de casación en la forma"], "e": "El verdadero recurso de hecho procede contra la resolución que deniega una apelación procedente.", "t": 2}, {"c": 3, "s": "1.5.2 Recursos", "q": "¿Qué plazo hay para deducir reposición contra la resolución que recibe la causa a prueba?", "o": ["3 días hábiles", "5 días hábiles", "10 días hábiles", "6 días hábiles"], "e": "Contra autos y decretos el plazo es de 5 días hábiles.", "t": 2}, {"c": 3, "s": "1.5.2 Recursos", "q": "¿Cuál es el plazo para interponer el recurso de casación en el fondo?", "o": ["15 días hábiles desde la notificación de la sentencia", "10 días hábiles desde la notificación de la sentencia", "5 días hábiles desde la notificación de la sentencia", "30 días corridos desde la notificación de la sentencia"], "e": "Procede contra sentencias definitivas o interlocutorias inapelables que pongan término al juicio.", "t": 2}, {"c": 3, "s": "1.5.2 Recursos", "q": "Que el recurso de casación en la forma deba 'prepararse' significa que:", "o": ["El recurrente debe haber reclamado el vicio ejerciendo oportunamente todos los recursos legales", "Debe anunciarse por escrito ante el tribunal antes de que se dicte la sentencia", "Debe acompañarse una consignación en dinero al momento de interponerlo", "Debe presentarse acompañado de un informe en derecho sobre el vicio reclamado"], "e": "Si se interpone también apelación o casación en el fondo, deben ir en el mismo escrito.", "t": 2}, {"c": 3, "s": "2. Juicio ejecutivo", "q": "¿En qué artículo del CPC están enumerados taxativamente los títulos ejecutivos?", "o": ["Art. 434", "Art. 254", "Art. 464", "Art. 680"], "e": "Solo la ley puede crear títulos ejecutivos.", "t": 3}, {"c": 3, "s": "2. Juicio ejecutivo", "q": "Una letra de cambio, pagaré o cheque tiene mérito ejecutivo sin reconocimiento previo cuando:", "o": ["La firma aparece autorizada por un notario o, donde no hay notario, por el Oficial del Registro Civil", "Ha sido protestado por falta de pago ante un notario o el Oficial del Registro Civil", "Lo firma un aval cuya firma aparece autorizada por un notario", "Su monto supera las 50 UTM y fue suscrito ante dos testigos"], "e": "Si no, se requiere una gestión preparatoria para el reconocimiento.", "t": 3}, {"c": 3, "s": "2. Juicio ejecutivo", "q": "¿Cuál es el plazo general de prescripción de la acción ejecutiva?", "o": ["3 años desde que la obligación se hizo exigible", "5 años desde que la obligación se hizo exigible", "1 año desde el vencimiento", "2 años desde la suscripción del título"], "e": "Prescrita, subsiste 2 años más como acción ordinaria.", "t": 3}, {"c": 3, "s": "2. Juicio ejecutivo", "q": "¿En qué plazo prescribe la acción ejecutiva de un cheque protestado?", "o": ["1 año desde la fecha del protesto", "3 años desde la fecha del protesto", "6 meses desde el giro", "2 años desde el protesto"], "e": "Letra de cambio, pagaré y cuarta copia de factura también prescriben en un año.", "t": 3}, {"c": 3, "s": "2.3 Cuaderno principal", "q": "Si el deudor es requerido de pago en el territorio del tribunal donde se presentó la demanda, ¿qué plazo tiene para oponer excepciones?", "o": ["Ocho días útiles", "Seis días hábiles", "Diez días útiles", "Cuatro días corridos"], "e": "Los plazos son fatales y se cuentan desde el requerimiento de pago.", "t": 3}, {"c": 3, "s": "2.3 Cuaderno principal", "q": "¿Dónde están enumeradas las excepciones que puede oponer el ejecutado?", "o": ["En el art. 464 del CPC", "En el art. 434 del CPC", "En el art. 303 del CPC", "En el art. 768 del CPC"], "e": "La oposición no puede fundarse en excepciones fuera de ese listado.", "t": 3}, {"c": 3, "s": "2.3 Cuaderno principal", "q": "¿Qué plazo tiene el ejecutante para contestar las excepciones del ejecutado?", "o": ["Cuatro días", "Seis días", "Ocho días", "Diez días"], "e": "Solo dentro de ese plazo puede desistirse con reserva de la acción ordinaria.", "t": 3}, {"c": 3, "s": "2.3 Cuaderno principal", "q": "¿Cuánto dura el término probatorio de las excepciones en el juicio ejecutivo?", "o": ["10 días, ampliable por 10 más a solicitud del acreedor", "20 días, sin posibilidad de ampliación", "8 días, ampliable por 8 más a solicitud del deudor", "6 días, ampliable por 6 más a solicitud de cualquiera de las partes"], "e": "Las partes de común acuerdo pueden concederse términos extraordinarios.", "t": 3}, {"c": 3, "s": "2.3 Cuaderno principal", "q": "¿En qué plazo debe dictarse la sentencia en el juicio ejecutivo?", "o": ["10 días desde que el pleito quedó concluso", "60 días desde que el pleito quedó concluso", "30 días desde que el pleito quedó concluso", "5 días desde que el pleito quedó concluso"], "e": "La sentencia se limita a acoger o rechazar las excepciones.", "t": 3}, {"c": 3, "s": "2.3 Cuaderno principal", "q": "Si el deudor no opone excepciones en el juicio ejecutivo:", "o": ["Se omite la sentencia y basta el mandamiento de ejecución y embargo", "El tribunal debe dictar sentencia de todas formas", "Se le declara rebelde y se abre un término probatorio", "El juicio se transforma en ordinario"], "e": "El acreedor puede perseguir los bienes conforme a las normas de apremio.", "t": 3}, {"c": 3, "s": "2.3.2 Cuaderno de apremio", "q": "A falta de designación, ¿en qué orden se embargan los bienes del deudor?", "o": ["Dinero, otros muebles, bienes raíces, salarios y pensiones", "Bienes raíces, muebles, dinero, salarios", "Salarios, dinero, muebles, inmuebles", "Muebles, dinero, inmuebles, pensiones"], "e": "Es el orden del art. 449 del CPC.", "t": 3}, {"c": 3, "s": "2.3.2 Cuaderno de apremio", "q": "Las remuneraciones de empleados y obreros son embargables en la parte que exceda de:", "o": ["56 UF", "50 UTM", "100 UF", "30 UF"], "e": "Libros e instrumentos profesionales son inembargables hasta 50 UTM, a elección del deudor.", "t": 3}, {"c": 3, "s": "2.3.2 Cuaderno de apremio", "q": "El alzamiento del embargo trabado por error sobre bienes inembargables se denomina:", "o": ["Exclusión del embargo", "Reducción del embargo", "Cesación del embargo", "Sustitución del embargo"], "e": "Se decreta a la sola solicitud del deudor.", "t": 3}, {"c": 3, "s": "2.3.2 Cuaderno de apremio", "q": "Por regla general, ¿quién es el depositario provisional de los bienes embargados?", "o": ["El deudor", "El acreedor", "El receptor judicial", "Un martillero designado por el tribunal"], "e": "Salvo que el ejecutante haya designado a un tercero o pedido que no se designe depositario.", "t": 3}, {"c": 3, "s": "2.3.2 Cuaderno de apremio", "q": "Para proceder al remate en caso de sentencia condenatoria de remate:", "o": ["Basta que se haya notificado la sentencia, aunque no esté ejecutoriada", "Debe estar ejecutoriada la sentencia, aunque haya sido notificada", "Debe esperarse el fallo de la apelación, aunque se haya notificado la sentencia", "Se requiere autorización de la Corte de Apelaciones, aunque esté notificada"], "e": "Para pagar al ejecutante sí se requiere certificado de ejecutoria.", "t": 3}, {"c": 3, "s": "2.3.2 Cuaderno de apremio", "q": "¿Cuántas veces debe publicarse como mínimo el aviso de remate de un inmueble?", "o": ["4 veces", "2 veces", "3 veces", "6 veces"], "e": "En un diario de la comuna del tribunal, o de la capital de provincia o región si no lo hay.", "t": 3}, {"c": 3, "s": "2.3.2 Cuaderno de apremio", "q": "Si no hay postores en el remate, el acreedor puede pedir:", "o": ["Que se le adjudiquen los bienes por los dos tercios de la tasación, o que se reduzca prudencialmente el avalúo", "Que se le adjudiquen los bienes por el total de la tasación, o que se fije un nuevo remate", "Que se declare desierta la ejecución y se alce el embargo sobre los bienes", "Que se rematen sin mínimo, o que se le adjudiquen por la mitad de la tasación"], "e": "La reducción no puede exceder de una tercera parte del avalúo.", "t": 3}, {"c": 3, "s": "2.4 Tercerías", "q": "La tercería en que un tercero invoca un mejor derecho que el acreedor para pagarse con el resultado de la ejecución es la de:", "o": ["Prelación", "Dominio", "Posesión", "Pago"], "e": "La de pago, en cambio, la deduce un acreedor no privilegiado cuando el deudor no tiene otros bienes.", "t": 3}, {"c": 3, "s": "3. Procedimiento sumario", "q": "Para aplicar el procedimiento sumario por su ámbito general, hay que acreditar que:", "o": ["La acción requiere un procedimiento rápido para ser eficaz y no existe procedimiento especial", "La cuantía del asunto es inferior a 500 UTM y no existe procedimiento especial", "Ambas partes lo solicitan de común acuerdo al presentar la demanda", "El demandado está en rebeldía y la acción requiere un procedimiento rápido"], "e": "La urgencia concreta la aprecia el juez.", "t": 4}, {"c": 3, "s": "3. Procedimiento sumario", "q": "¿Cuál de estos juicios se tramita por aplicación especial del procedimiento sumario?", "o": ["El cobro de honorarios", "La acción reivindicatoria de un inmueble", "La partición de bienes", "La cobranza de cotizaciones previsionales"], "e": "También las servidumbres, la remoción de guardadores, el depósito necesario y las acciones civiles derivadas de delito o cuasidelito.", "t": 4}, {"c": 3, "s": "3. Procedimiento sumario", "q": "En el procedimiento sumario, ¿cuándo se celebra la audiencia de contestación y conciliación?", "o": ["El 5° día hábil después de la última notificación", "El 10° día hábil después de la última notificación", "El 3° día hábil después de la última notificación", "El día hábil siguiente a la última notificación"], "e": "Se amplía con la tabla de emplazamiento si el demandado no está en el lugar del juicio.", "t": 4}, {"c": 3, "s": "3. Procedimiento sumario", "q": "Si el tribunal accede provisionalmente a la demanda por rebeldía del demandado, ¿qué plazo tiene este para oponerse?", "o": ["Cinco días desde su notificación", "Diez días desde su notificación", "Tres días desde su notificación", "Ocho días desde su notificación"], "e": "Es una figura excepcionalísima en el procedimiento civil.", "t": 4}, {"c": 3, "s": "3. Procedimiento sumario", "q": "¿Cuánto dura el término probatorio en el procedimiento sumario?", "o": ["Ocho días", "Diez días", "Veinte días", "Seis días"], "e": "Se rige por las reglas de los incidentes; la lista de testigos se presenta dentro de los dos primeros días.", "t": 4}, {"c": 3, "s": "3. Procedimiento sumario", "q": "¿En qué plazo se dicta la sentencia en el procedimiento sumario?", "o": ["10 días desde la resolución que citó a oír sentencia", "60 días desde la resolución que citó a oír sentencia", "30 días desde la resolución que citó a oír sentencia", "5 días desde la resolución que citó a oír sentencia"], "e": "Se pronuncia sobre el fondo y también sobre los incidentes.", "t": 4}, {"c": 4, "s": "1. Procedimiento ordinario", "q": "¿En cuál de estas materias se exige mediación previa a la demanda?", "o": ["Derecho de alimentos", "Declaración de interdicción", "Adopción (Ley 19.620)", "Maltrato de niños, niñas o adolescentes"], "e": "Requieren mediación previa: alimentos, cuidado personal y relación directa y regular.", "t": 0}, {"c": 4, "s": "1. Procedimiento ordinario", "q": "Excepcionalmente, el juez de familia puede ordenar por resolución fundada que la primera notificación la practique:", "o": ["Personal de Carabineros o de la PDI", "Un abogado de la parte demandante", "El Consejo Técnico", "Correos de Chile"], "e": "Por regla general la practica un funcionario designado por el Juez Presidente, o un receptor a costa de la parte.", "t": 0}, {"c": 4, "s": "1. Procedimiento ordinario", "q": "¿Con qué antelación mínima debe notificarse la resolución que cita a la audiencia preparatoria?", "o": ["15 días", "5 días", "10 días", "30 días"], "e": "Al demandado se le notifica personalmente por ser normalmente la primera notificación.", "t": 0}, {"c": 4, "s": "1. Procedimiento ordinario", "q": "En el procedimiento ordinario de familia, el demandado debe contestar la demanda:", "o": ["Por escrito, con al menos cinco días de anticipación a la audiencia preparatoria", "Oralmente en la audiencia preparatoria, sin necesidad de escrito previo", "Por escrito, dentro de los 15 días siguientes a la notificación de la demanda", "Oralmente en la audiencia de juicio, después de rendida la prueba"], "e": "Si reconviene, debe hacerlo junto con la contestación.", "t": 0}, {"c": 4, "s": "1. Procedimiento ordinario", "q": "La audiencia de juicio debe realizarse en un plazo no superior a:", "o": ["30 días desde la audiencia preparatoria", "15 días desde la audiencia preparatoria", "60 días desde la audiencia preparatoria", "10 días desde la audiencia preparatoria"], "e": "Con acuerdo de las partes, puede realizarse inmediatamente después de la preparatoria.", "t": 0}, {"c": 4, "s": "1. Procedimiento ordinario", "q": "Practicada la prueba en la audiencia de juicio, el juez puede pedir opinión sobre ella a:", "o": ["Un miembro del Consejo Técnico", "El Administrador del tribunal", "Un perito del Servicio Médico Legal", "El Ministerio Público"], "e": "Luego las partes formulan observaciones a la prueba y a esa opinión.", "t": 0}, {"c": 4, "s": "1. Procedimiento ordinario", "q": "Si la audiencia de juicio se prolongó por más de dos días, el juez de familia puede:", "o": ["Postergar la decisión hasta el día hábil siguiente", "Postergar la decisión hasta 10 días", "Dictar sentencia dentro de 30 días", "Remitir la causa a otro juez"], "e": "La redacción del fallo puede posponerse hasta cinco días, ampliables por otros cinco.", "t": 0}, {"c": 4, "s": "1. Procedimiento ordinario", "q": "¿Dentro de qué plazo se presenta la reposición contra una resolución dictada fuera de audiencia en familia?", "o": ["Tercero día desde la notificación", "Quinto día desde la notificación", "Décimo día desde la notificación", "Dentro de 24 horas desde la notificación"], "e": "Si dentro de ese plazo hay audiencia, debe interponerse y resolverse en ella.", "t": 0}, {"c": 4, "s": "1. Procedimiento ordinario", "q": "¿En qué efecto se concede la apelación en el procedimiento de familia?", "o": ["En el solo efecto devolutivo", "En ambos efectos", "En el efecto suspensivo", "Depende de lo que pida el apelante"], "e": "Siempre por escrito; solo son apelables la sentencia definitiva, las que ponen término al procedimiento y las que resuelven medidas cautelares.", "t": 0}, {"c": 4, "s": "2. Medidas de protección", "q": "¿Quién puede iniciar el procedimiento de medidas de protección de un niño, niña o adolescente?", "o": ["El propio niño, sus padres, profesores, profesionales de salud, cualquier interesado o el tribunal de oficio", "Solo el Ministerio Público, mediante requerimiento escrito ante el juzgado de familia", "Solo los padres o tutores del niño, mediante demanda patrocinada por abogado", "Solo el Servicio de Protección, mediante demanda escrita presentada ante el tribunal"], "e": "La solicitud no requiere formalidad alguna.", "t": 1}, {"c": 4, "s": "2. Medidas de protección", "q": "¿Cuánto pueden durar como máximo las medidas cautelares especiales en el procedimiento de protección?", "o": ["Noventa días", "Ciento ochenta días hábiles", "Treinta días", "Un año"], "e": "Pueden decretarse incluso antes de iniciado el procedimiento y de oficio.", "t": 1}, {"c": 4, "s": "3. Violencia intrafamiliar", "q": "¿Qué juzgado de familia es competente en causas de violencia intrafamiliar no constitutiva de delito?", "o": ["El del territorio donde tenga residencia o domicilio el afectado", "El del territorio donde tenga residencia o domicilio el ofensor", "El del territorio donde ocurrieron los hechos denunciados", "El del territorio que elija libremente el denunciante"], "e": "Si los hechos son delito, conocen los tribunales penales y persigue el Ministerio Público.", "t": 1}, {"c": 4, "s": "3. Violencia intrafamiliar", "q": "Si los hechos denunciados en familia son constitutivos de delito, ¿en qué plazo máximo deben enviarse los antecedentes al Ministerio Público?", "o": ["Tres días", "Cinco días", "Diez días", "Veinticuatro horas"], "e": "El juez debe enviarlos de inmediato, sin que puedan pasar más de tres días.", "t": 1}, {"c": 4, "s": "3. Violencia intrafamiliar", "q": "¿Por cuánto tiempo pueden decretarse las medidas cautelares en protección de la víctima de VIF?", "o": ["Hasta 180 días hábiles, renovables por una vez por igual plazo", "Hasta 90 días hábiles, sin posibilidad de renovación", "Hasta un año, renovable indefinidamente por iguales períodos", "Hasta 30 días hábiles, renovables por una vez por igual plazo"], "e": "Pueden ampliarse, limitarse, modificarse, sustituirse o dejarse sin efecto en cualquier momento.", "t": 1}, {"c": 4, "s": "3. Violencia intrafamiliar", "q": "Ante el incumplimiento de medidas cautelares de VIF, el juez puede imponer como apremio arresto de hasta:", "o": ["Quince días", "Cinco días", "Treinta días", "Sesenta días"], "e": "Además remite antecedentes al Ministerio Público por el delito de desacato.", "t": 1}, {"c": 4, "s": "3. Violencia intrafamiliar", "q": "En el procedimiento de violencia intrafamiliar, la audiencia preparatoria debe realizarse:", "o": ["Dentro de los diez días siguientes a la demanda o denuncia", "Dentro de los quince días siguientes a la demanda o denuncia", "Dentro de los treinta días siguientes a la demanda o denuncia", "Dentro de los cinco días siguientes a la demanda o denuncia"], "e": "En lo demás se aplican las reglas del procedimiento ordinario de familia.", "t": 1}, {"c": 4, "s": "3. Violencia intrafamiliar", "q": "¿Cuál es la multa con que se sanciona el maltrato constitutivo de violencia intrafamiliar?", "o": ["De media a quince UTM, a beneficio del gobierno regional", "De una a diez UTM, a beneficio fiscal", "De cinco a cincuenta UF, a beneficio de la víctima", "De media a cinco UTM, a beneficio municipal"], "e": "Se destina a los centros de atención de víctimas de VIF de la región.", "t": 1}, {"c": 4, "s": "3. Violencia intrafamiliar", "q": "Las medidas accesorias en la sentencia de VIF tienen una duración:", "o": ["No inferior a seis meses ni superior a dos años, prorrogable a petición de la víctima", "No inferior a un año ni superior a tres años, sin posibilidad de prórroga", "No superior a 180 días hábiles, renovable por una vez por igual plazo", "Indefinida, mientras subsista el riesgo para la víctima"], "e": "Incluyen abandonar el hogar común, prohibición de acercarse, programas terapéuticos, entre otras.", "t": 1}, {"c": 4, "s": "3. Violencia intrafamiliar", "q": "Si no concurre ninguna parte a la nueva audiencia, el juez ordena el archivo provisional. ¿Cuándo se declara el abandono del procedimiento?", "o": ["Transcurrido un año sin pedir la reanudación", "Transcurridos seis meses sin pedir la reanudación", "Transcurridos noventa días sin pedir la reanudación", "Transcurridos dos años sin pedir la reanudación"], "e": "Al declararlo, el juez deja sin efecto las medidas cautelares.", "t": 1}, {"c": 4, "s": "4. Alimentos", "q": "¿Qué tribunal conoce de la demanda de alimentos?", "o": ["El juez de familia del domicilio del alimentante o del alimentario, a elección de este último", "Solo el juez de familia del domicilio del alimentante, sin opción para el alimentario", "Solo el juez de familia del domicilio del alimentario, sin opción para el alimentante", "El juez de familia del lugar donde se celebró el matrimonio de los padres"], "e": "Las demandas de rebaja o cese se presentan ante el tribunal del domicilio del alimentario.", "t": 2}, {"c": 4, "s": "4. Alimentos", "q": "¿Qué plazo tiene el demandado para oponerse a los alimentos provisorios?", "o": ["Cinco días", "Diez días", "Tres días", "Quince días"], "e": "Si no se opone, la resolución que fija los alimentos provisorios causa ejecutoria.", "t": 2}, {"c": 4, "s": "4. Alimentos", "q": "La pensión de alimentos no puede exceder del:", "o": ["50% de las rentas del alimentante", "40% de las rentas del alimentante", "30% de las rentas del alimentante", "60% de las rentas del alimentante"], "e": "Si se fija en una suma determinada, se reajusta semestralmente según el IPC.", "t": 2}, {"c": 4, "s": "4. Alimentos", "q": "Si el alimentante incumple, el tribunal puede imponer arresto nocturno de hasta:", "o": ["Quince días, entre las 22:00 y las 06:00 horas", "Treinta días, entre las 20:00 y las 08:00 horas", "Diez días, entre las 22:00 y las 07:00 horas", "Cinco días, completo"], "e": "Puede repetir la medida hasta obtener el íntegro pago.", "t": 2}, {"c": 4, "s": "4. Alimentos", "q": "Las demandas de rebaja o cese de la pensión deben declararse inadmisibles si el demandante:", "o": ["Tiene inscripción vigente en el Registro Nacional de Deudores de Pensiones de Alimentos", "No ha pagado la última cuota de la pensión fijada", "No acompaña el certificado de mediación frustrada", "Tiene otros hijos nacidos después de fijarse la pensión"], "e": "Salvo que presente antecedentes calificados.", "t": 2}, {"c": 5, "s": "Competencia", "q": "¿Qué materia de seguridad social NO conocen los Juzgados de Letras del Trabajo?", "o": ["La revisión de resoluciones sobre declaración de invalidez o licencias médicas", "Las cuestiones de previsión planteadas por pensionados", "La responsabilidad del empleador por accidentes del trabajo", "Las reclamaciones contra resoluciones administrativas laborales"], "e": "Esas materias están expresamente excluidas de su competencia.", "t": 0}, {"c": 5, "s": "1. Procedimiento ordinario", "q": "¿Qué procedimiento se aplica a una demanda por despido injustificado?", "o": ["El procedimiento de aplicación general u ordinario", "El procedimiento monitorio", "El procedimiento de tutela laboral", "El procedimiento sumario civil"], "e": "La ley no prevé un procedimiento especial para el despido injustificado o indirecto.", "t": 0}, {"c": 5, "s": "1. Procedimiento ordinario", "q": "¿Cómo puede presentarse la demanda en el procedimiento laboral ordinario?", "o": ["Solo por escrito", "Por escrito u oralmente", "Solo oralmente ante el juez", "Por formulario ante la Inspección del Trabajo"], "e": "También puede iniciarse con una medida prejudicial.", "t": 0}, {"c": 5, "s": "1. Procedimiento ordinario", "q": "Según el manual, el tribunal puede declarar de oficio la caducidad si, terminado el contrato, los derechos no se reclamaron dentro de:", "o": ["Seis meses", "Dos años", "Sesenta días", "Un año"], "e": "Durante la relación laboral, el plazo es de dos años desde que los derechos se hicieron exigibles.", "t": 0}, {"c": 5, "s": "1. Procedimiento ordinario", "q": "Admitida la demanda laboral, ¿dentro de qué plazo debe realizarse la audiencia preparatoria?", "o": ["35 días desde la resolución", "30 días desde la resolución", "15 días desde la resolución", "60 días desde la resolución"], "e": "La resolución debe notificarse con al menos 15 días de anticipación a la audiencia.", "t": 0}, {"c": 5, "s": "1. Procedimiento ordinario", "q": "Si ninguna de las partes asiste a la audiencia preparatoria laboral, pueden pedir nueva fecha:", "o": ["Por una sola vez, dentro de quinto día", "Sin límite de veces, dentro de 10 días", "Por una vez, dentro de 30 días", "No pueden pedirla"], "e": "Puede pedirse conjunta o separadamente.", "t": 0}, {"c": 5, "s": "1. Procedimiento ordinario", "q": "En la audiencia preparatoria laboral, ¿qué excepciones debe resolver el tribunal en ese mismo momento?", "o": ["La incompetencia del tribunal y la falta de capacidad del demandante", "La prescripción de la acción y el pago de las prestaciones", "Todas las excepciones opuestas por el demandado en su contestación", "Solo la excepción de cosa juzgada y la de litis pendencia"], "e": "Las demás excepciones se resuelven en la sentencia definitiva.", "t": 0}, {"c": 5, "s": "1. Procedimiento ordinario", "q": "En un juicio laboral por despido, ¿quién rinde primero su prueba en la audiencia de juicio?", "o": ["El demandado", "El demandante", "El que el juez determine por sorteo", "La Inspección del Trabajo"], "e": "En los demás juicios, comienza el demandante.", "t": 0}, {"c": 5, "s": "1. Procedimiento ordinario", "q": "¿Cuál es el orden legal de recepción de la prueba en la audiencia de juicio laboral?", "o": ["Documental, confesional, testimonial y otros medios", "Testimonial, documental, confesional y otros medios", "Confesional, testimonial, documental y pericial", "Pericial, documental, testimonial y confesional"], "e": "El tribunal puede modificarlo por causa justificada.", "t": 0}, {"c": 5, "s": "1. Procedimiento ordinario", "q": "¿Cómo aprecia la prueba el juez del trabajo?", "o": ["Conforme a las reglas de la sana crítica", "Conforme a la prueba legal o tasada", "En conciencia", "Conforme a la libre convicción sin fundamentar"], "e": "Debe expresar las razones jurídicas, lógicas, científicas, técnicas o de experiencia.", "t": 0}, {"c": 5, "s": "1. Procedimiento ordinario", "q": "Si no la dicta al término de la audiencia de juicio, ¿en qué plazo debe dictarse la sentencia laboral?", "o": ["15 días desde la audiencia", "10 días desde la audiencia", "30 días desde la audiencia", "60 días desde la audiencia"], "e": "Excepcionalmente puede dictarse sentencia en la audiencia preparatoria.", "t": 0}, {"c": 5, "s": "1. Recursos", "q": "¿En qué plazo se interpone el recurso de nulidad laboral?", "o": ["10 días desde la notificación", "5 días desde la notificación", "15 días desde la notificación", "3 días desde la notificación"], "e": "Se presenta ante el tribunal que dictó la sentencia y lo conoce la Corte de Apelaciones.", "t": 1}, {"c": 5, "s": "1. Recursos", "q": "El recurso de unificación de jurisprudencia laboral se interpone:", "o": ["Ante la Corte de Apelaciones, en 15 días, para que lo conozca la Corte Suprema", "Ante la Corte Suprema directamente, en 10 días", "Ante el juzgado del trabajo, en 5 días", "Ante la Corte de Apelaciones, en 10 días, para que la misma lo resuelva"], "e": "Procede cuando hay distintas interpretaciones en fallos firmes de tribunales superiores.", "t": 1}, {"c": 5, "s": "1. Recursos", "q": "¿Cómo se llama la garantía que debe rendir la parte vencedora para que se suspenda la ejecución mientras se tramita la unificación de jurisprudencia?", "o": ["Fianza de resultas", "Boleta de garantía", "Consignación previa", "Caución juratoria"], "e": "El recurrente debe pedirlo junto con el recurso, en solicitud separada.", "t": 1}, {"c": 5, "s": "1. Recursos", "q": "La sala de la Corte Suprema puede declarar inadmisible el recurso de unificación de jurisprudencia:", "o": ["Solo por la unanimidad de sus miembros y por resolución fundada", "Por simple mayoría de sus miembros y sin necesidad de resolución fundada", "Por resolución del Presidente de la sala, previo informe del relator", "Por la mayoría absoluta de sus miembros, sin necesidad de fundamentar"], "e": "Esa resolución solo admite reposición dentro de quinto día.", "t": 1}, {"c": 5, "s": "2. Cumplimiento", "q": "Ejecutoriada la sentencia laboral, ¿en qué plazo debe acreditarse su cumplimiento antes de iniciarse la ejecución de oficio?", "o": ["Cinco días", "Tres días", "Diez días", "Quince días"], "e": "Luego se remiten los antecedentes al Juzgado de Cobranza Laboral y Previsional.", "t": 2}, {"c": 5, "s": "2. Cumplimiento", "q": "En la ejecución de una sentencia laboral, ¿qué excepciones puede oponer el ejecutado?", "o": ["Pago de la deuda, remisión, novación y transacción", "Todas las excepciones del art. 464 del Código de Procedimiento Civil", "Prescripción de la deuda, incompetencia del tribunal y falta de personería", "Solo el pago de la deuda, acreditado por escrito"], "e": "Debe fundarlas en antecedentes escritos.", "t": 2}, {"c": 5, "s": "2. Cumplimiento", "q": "¿Cuál de estos es un título ejecutivo laboral?", "o": ["El finiquito firmado por las partes y autorizado por el Inspector del Trabajo", "El contrato de trabajo firmado por las partes y registrado en la Inspección del Trabajo", "La carta de despido firmada por el empleador y enviada a la Inspección del Trabajo", "La liquidación de sueldo firmada por el trabajador y el empleador"], "e": "También lo son las sentencias ejecutoriadas, las actas ante la Inspección y los instrumentos colectivos, entre otros.", "t": 2}, {"c": 5, "s": "3. Tutela laboral", "q": "¿Dentro de qué plazo debe interponerse la denuncia de tutela laboral?", "o": ["60 días desde la vulneración", "90 días desde la vulneración", "30 días desde la vulneración", "6 meses desde la vulneración"], "e": "Si la vulneración ocurrió con ocasión del despido, se cuenta desde la separación efectiva.", "t": 2}, {"c": 5, "s": "3. Tutela laboral", "q": "El procedimiento de tutela laboral es incompatible con:", "o": ["El recurso de protección", "El procedimiento monitorio", "La demanda de cobro de prestaciones", "La reclamación de multas"], "e": "Protege ciertos derechos fundamentales de los trabajadores frente al empleador.", "t": 2}, {"c": 5, "s": "3. Tutela laboral", "q": "¿Cuál de estos derechos NO está entre los protegidos por la tutela laboral según el manual?", "o": ["El derecho de propiedad", "La vida privada y la honra", "La inviolabilidad de las comunicaciones privadas", "La libertad de emitir opinión"], "e": "Se protegen vida e integridad, vida privada y honra, inviolabilidad de comunicaciones, libertad de conciencia, de opinión y de trabajo.", "t": 2}, {"c": 5, "s": "4. Monitorio", "q": "¿A qué conflictos se aplica el procedimiento monitorio laboral?", "o": ["A los de cuantía inferior a 15 ingresos mínimos mensuales y a las contiendas por fuero maternal", "A los de cuantía inferior a 10 UTM y a las contiendas por fuero sindical", "A todos los despidos injustificados, cualquiera sea su cuantía", "A los de cuantía superior a 15 ingresos mínimos mensuales y al fuero maternal"], "e": "No se consideran los incrementos por la llamada Ley Bustos.", "t": 2}, {"c": 5, "s": "4. Monitorio", "q": "¿Qué trámite previo exige el procedimiento monitorio, salvo en fuero maternal?", "o": ["Un reclamo ante la Inspección del Trabajo con comparendo de conciliación", "Una mediación laboral obligatoria ante un mediador inscrito en el registro", "Una carta de aviso al empleador enviada con 30 días de anticipación", "Una audiencia de conciliación ante el juez de cobranza laboral"], "e": "A la demanda se acompaña el acta del comparendo y los documentos presentados.", "t": 2}, {"c": 5, "s": "4. Monitorio", "q": "¿Qué plazo tienen las partes para reclamar de la resolución que acoge o rechaza de plano la demanda monitoria?", "o": ["Diez días hábiles", "Cinco días hábiles", "Quince días hábiles", "Tres días"], "e": "No procede ningún otro recurso contra ella.", "t": 2}, {"c": 5, "s": "4. Monitorio", "q": "En causas monitorias complejas o de interés colectivo, el juez puede dictar sentencia después de la audiencia única dentro de:", "o": ["Tres días", "Cinco días", "Diez días", "Quince días"], "e": "Por regla general debe dictarla al término de la audiencia.", "t": 2}, {"c": 6, "s": "1. Competencia", "q": "¿Dónde se entiende cometido el delito para determinar la competencia territorial?", "o": ["En el lugar donde se dio comienzo a su ejecución", "En el lugar donde se produjo el resultado", "En el domicilio del imputado", "En el lugar donde se presentó la denuncia"], "e": "Es competente el tribunal en cuyo territorio se cometió el hecho.", "t": 0}, {"c": 6, "s": "2. Proceso penal", "q": "¿Con qué resolución concluye la etapa intermedia del proceso penal?", "o": ["El auto de apertura de juicio oral", "La acusación", "La formalización", "El cierre de la investigación"], "e": "Fija el objeto del juicio y la prueba que se rendirá.", "t": 0}, {"c": 6, "s": "2.1 Investigación", "q": "¿Ante quién debe presentarse necesariamente la querella?", "o": ["Ante el juez de garantía", "Ante el Ministerio Público", "Ante Carabineros", "Ante el Tribunal de Juicio Oral en lo Penal"], "e": "La denuncia, en cambio, puede hacerse ante la policía, la fiscalía o un tribunal penal.", "t": 0}, {"c": 6, "s": "2.1 Investigación", "q": "Para archivar provisionalmente una investigación por un delito que merece pena aflictiva, se requiere:", "o": ["Aprobación del fiscal regional", "Aprobación del juez de garantía", "Acuerdo de la víctima", "Aprobación del Fiscal Nacional"], "e": "Pena aflictiva es la superior a tres años y un día.", "t": 0}, {"c": 6, "s": "2.1 Investigación", "q": "La facultad de no iniciar la investigación procede cuando:", "o": ["El hecho no es constitutivo de delito o la responsabilidad penal está extinguida", "No hay antecedentes suficientes para investigar con éxito", "El delito es de baja penalidad y no compromete el interés público", "La víctima no desea continuar"], "e": "Requiere aprobación del juez de garantía.", "t": 0}, {"c": 6, "s": "2.1 Investigación", "q": "El principio de oportunidad NO procede si la pena mínima asignada al delito excede de:", "o": ["541 días", "3 años y un día", "61 días", "5 años y un día"], "e": "Tampoco si el delito lo cometió un funcionario público en ejercicio de sus funciones o compromete gravemente el interés público.", "t": 0}, {"c": 6, "s": "2.1 Investigación", "q": "¿Qué plazo tiene el juez de garantía para dejar sin efecto la decisión del fiscal de aplicar el principio de oportunidad?", "o": ["10 días", "5 días", "30 días", "3 días"], "e": "Puede hacerlo de oficio o a petición de parte.", "t": 0}, {"c": 6, "s": "2.1 Investigación", "q": "¿Cuál es el plazo máximo legal de investigación desde la formalización?", "o": ["Dos años", "Un año", "Seis meses", "Tres años"], "e": "Con la formalización además se suspende la prescripción del delito.", "t": 0}, {"c": 6, "s": "2.1.4 Cautelares", "q": "¿En qué plazo máximo debe ponerse al detenido a disposición del tribunal?", "o": ["24 horas", "12 horas", "48 horas", "72 horas"], "e": "En la audiencia de control de detención puede formalizarse y pedirse otras cautelares.", "t": 1}, {"c": 6, "s": "2.1.4 Cautelares", "q": "Para la flagrancia, ¿cuánto tiempo comprende como máximo el 'tiempo inmediato' entre el hecho y la captura?", "o": ["Doce horas", "Veinticuatro horas", "Seis horas", "Cuarenta y ocho horas"], "e": "Incluye, entre otros casos, aparecer en un registro audiovisual al que la policía accede en tiempo inmediato.", "t": 1}, {"c": 6, "s": "2.1.4 Cautelares", "q": "En caso de flagrancia, ¿dentro de qué plazo debe informarse la detención al Ministerio Público?", "o": ["12 horas", "24 horas", "6 horas", "48 horas"], "e": "En todo caso, debe llevarse ante el juez de garantía dentro de 24 horas.", "t": 1}, {"c": 6, "s": "2.1.4 Cautelares", "q": "¿Hasta cuánto puede el fiscal solicitar la ampliación de la detención?", "o": ["Hasta tres días", "Hasta cinco días", "Hasta 48 horas", "Hasta diez días"], "e": "Procede si en la primera audiencia no hay antecedentes para formalizar y pedir cautelares.", "t": 1}, {"c": 6, "s": "2.1.4 Cautelares", "q": "¿Cuándo debe revisarse de oficio la prisión preventiva en audiencia?", "o": ["Transcurridos 6 meses desde que se ordenó o desde el último debate sobre ella", "Transcurridos 30 días desde que se ordenó o desde el último debate sobre ella", "Transcurridos 3 meses desde que se ordenó o desde el último debate sobre ella", "Solo cuando lo pida el imputado, sin plazo para revisarla de oficio"], "e": "También cuando haya durado la mitad de la pena privativa de libertad que se pudiere esperar.", "t": 1}, {"c": 6, "s": "2.1.4 Cautelares", "q": "La resolución sobre prisión preventiva es apelable:", "o": ["Cuando fue dictada en una audiencia", "Siempre, sin excepción", "Nunca", "Solo si la dicta un Tribunal de Juicio Oral"], "e": "En los demás casos no es susceptible de recurso.", "t": 1}, {"c": 6, "s": "2.1.4 Cautelares", "q": "¿Cuál de estas es una medida cautelar real?", "o": ["La retención de bienes determinados", "El arresto domiciliario", "La prohibición de salir del país", "La sujeción a vigilancia de una institución"], "e": "Las reales aseguran la demanda civil: secuestro, interventores, retención y prohibición de celebrar actos y contratos.", "t": 1}, {"c": 6, "s": "2.1.4 Cautelares", "q": "¿En qué artículo del CPP se regulan las 'otras medidas cautelares personales'?", "o": ["Art. 155", "Art. 140", "Art. 130", "Art. 373"], "e": "Se rigen, en su procedencia y duración, por las normas de la prisión preventiva.", "t": 1}, {"c": 6, "s": "2.1.5 Salidas alternativas", "q": "¿Por cuánto tiempo se suspende el procedimiento en la suspensión condicional?", "o": ["Entre uno y tres años", "Entre seis meses y un año", "Entre dos y cinco años", "Hasta seis meses"], "e": "Cumplidas las condiciones, se extingue la responsabilidad penal por resolución judicial.", "t": 0}, {"c": 6, "s": "2.1.5 Salidas alternativas", "q": "Para la suspensión condicional del procedimiento, la pena solicitada por el fiscal no puede superar:", "o": ["Tres años de privación de libertad", "Cinco años de privación de libertad", "541 días de privación de libertad", "Un año de privación de libertad"], "e": "El imputado no debe tener condenas previas por crimen o simple delito ni una suspensión vigente.", "t": 0}, {"c": 6, "s": "2.1.5 Salidas alternativas", "q": "La suspensión condicional del procedimiento es un acuerdo entre:", "o": ["El imputado y el fiscal", "La víctima y el imputado", "La víctima y el fiscal", "El querellante y el defensor"], "e": "El acuerdo reparatorio, en cambio, es entre la víctima y el imputado.", "t": 0}, {"c": 6, "s": "2.1.5 Salidas alternativas", "q": "El acuerdo reparatorio procede, entre otros, respecto de:", "o": ["Delitos que afectan bienes jurídicos disponibles de carácter patrimonial, lesiones menos graves o delitos culposos", "Cualquier delito, siempre que la víctima lo acepte y el imputado repare el daño", "Solo delitos contra la propiedad intelectual e industrial, o delitos tributarios", "Delitos con pena inferior a 5 años, incluidos los que afectan bienes indisponibles"], "e": "Sus bases deben ser aprobadas por el juez de garantía.", "t": 0}, {"c": 6, "s": "2.1.6 Cierre", "q": "Cerrada la investigación, ¿en qué plazo debe el fiscal acusar, pedir sobreseimiento o comunicar la decisión de no perseverar?", "o": ["Diez días", "Quince días", "Cinco días", "Treinta días"], "e": "Si acusa, el proceso pasa a la etapa intermedia.", "t": 0}, {"c": 6, "s": "2.1.6 Cierre", "q": "¿Cuál de estas es una causal de sobreseimiento temporal?", "o": ["Que el imputado no comparezca y haya sido declarado rebelde", "Que el hecho no sea constitutivo de delito", "Que la responsabilidad penal esté extinguida", "Que aparezca claramente la inocencia del imputado"], "e": "También procede por cuestión civil previa o enajenación mental sobreviniente; las demás son de sobreseimiento definitivo.", "t": 0}, {"c": 6, "s": "2.1.6 Cierre", "q": "¿Qué recurso procede contra el sobreseimiento definitivo?", "o": ["Solo apelación ante la Corte de Apelaciones", "Solo nulidad ante la Corte Suprema", "Solo reposición ante el mismo juez de garantía", "Ninguno, pues es inimpugnable"], "e": "El sobreseimiento definitivo pone término al proceso penal.", "t": 0}, {"c": 6, "s": "2.3 Juicio oral", "q": "Si el defensor no comparece a la audiencia de juicio oral:", "o": ["Se considera abandono de la defensa y el tribunal debe designar un defensor penal público", "El juicio continúa sin defensor y se deja constancia en el acta de la audiencia", "Se suspende el juicio por 30 días para que el acusado designe un nuevo defensor", "El acusado debe defenderse personalmente, salvo que el tribunal lo autorice"], "e": "Es el principio de defensa necesaria: su presencia es requisito de validez.", "t": 2}, {"c": 6, "s": "2.3 Juicio oral", "q": "El principio que exige que la sentencia la dicten los mismos jueces que presenciaron el debate es el de:", "o": ["Identidad física del juzgador", "Inmediación del tribunal", "Continuidad de la audiencia", "Congruencia de la sentencia"], "e": "Incluye el derecho del acusado a conocer quiénes son sus juzgadores.", "t": 2}, {"c": 6, "s": "2.3 Juicio oral", "q": "¿Entre qué plazos debe fijarse la fecha del juicio oral desde la notificación del auto de apertura?", "o": ["No antes de 15 ni después de 60 días", "No antes de 10 ni después de 30 días", "No antes de 30 ni después de 90 días", "Dentro de 15 días"], "e": "El imputado debe ser citado con al menos siete días de anticipación.", "t": 2}, {"c": 6, "s": "2.3 Juicio oral", "q": "¿En qué orden se recibe la prueba en el juicio oral penal?", "o": ["Fiscal, querellante y defensa", "Defensa, fiscal y querellante", "Querellante, fiscal y defensa", "El que fije el juez por sorteo"], "e": "El orden interno en que cada uno rinde su prueba es discrecional.", "t": 2}, {"c": 6, "s": "2.3 Juicio oral", "q": "Que la sentencia condenatoria no pueda exceder la acusación, y esta no pueda exceder la formalización, se conoce como principio de:", "o": ["Congruencia", "Contradictoriedad", "Oralidad", "Inmediación"], "e": "Además, solo puede condenarse con convicción más allá de toda duda razonable.", "t": 2}, {"c": 6, "s": "2.4 Recursos", "q": "En materia penal, ¿qué resolución de un Tribunal de Juicio Oral en lo Penal es apelable?", "o": ["La que resuelve sobre la prisión preventiva", "La que resuelve sobre la sentencia definitiva", "La que resuelve sobre la exclusión de prueba", "Ninguna, pues sus resoluciones son inapelables"], "e": "Las demás resoluciones del TOP son inapelables; la sentencia definitiva se impugna por nulidad.", "t": 2}, {"c": 6, "s": "2.4 Recursos", "q": "¿Cuál es el plazo para apelar en materia penal?", "o": ["5 días desde la notificación", "3 días desde la notificación", "10 días desde la notificación", "15 días desde la notificación"], "e": "Se interpone ante el mismo juez, por escrito, fundado y con peticiones concretas.", "t": 2}, {"c": 6, "s": "2.4 Recursos", "q": "La reposición contra resoluciones penales dictadas fuera de audiencia debe interponerse:", "o": ["Dentro de tercero día y fundada", "Dentro de quinto día", "Verbalmente de inmediato", "Dentro de diez días"], "e": "Las dictadas en audiencia se reponen de inmediato y solo si no fueron precedidas de debate.", "t": 2}, {"c": 6, "s": "2.4 Recursos", "q": "¿En qué plazo se interpone el recurso de nulidad en materia penal?", "o": ["Diez días desde la notificación", "Cinco días desde la notificación", "Quince días desde la notificación", "Tres días desde la notificación"], "e": "Puede perseguir la nulidad del juicio oral completo o solo de la sentencia.", "t": 2}, {"c": 6, "s": "2.4 Recursos", "q": "Si el recurso de nulidad penal se funda en la infracción sustancial de derechos o garantías constitucionales (art. 373 letra a), ¿quién lo conoce?", "o": ["La Corte Suprema", "La Corte de Apelaciones", "El mismo Tribunal de Juicio Oral", "El juez de garantía"], "e": "Si se funda en errónea aplicación del derecho o en un motivo absoluto de nulidad, lo conoce la Corte de Apelaciones.", "t": 2}, {"c": 7, "s": "1. Generalidades", "q": "¿En qué título y artículos del COT están reguladas las Cortes de Apelaciones?", "o": ["Título V, artículos 54 al 92", "Título IV, artículos 45 al 53", "Título VI, artículos 93 al 107", "Título II, artículos 14 al 40"], "e": "Son tribunales ordinarios, colegiados, letrados, de derecho y permanentes.", "t": 0}, {"c": 7, "s": "2. Funciones", "q": "La visita judicial que fiscaliza la conducta funcionaria en los tribunales inferiores la realiza:", "o": ["Un Ministro Visitador", "El Fiscal Judicial", "El Administrador de la Corte", "El Presidente de la Corte Suprema"], "e": "Puede ser ordinaria o extraordinaria.", "t": 0}, {"c": 7, "s": "2. Funciones", "q": "¿A quién propone ternas la Corte de Apelaciones para la designación de jueces de letras de su jurisdicción?", "o": ["Al Presidente de la República", "A la Corte Suprema", "Al Senado", "Al Ministerio de Justicia"], "e": "También forma ternas, por concurso, para nombrar Fiscales Regionales del Ministerio Público.", "t": 0}, {"c": 7, "s": "3. Organización", "q": "¿Cómo se ejerce la presidencia de una Corte de Apelaciones?", "o": ["Por turnos de un año entre sus ministros, según antigüedad", "Por elección entre sus ministros cada dos años, sin considerar antigüedad", "Por designación de la Corte Suprema, por un período de dos años", "Por el ministro más antiguo, de forma permanente mientras sirva el cargo"], "e": "La Corte Suprema, en cambio, elige a su Presidente por dos años.", "t": 0}, {"c": 7, "s": "3. Organización", "q": "¿Quién elabora e implementa el Plan Plurianual de la Jurisdicción de una Corte de Apelaciones?", "o": ["El Administrador de Corte", "El Comité de Ministros", "El Relator de Pleno", "El Presidente de la Corte"], "e": "El Comité de Ministros lo concuerda y evalúa, y el Pleno lo aprueba.", "t": 0}, {"c": 7, "s": "5. Funcionamiento", "q": "Según el art. 62 COT, hay retardo cuando el cuociente entre las causas en tabla (y apelaciones en cuenta) y el número de salas es superior a:", "o": ["Cien", "Cincuenta", "Doscientos", "Ciento cincuenta"], "e": "El retardo da lugar al funcionamiento extraordinario.", "t": 0}, {"c": 7, "s": "5. Funcionamiento", "q": "¿Cuál de estas Cortes funciona en Pleno durante el funcionamiento ordinario?", "o": ["Iquique", "Antofagasta", "Valparaíso", "Concepción"], "e": "Funcionan en pleno Iquique, Copiapó, Chillán, Puerto Montt, Coyhaique y Punta Arenas.", "t": 0}, {"c": 7, "s": "5. Funcionamiento", "q": "En el funcionamiento extraordinario, las salas de las Cortes de Apelaciones:", "o": ["Se componen de tres miembros y no pueden funcionar con mayoría de abogados integrantes", "Se componen de cinco miembros y pueden funcionar con mayoría de abogados integrantes", "Se componen de tres miembros y pueden funcionar solo con abogados integrantes", "Se componen de dos ministros y un fiscal judicial, que vota solo en caso de empate"], "e": "Se completan con fiscales judiciales y abogados integrantes.", "t": 0}, {"c": 7, "s": "5. Funcionamiento", "q": "¿Cuál es el quórum para que funcione el Pleno de una Corte de Apelaciones?", "o": ["La mayoría absoluta de sus miembros", "Dos tercios de sus miembros", "Tres ministros", "La totalidad de sus miembros"], "e": "Las salas no pueden funcionar con menos de tres jueces.", "t": 0}, {"c": 7, "s": "6. Competencia", "q": "¿En qué instancia conocen las Cortes de Apelaciones de los recursos de amparo y protección?", "o": ["En primera instancia", "En única instancia", "En segunda instancia", "En consulta"], "e": "Las apelaciones de protección las conoce la Tercera Sala de la Corte Suprema.", "t": 1}, {"c": 7, "s": "6. Competencia", "q": "Las Cortes de Apelaciones conocen del recurso de nulidad laboral en:", "o": ["Segunda instancia", "Primera instancia", "Única instancia", "Consulta"], "e": "También de la nulidad penal y de las apelaciones contra resoluciones del juez de garantía.", "t": 1}, {"c": 7, "s": "7. Tramitación", "q": "Cuando la Corte tiene más de una sala, ¿cuál es la 'Sala Tramitadora'?", "o": ["La Primera Sala", "La sala de menor carga", "La sala que preside el Presidente de la Corte", "Una sala sorteada cada mes"], "e": "Las resoluciones de mero trámite pueden dictarse por un solo ministro (art. 70 COT).", "t": 1}, {"c": 7, "s": "7. Tramitación", "q": "Fallar 'en cuenta' significa que la Corte resuelve:", "o": ["Con la cuenta del secretario o relator, sin tabla ni alegatos", "Después de la relación y los alegatos", "Por escrito, previo informe del fiscal judicial", "En audiencia pública con las partes"], "e": "La 'vista de la causa' incluye la relación y los alegatos.", "t": 1}, {"c": 7, "s": "7. Tramitación", "q": "Una parte puede suspender la vista de la causa si lo solicita:", "o": ["El día anterior, antes del mediodía", "Hasta una hora antes de la vista", "Tres días antes", "En la misma audiencia"], "e": "También se suspende por falta de ministros o por causas en lugar preferente.", "t": 1}, {"c": 7, "s": "7. Tramitación", "q": "En los acuerdos de las Cortes, ¿en qué orden se vota?", "o": ["En orden inverso a la antigüedad; el último voto es el del Presidente", "Por orden de antigüedad, comenzando por el Presidente de la sala", "En orden alfabético, y el último voto es el del ministro más antiguo", "Primero los abogados integrantes y al final los ministros, por antigüedad"], "e": "Primero se resuelven las cuestiones de hecho y luego las de derecho.", "t": 1}, {"c": 7, "s": "8. Integración", "q": "¿A cuántos abogados integrantes pueden recusar sin expresión de causa las partes en una Corte?", "o": ["A dos, aunque haya más partes", "A uno por cada parte, aunque haya varias partes", "A tres, cualquiera sea el número de partes", "A ninguno, pues solo se les puede recusar con expresión de causa"], "e": "Se hace por medio del relator y requiere pagar el impuesto del art. 198 COT.", "t": 1}, {"c": 7, "s": "8. Integración", "q": "Si se recusa a un abogado integrante en materia penal:", "o": ["La integración es obligatoria y el Presidente provee su reemplazo inmediato", "Se suspende la vista de la causa hasta que se integre la sala con un ministro", "La causa pasa a otra Corte de Apelaciones para su conocimiento", "Se resuelve la causa solo con los dos ministros restantes"], "e": "En las demás materias, la regla general es que se suspenda la vista.", "t": 1}, {"c": 8, "s": "1. Composición", "q": "Además de sus 21 ministros, ¿cuántos relatores tiene la Corte Suprema?", "o": ["Ocho", "Seis", "Diez", "Doce"], "e": "También tiene un fiscal judicial, un secretario y un prosecretario.", "t": 0}, {"c": 8, "s": "1. Composición", "q": "¿Cuándo inicia sus funciones anuales la Corte Suprema con la cuenta pública de su Presidente?", "o": ["El primer día hábil de marzo", "El primer día hábil de enero", "El 1 de abril", "El primer lunes de marzo"], "e": "Asisten su fiscal judicial y los miembros y fiscales de la Corte de Apelaciones de Santiago.", "t": 0}, {"c": 8, "s": "2. Competencia", "q": "¿Qué órgano otorga el título de abogado en Chile?", "o": ["La Corte Suprema", "El Ministerio de Educación", "Las universidades", "El Colegio de Abogados"], "e": "Lo otorga a los licenciados en ciencias jurídicas, a través de su Oficina de Títulos.", "t": 0}, {"c": 8, "s": "2. Competencia", "q": "¿Qué número se asigna a un recurso al ingresar a la Corte Suprema?", "o": ["Rol Interno del Tribunal (RIT)", "Rol Único de Causa (RUC)", "Rol Único Tributario (RUT)", "Número de Ingreso Corte (NIC)"], "e": "Se asigna en la Secretaría o en la Oficina de Ingreso y Distribución.", "t": 0}, {"c": 8, "s": "2. Pleno", "q": "¿Qué día se realizan las reuniones ordinarias del Pleno de la Corte Suprema?", "o": ["Los viernes, entre 8:30 y 13:30 horas", "Los lunes, entre 9:00 y 14:00 horas", "Los miércoles, entre 8:30 y 13:30 horas", "Los martes y jueves"], "e": "En la discusión, cada ministro puede intervenir hasta dos veces por asunto.", "t": 0}, {"c": 8, "s": "2. Pleno", "q": "¿Qué artículo del COT establece la competencia del Pleno de la Corte Suprema?", "o": ["Art. 96", "Art. 105", "Art. 63", "Art. 98"], "e": "Incluye las apelaciones por desafuero de diputados o senadores.", "t": 0}, {"c": 8, "s": "2. Presidente", "q": "En caso de impedimento accidental, ¿quién reemplaza al Presidente de la Corte Suprema?", "o": ["El ministro más antiguo presente", "El fiscal judicial", "El ministro de menor antigüedad", "El Presidente de la Corte de Apelaciones de Santiago"], "e": "Sus atribuciones están en el art. 105 del COT.", "t": 0}, {"c": 8, "s": "2. Salas", "q": "¿Qué Acta regula la distribución de materias entre las salas de la Corte Suprema?", "o": ["Acta 233-2014", "Acta 85-2019", "Acta 164-2024", "Acta 37-2021"], "e": "La Corte debe fijar cada dos años las materias de cada sala.", "t": 0}, {"c": 8, "s": "2. Salas", "q": "¿Cuál es el horario de funcionamiento de la Corte Suprema en salas especializadas?", "o": ["De 8:30 a 14:00 horas", "De 9:00 a 13:00 horas", "De 8:00 a 17:00 horas", "De 8:30 a 13:30 horas"], "e": "El horario de 8:30 a 13:30 corresponde a las sesiones ordinarias del Pleno.", "t": 0}, {"c": 8, "s": "2. Salas", "q": "En funcionamiento extraordinario, ¿qué sala conoce de las apelaciones de los recursos de protección?", "o": ["La Tercera Sala (Constitucional y Contencioso Administrativa)", "La Primera Sala (Civil)", "La Segunda Sala (Penal)", "La Cuarta Sala (Laboral y Previsional)"], "e": "También conoce del amparo económico y de materias de aguas y expropiaciones.", "t": 0}, {"c": 8, "s": "2. Salas", "q": "¿Qué sala conoce de las apelaciones de sentencias de amparo, salvo las de materia laboral o de familia?", "o": ["La Segunda Sala (Penal)", "La Tercera Sala", "La Primera Sala", "La Cuarta Sala"], "e": "Los amparos en materia laboral o de familia van a la Cuarta Sala.", "t": 0}, {"c": 8, "s": "2. Salas", "q": "En funcionamiento extraordinario, los recursos en materia de familia y minería los conoce la:", "o": ["Cuarta Sala (Laboral y Previsional)", "Primera Sala (Civil)", "Tercera Sala (Constitucional y Contencioso Administrativa)", "Segunda Sala (Penal)"], "e": "También juicios sumarios y especiales y asuntos no contenciosos civiles.", "t": 0}, {"c": 8, "s": "3. Comités", "q": "¿Sobre qué temáticas versan los tres comités de trabajo de la Corte Suprema?", "o": ["Modernización, comunicaciones y personas", "Ética, transparencia y presupuesto", "Civil, penal y laboral", "Infraestructura, tecnología y finanzas"], "e": "Rinden cuenta al Pleno al menos en junio, agosto y octubre.", "t": 0}], "topics": [["Poderes del Estado", "Poder Judicial y tribunales", "Derechos, transparencia y ética judicial"], ["Comité de Jueces, Juez Presidente y Administrador", "Unidades administrativas", "Auxiliares y personal"], ["Capacidad, comparecencia y emplazamiento", "Tramitación digital y comparecencia remota", "Plazos, actuaciones y notificaciones", "Resoluciones judiciales"], ["Juicio ordinario: discusión y conciliación", "Juicio ordinario: prueba y fallo", "Término del juicio y recursos civiles", "Juicio ejecutivo y embargo", "Procedimiento sumario"], ["Procedimiento ordinario de familia", "Medidas de protección y violencia intrafamiliar", "Alimentos"], ["Procedimiento ordinario laboral", "Recursos laborales", "Cumplimiento, tutela y monitorio"], ["Investigación y salidas alternativas", "Detención y medidas cautelares", "Juicio oral y recursos penales"], ["Organización y funcionamiento", "Competencia, tramitación e integración"], ["Corte Suprema"]]};
-const CH = BANK.chapters, QS = BANK.questions;
+const CH = BANK.chapters, QS = BANK.questions, TP = BANK.topics;
 QS.forEach((q,i)=>q.id=i);
 const LETTERS = ["A","B","C","D"];
-const app = document.getElementById("app");
-const exitBtn = document.getElementById("exitBtn");
+const app = document.getElementById("app"), dock = document.getElementById("dock");
+const exitBtn = document.getElementById("exitBtn"), backBtn = document.getElementById("backBtn"), menuBtn = document.getElementById("menuBtn");
+const title = document.getElementById("homeLink");
 
-/* ---------- almacenamiento local (opcional) ---------- */
+/* ---------- almacenamiento local ---------- */
 const STORE_KEY = "ensayo-manual-unico-v1";
 function load(){ try{ return JSON.parse(localStorage.getItem(STORE_KEY)) || {}; }catch(e){ return {}; } }
-let DB = load();
-DB.q = DB.q || {};       // id -> {r: aciertos, w: errores, last: 1|0}
-DB.h = DB.h || [];       // historial de ensayos
+let DB = load(); DB.q = DB.q || {}; DB.h = DB.h || []; DB.s = DB.s || [];
 function save(){ try{ localStorage.setItem(STORE_KEY, JSON.stringify(DB)); }catch(e){} }
-function record(id, ok){
-  const s = DB.q[id] || {r:0,w:0,last:0};
-  if(ok) s.r++; else s.w++;
-  s.last = ok?1:0; DB.q[id]=s; save();
-}
+function record(id, ok){ const s = DB.q[id] || {r:0,w:0,last:0}; if(ok) s.r++; else s.w++; s.last = ok?1:0; DB.q[id]=s; save(); }
 
 /* ---------- utilidades ---------- */
 function shuffle(a){ a=a.slice(); for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];} return a; }
 function esc(s){ return String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c])); }
 function fmtTime(sec){ sec=Math.max(0,Math.round(sec)); const m=Math.floor(sec/60), s=sec%60; return m+":"+String(s).padStart(2,"0"); }
 function today(){ const d=new Date(); return String(d.getDate()).padStart(2,"0")+"/"+String(d.getMonth()+1).padStart(2,"0")+"/"+d.getFullYear(); }
-function prep(q){ // baraja alternativas y recuerda cuál es la correcta
-  const order = shuffle([0,1,2,3]);
-  return {q, opts: order.map(i=>q.o[i]), correct: order.indexOf(0), chosen:null};
-}
+function prep(q){ const order = shuffle([0,1,2,3]); return {q, opts: order.map(i=>q.o[i]), correct: order.indexOf(0), chosen:null}; }
 function wrongIds(){ return Object.keys(DB.q).filter(id=>DB.q[id].last===0).map(Number); }
 
-/* ---------- estado de la sesión ---------- */
-let S = null, timerId = null;
+/* ---------- navegación ---------- */
+let S = null, timerId = null, view = "home";
 function stopTimer(){ if(timerId){ clearInterval(timerId); timerId=null; } }
+function setBar(t, mode){ // mode: home | sub | session
+  title.textContent = t;
+  menuBtn.classList.toggle("hidden", mode!=="home");
+  backBtn.classList.toggle("hidden", mode!=="sub");
+  exitBtn.classList.toggle("hidden", mode!=="session");
+  dock.innerHTML = "";
+}
+backBtn.onclick = ()=>home();
+title.onclick = ()=>{ if(S) exitBtn.onclick(); else home(); };
 
-/* ---------- pantalla de inicio ---------- */
+const ICON = {
+  rapido:`<svg viewBox="0 0 24 24" fill="none" stroke="#7c5cd6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h4l10 10h4M3 17h4l3-3M14 10l3-3h4M18 4l3 3-3 3M18 14l3 3-3 3"/></svg>`,
+  sim:`<svg viewBox="0 0 24 24" fill="none" stroke="#c08a12" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l3 2M9 2h6"/></svg>`,
+  pers:`<svg viewBox="0 0 24 24" fill="none" stroke="#24467e" stroke-width="2" stroke-linecap="round"><path d="M4 6h10M18 6h2M4 12h4M12 12h8M4 18h12M20 18h0"/><circle cx="16" cy="6" r="2"/><circle cx="10" cy="12" r="2"/><circle cx="18" cy="18" r="2"/></svg>`,
+  temas:`<svg viewBox="0 0 24 24" fill="none" stroke="#2f8f87" stroke-width="2" stroke-linecap="round"><path d="M4 4h12a3 3 0 0 1 3 3v13H7a3 3 0 0 1-3-3z"/><path d="M8 9h7M8 13h7"/></svg>`,
+  err:`<svg viewBox="0 0 24 24" fill="none" stroke="#c0392b" stroke-width="2" stroke-linecap="round"><path d="M4 4v6h6"/><path d="M20 12a8 8 0 1 1-2.3-5.7L4 10"/></svg>`,
+  fav:`<svg viewBox="0 0 24 24" fill="none" stroke="#e2b23a" stroke-width="2" stroke-linejoin="round"><path d="M12 3l2.7 5.6 6.1.8-4.5 4.2 1.1 6.1L12 16.8 6.6 19.7l1.1-6.1L3.2 9.4l6.1-.8z"/></svg>`,
+  pdf:`<svg viewBox="0 0 24 24" fill="none" stroke="#d35400" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M12 12v6M9 15l3 3 3-3"/></svg>`,
+  mail:`<svg viewBox="0 0 24 24" fill="none" stroke="#6aa84f" stroke-width="2" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>`,
+  home:`<svg viewBox="0 0 24 24" fill="none" stroke="#3a6fd8" stroke-width="2" stroke-linejoin="round"><path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z"/></svg>`,
+  share:`<svg viewBox="0 0 24 24" fill="none" stroke="#1f8a4c" stroke-width="2" stroke-linecap="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></svg>`,
+  priv:`<svg viewBox="0 0 24 24" fill="none" stroke="#5d6478" stroke-width="2" stroke-linejoin="round"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/></svg>`,
+  av:`<svg viewBox="0 0 24 24" fill="none" stroke="#3a6fd8" stroke-width="2" stroke-linecap="round"><path d="M3 3v18h18"/><path d="M7 15l4-4 3 3 5-6"/></svg>`
+};
+
+/* ---------- inicio ---------- */
+const SIM = {n:28, min:60};
 let cfg = {n:10, min:15, c:-1};
 let openCh = null;
-const TP = BANK.topics;
-const WIDE = window.matchMedia("(min-width: 1000px)");
-try{ WIDE.addEventListener("change",()=>{ if(!S) home(true); }); }catch(e){}
-function home(keepScroll){
-  const y = window.scrollY;
-  stopTimer(); S=null; exitBtn.classList.add("hidden");
+function home(){
+  stopTimer(); S=null; view="home"; setBar("Manual Único","home");
+  const wrong = wrongIds().length;
+  const answered = Object.keys(DB.q).length;
+  app.innerHTML = `
+  <section class="hero"><h2>Prepárate para el <span>Manual Único</span></h2><p>${QS.length} preguntas · ${CH.length} capítulos · con explicación</p></section>
+  <div class="sheet"><div class="wrap">
+    <div class="tiles">
+    <button class="tile hl" data-go="rapido"><span class="badge">Recomendado</span><span class="ic">${ICON.rapido}</span><span><h3>Ensayo rápido</h3><p>10 preguntas al azar en 15 minutos. Eliges si quieres la corrección inmediata o al final.</p></span></button>
+    <button class="tile" data-go="sim"><span class="ic">${ICON.sim}</span><span><h3>Simulación de examen</h3><p>${SIM.n} preguntas de todos los temas, con tiempo y resultado al final.</p></span></button>
+    <button class="tile" data-go="pers"><span class="ic">${ICON.pers}</span><span><h3>Ensayo personalizado</h3><p>Elige cuántas preguntas, el tiempo y el tema.</p></span></button>
+    <button class="tile" data-go="temas"><span class="ic">${ICON.temas}</span><span><h3>Practicar por tema</h3><p>Los ${CH.length} capítulos del manual, con subtemas para reforzar.</p></span></button>
+    <button class="tile" data-go="err" ${wrong?"":"disabled"}><span class="ic">${ICON.err}</span><span><h3>Repasar errores</h3><p>${wrong?`Tienes ${wrong} pregunta${wrong===1?"":"s"} que respondiste mal la última vez.`:"Aquí aparecerán las preguntas que respondas mal."}</p></span></button>
+    <button class="tile" data-go="fav" ${DB.s.length?"":"disabled"}><span class="ic">${ICON.fav}</span><span><h3>Preguntas guardadas</h3><p>${DB.s.length?`Tienes ${DB.s.length} pregunta${DB.s.length===1?"":"s"} marcada${DB.s.length===1?"":"s"} con la estrella.`:"Marca con la estrella las preguntas que quieras repasar."}</p></span></button>
+    <button class="tile" data-go="pdf"><span class="ic">${ICON.pdf}</span><span><h3>Leer el Manual Único</h3><p>Abre el manual completo en PDF o guárdalo en tu celular.</p></span></button>
+    <button class="tile" data-go="av"><span class="ic">${ICON.av}</span><span><h3>Mi avance</h3><p>${answered?`Llevas ${answered} de ${QS.length} preguntas vistas.`:"Tu porcentaje por capítulo y qué te conviene reforzar."}</p></span></button>
+    </div>
+    <p class="notice">Plataforma independiente, sin vinculación con el Poder Judicial ni con la Corporación Administrativa del Poder Judicial. Preguntas elaboradas a partir del Manual Único para Tribunales (versión octubre 2025); verifica siempre con el texto oficial.<br><a href="privacidad.html">Política de privacidad</a></p>
+  </div></div>`;
+  app.querySelectorAll("[data-go]").forEach(b=>b.onclick=()=>{
+    const g=b.dataset.go;
+    if(g==="rapido") chooseMode(m=>startExam({n:10,min:15,c:-1},m));
+    else if(g==="sim") simPage();
+    else if(g==="pers") persPage();
+    else if(g==="temas") topicsPage();
+    else if(g==="err") startWrong();
+    else if(g==="av") progressPage();
+    else if(g==="fav") startSaved();
+    else if(g==="pdf") manualPage();
+  });
+  window.scrollTo(0,0);
+}
+
+/* ---------- ventana: elegir modo ---------- */
+function chooseMode(cb){
+  const d=document.createElement("div"); d.className="dim";
+  d.innerHTML=`<div class="modal"><div class="mh"><span>Elige el modo</span><button aria-label="Cerrar">✕</button></div>
+    <div class="mopt g"><h4>Modo Aprendizaje</h4><p>Corriges pregunta a pregunta y ves la explicación en el momento. Ideal para estudiar.</p><button class="btn green" data-m="learn">▶ Comenzar aprendizaje</button></div>
+    <div class="mopt y"><h4>Modo Examen</h4><p>Como el examen real: respondes todo y ves los resultados y correcciones al final.</p><button class="btn gold" data-m="exam">⏱ Comenzar examen</button></div></div>`;
+  document.body.appendChild(d);
+  const close=()=>d.remove();
+  d.onclick=e=>{ if(e.target===d) close(); };
+  d.querySelector(".mh button").onclick=close;
+  d.querySelectorAll("[data-m]").forEach(b=>b.onclick=()=>{ close(); cb(b.dataset.m); });
+}
+
+/* ---------- configuración ---------- */
+function persPage(){
+  view="pers"; setBar("Ensayo personalizado","sub");
+  app.innerHTML=`<div class="page wrap"><section class="card">
+    <h2>Arma tu ensayo</h2>
+    <div class="lbl">Número de preguntas</div>
+    <div class="chips" id="nChips">${[10,20,40].map(n=>`<button class="chip ${cfg.n===n?"on":""}" data-n="${n}">${n}</button>`).join("")}</div>
+    <div class="lbl">Tiempo</div>
+    <div class="chips" id="tChips">${[[0,"Sin límite"],[15,"15 min"],[30,"30 min"],[45,"45 min"]].map(([m,l])=>`<button class="chip ${cfg.min===m?"on":""}" data-m="${m}">${l}</button>`).join("")}</div>
+    <div class="lbl">Temas</div>
+    <select id="examTopic" class="sel"><option value="-1" ${cfg.c===-1?"selected":""}>Todos los temas</option>
+      ${CH.map((c,i)=>`<option value="${i}" ${cfg.c===i?"selected":""}>${esc(c)} (${QS.filter(q=>q.c===i).length})</option>`).join("")}</select>
+    <p class="small muted" style="margin:12px 0 0">Si eliges un tema con menos preguntas que las pedidas, el ensayo usa todas las del tema.</p>
+  </section></div>`;
+  dock.innerHTML=`<div class="dock"><div class="in"><button class="btn" id="go">Comenzar ensayo</button></div></div>`;
+  app.querySelectorAll("#nChips .chip").forEach(b=>b.onclick=()=>{cfg.n=+b.dataset.n;persPage();});
+  app.querySelectorAll("#tChips .chip").forEach(b=>b.onclick=()=>{cfg.min=+b.dataset.m;persPage();});
+  document.getElementById("examTopic").onchange=e=>{cfg.c=+e.target.value;};
+  document.getElementById("go").onclick=()=>chooseMode(m=>startExam(cfg,m));
+  window.scrollTo(0,0);
+}
+function simPage(){
+  view="sim"; setBar("Simulación de examen","sub");
+  app.innerHTML=`<div class="page wrap"><section class="card">
+    <h2>Simulación tipo examen</h2>
+    <p class="muted" style="margin:0">${SIM.n} preguntas de todos los temas, una a una y sin volver atrás, con tiempo corriendo y sin pausa. El resultado aparece al final.</p>
+    <div class="lbl">Tiempo de la simulación</div>
+    <div class="chips" id="simChips">${[30,45,60,90].map(m=>`<button class="chip ${SIM.min===m?"on":""}" data-sm="${m}">${m} min</button>`).join("")}</div>
+    <p class="small muted" style="margin:14px 0 0">El Poder Judicial no publica el número de preguntas ni el tiempo exacto, que se informan al citar. Esta simulación es una aproximación.</p>
+  </section></div>`;
+  dock.innerHTML=`<div class="dock"><div class="in"><button class="btn" id="go">⏱ Comenzar simulación</button></div></div>`;
+  app.querySelectorAll("#simChips .chip").forEach(b=>b.onclick=()=>{SIM.min=+b.dataset.sm;simPage();});
+  document.getElementById("go").onclick=startSim;
+  window.scrollTo(0,0);
+}
+
+/* ---------- temas ---------- */
+function perf(filter){ const ids=QS.filter(filter).map(q=>q.id).filter(id=>DB.q[id]); return {seen:ids.length, ok:ids.filter(id=>DB.q[id].last===1).length}; }
+function pctText(filter){ const p=perf(filter); if(!p.seen) return ""; return ` · ${Math.round(100*p.ok/p.seen)}% bien`; }
+function weakHtml(){
+  let worst=null;
+  CH.forEach((_,c)=>TP[c].forEach((name,t)=>{ const p=perf(q=>q.c===c&&q.t===t); if(p.seen<4) return; const r=p.ok/p.seen; if(!worst||r<worst.r) worst={c,t,r,name}; }));
+  if(!worst||worst.r>=0.85) return "";
+  return `<div class="weak"><b>Te conviene reforzar:</b> ${esc(worst.name)} <span class="muted">(${esc(CH[worst.c])}, ${Math.round(100*worst.r)}% bien)</span>
+    <button class="btn navy" style="margin-top:10px" data-ch="${worst.c}" data-t="${worst.t}">Practicar este subtema</button></div>`;
+}
+function topicsPage(keep){
+  const y=window.scrollY; view="temas"; setBar("Practicar por tema","sub");
+  app.innerHTML=`<div class="page wrap">
+    <p class="small muted" style="margin:0 4px 12px">Los temas siguen el índice del manual. Toca uno para ver sus subtemas. Cada pregunta se corrige en el momento.</p>
+    ${weakHtml()}
+    ${CH.map((c,i)=>{ const n=QS.filter(q=>q.c===i).length, open=openCh===i, subs=TP[i];
+      return `<div class="area"><button class="areaBtn" data-open="${i}"><span><b>${esc(c)}</b><span>${n} preguntas${pctText(q=>q.c===i)}</span></span><span class="chev">${open?"▲":"▼"}</span></button>
+      ${open?`<div class="subs"><button class="sub" data-ch="${i}" data-t="-1"><b>Todo el tema</b><span>${n} preguntas</span></button>
+        ${subs.length>1?subs.map((s,t)=>{const m=QS.filter(q=>q.c===i&&q.t===t).length;return `<button class="sub" data-ch="${i}" data-t="${t}"><b>${esc(s)}</b><span>${m} preguntas${pctText(q=>q.c===i&&q.t===t)}</span></button>`;}).join(""):""}</div>`:""}</div>`;}).join("")}
+  </div>`;
+  app.querySelectorAll("[data-ch]").forEach(b=>b.onclick=()=>startPractice(+b.dataset.ch, +b.dataset.t));
+  app.querySelectorAll("[data-open]").forEach(b=>b.onclick=()=>{const i=+b.dataset.open; openCh=(openCh===i?null:i); topicsPage(true);});
+  window.scrollTo(0, keep?y:0);
+}
+
+/* ---------- manual ---------- */
+const PDF = "manual-unico.pdf";
+function manualPage(){
+  view="pdf"; setBar("Manual Único","sub");
+  app.innerHTML=`<div class="page wrap"><section class="card">
+    <h2>Manual Único para Tribunales</h2>
+    <p class="muted" style="margin:0 0 14px">Versión octubre 2025. Es el texto en que se basan las preguntas de esta app.</p>
+    <div style="display:flex;flex-direction:column;gap:10px">
+      <a class="btn navy" href="${PDF}" target="_blank" rel="noopener">Leer el manual</a>
+      <a class="btn light" href="${PDF}" download="Manual-Unico-para-Tribunales-octubre-2025.pdf">Guardar en mi celular</a>
+    </div>
+    <p class="small muted" style="margin:14px 0 0">Documento del Poder Judicial, reproducido para facilitar el estudio. Si hay una versión más reciente, consulta siempre el texto oficial.</p>
+  </section></div>`;
+  window.scrollTo(0,0);
+}
+/* ---------- avance ---------- */
+function progressPage(){
+  view="av"; setBar("Mi avance","sub");
   const answered = Object.keys(DB.q).length;
   const tot = Object.values(DB.q).reduce((a,s)=>({r:a.r+s.r,w:a.w+s.w}),{r:0,w:0});
   const pct = (tot.r+tot.w) ? Math.round(100*tot.r/(tot.r+tot.w)) : null;
-  const wrong = wrongIds().length;
-  const sec_hero = `  <section class="card">
-    <h1>Practica para el examen del Manual Único</h1>
-    <p class="muted">${QS.length} preguntas de alternativas, organizadas por los ${CH.length} capítulos del manual, con la explicación de cada respuesta.</p>
-  </section>
-  `;
-  const sec_sim = `  <section class="card stack sim">
-    <h2>Simulación tipo examen</h2>
-    <p class="muted" style="margin:0">${SIM.n} preguntas de todos los temas, una a una y sin volver atrás, con tiempo corriendo y sin pausa. El resultado aparece al final.</p>
-    <div>
-      <div class="small muted" style="margin-bottom:6px">Tiempo de la simulación</div>
-      <div class="chips" id="simChips">${[30,45,60,90].map(m=>`<button class="chip ${SIM.min===m?"on":""}" data-sm="${m}">${m} min</button>`).join("")}</div>
-    </div>
-    <button class="btn primary" id="startSim">Comenzar simulación</button>
-    <p class="small muted" style="margin:0">El Poder Judicial no publica el número de preguntas ni el tiempo exacto, que se informan al citar. Esta simulación es una aproximación.</p>
-  </section>
-  `;
-  const sec_exam = `  <section class="card stack">
-    <h2>Ensayo personalizado</h2>
-    <p class="muted" style="margin:0">Al responder cada pregunta te dice al tiro si acertaste, con la explicación.</p>
-    <div>
-      <div class="small muted" style="margin-bottom:6px">Número de preguntas</div>
-      <div class="chips" id="nChips">${[10,20,40].map(n=>`<button class="chip ${cfg.n===n?"on":""}" data-n="${n}">${n}</button>`).join("")}</div>
-    </div>
-    <div>
-      <div class="small muted" style="margin-bottom:6px">Tiempo</div>
-      <div class="chips" id="tChips">${[[0,"Sin límite"],[15,"15 min"],[30,"30 min"],[45,"45 min"]].map(([m,l])=>`<button class="chip ${cfg.min===m?"on":""}" data-m="${m}">${l}</button>`).join("")}</div>
-    </div>
-    <div>
-      <div class="small muted" style="margin-bottom:6px">Temas</div>
-      <select id="examTopic" class="sel">
-        <option value="-1" ${cfg.c===-1?"selected":""}>Todos los temas</option>
-        ${CH.map((c,i)=>`<option value="${i}" ${cfg.c===i?"selected":""}>${esc(c)} (${QS.filter(q=>q.c===i).length})</option>`).join("")}
-      </select>
-    </div>
-    <button class="btn primary" id="startExam">Comenzar ensayo</button>
-    <p class="small muted" style="margin:0">Las respuestas se corrigen al final, como en el examen. Si eliges un tema con menos preguntas que las pedidas, el ensayo usa todas las del tema.</p>
-  </section>
-  `;
-  const sec_temas = `  <section class="card stack" id="temas">
-    <h2>Practicar por tema</h2>
-    <p class="small muted">Los temas siguen el índice del manual. Toca uno para ver sus subtemas. Corrección inmediata después de cada pregunta.</p>
-    ${weakHtml()}
-    ${CH.map((c,i)=>{
-      const n=QS.filter(q=>q.c===i).length, open=openCh===i, subs=TP[i];
-      return `<div class="area ${open?"open":""}">
-        <button class="btn mode areaBtn" data-open="${i}"><b>${esc(c)} <span class="chev">${open?"▲":"▼"}</span></b><span>${n} preguntas${pctText(q=>q.c===i)}</span></button>
-        ${open?`<div class="subs">
-          <button class="sub" data-ch="${i}" data-t="-1"><b>Todo el tema</b><span>${n} preguntas</span></button>
-          ${subs.length>1?subs.map((s,t)=>{const m=QS.filter(q=>q.c===i&&q.t===t).length;return `<button class="sub" data-ch="${i}" data-t="${t}"><b>${esc(s)}</b><span>${m} preguntas${pctText(q=>q.c===i&&q.t===t)}</span></button>`;}).join(""):""}
-        </div>`:""}
-      </div>`;}).join("")}
-  </section>
-  `;
-  const sec_wrong = `  <section class="card stack">
-    <h2>Repasar mis errores</h2>
-    <p class="small muted">${wrong ? `Tienes ${wrong} pregunta${wrong===1?"":"s"} que respondiste mal la última vez.` : "Aquí aparecerán las preguntas que respondas mal."}</p>
-    <button class="btn" id="startWrong" ${wrong?"":"disabled"}>Repasar errores</button>
-  </section>
-  `;
-  const sec_avance = `  <section class="card">
-    <h2>Mi avance</h2>
-    <div class="grid2">
-      <div class="stat"><b>${answered}/${QS.length}</b><span>preguntas vistas</span></div>
-      <div class="stat"><b>${pct===null?"—":pct+"%"}</b><span>de respuestas correctas</span></div>
-    </div>
-    ${DB.h.length ? `<table style="margin-top:12px"><tr><th>Fecha</th><th>Ensayo</th><th class="num">Resultado</th></tr>
-      ${DB.h.slice(-5).reverse().map(h=>`<tr><td>${esc(h.d)}</td><td>${h.s?"Simulación · ":""}${h.n} preguntas</td><td class="num">${h.r}/${h.n}</td></tr>`).join("")}</table>` : ""}
-    ${answered ? `<p style="margin:12px 0 0"><button class="linkish small" id="resetBtn">Borrar mi avance</button></p>` : ""}
-    <p class="small muted" style="margin:10px 0 0">El avance se guarda solo en este navegador.</p>
-  </section>
-  `;
-  const sec_notice = `  <div class="notice">Plataforma independiente. No es un sitio del Poder Judicial y las preguntas no son las del examen oficial: están elaboradas a partir del texto del manual para practicar.</div>
-  `;
-  const wide = WIDE.matches;
-  app.innerHTML = wide
-    ? `<div class="cols"><div class="col">${sec_hero}${sec_exam}${sec_sim}${sec_wrong}${sec_avance}${sec_notice}</div><div class="col">${sec_temas}</div></div>`
-    : sec_hero+sec_exam+sec_sim+sec_temas+sec_wrong+sec_avance+sec_notice;
-
-  app.querySelectorAll("#nChips .chip").forEach(b=>b.onclick=()=>{cfg.n=+b.dataset.n;home();});
-  app.querySelectorAll("#tChips .chip").forEach(b=>b.onclick=()=>{cfg.min=+b.dataset.m;home();});
-  document.getElementById("startExam").onclick=()=>startExam();
-  document.getElementById("startSim").onclick=()=>startSim();
-  app.querySelectorAll("#simChips .chip").forEach(b=>b.onclick=()=>{SIM.min=+b.dataset.sm;home(true);});
+  app.innerHTML=`<div class="page wrap">
+  <section class="card"><div class="grid2">
+    <div class="stat"><b>${answered}/${QS.length}</b><span>preguntas vistas</span></div>
+    <div class="stat"><b>${pct===null?"—":pct+"%"}</b><span>de respuestas correctas</span></div></div></section>
+  ${weakHtml()}
+  <section class="card"><h2>Por capítulo</h2><table><tr><th>Capítulo</th><th class="num">Vistas</th><th class="num">Bien</th></tr>
+    ${CH.map((c,i)=>{const p=perf(q=>q.c===i);return `<tr><td>${esc(c)}</td><td class="num">${p.seen}/${QS.filter(q=>q.c===i).length}</td><td class="num">${p.seen?Math.round(100*p.ok/p.seen)+"%":"—"}</td></tr>`;}).join("")}</table></section>
+  ${DB.h.length?`<section class="card"><h2>Últimos ensayos</h2><table><tr><th>Fecha</th><th>Ensayo</th><th class="num">Resultado</th></tr>
+    ${DB.h.slice(-8).reverse().map(h=>`<tr><td>${esc(h.d)}</td><td>${h.s?"Simulación · ":""}${h.n} preguntas</td><td class="num">${h.r}/${h.n}</td></tr>`).join("")}</table></section>`:""}
+  <p class="small muted" style="text-align:center">El avance se guarda solo en este dispositivo.${answered?` <button class="linkish small" id="resetBtn">Borrar mi avance</button>`:""}</p>
+  </div>`;
   app.querySelectorAll("[data-ch]").forEach(b=>b.onclick=()=>startPractice(+b.dataset.ch, +b.dataset.t));
-  app.querySelectorAll("[data-open]").forEach(b=>b.onclick=()=>{const i=+b.dataset.open; openCh=(openCh===i?null:i); home(true);});
-  const sel=document.getElementById("examTopic"); if(sel) sel.onchange=()=>{cfg.c=+sel.value;};
-  const sw=document.getElementById("startWrong"); if(sw) sw.onclick=()=>startWrong();
-  const rb=document.getElementById("resetBtn"); if(rb) rb.onclick=confirmReset;
-  window.scrollTo(0, keepScroll===true ? y : 0);
-}
-function perf(filter){
-  const ids=QS.filter(filter).map(q=>q.id).filter(id=>DB.q[id]);
-  return {seen:ids.length, ok:ids.filter(id=>DB.q[id].last===1).length};
-}
-function pctText(filter){
-  const p=perf(filter); if(!p.seen) return "";
-  return ` · ${Math.round(100*p.ok/p.seen)}% bien (${p.seen} vistas)`;
-}
-function weakHtml(){
-  // subtema más débil entre los que tienen al menos 4 preguntas vistas
-  let worst=null;
-  CH.forEach((_,c)=>TP[c].forEach((name,t)=>{
-    const p=perf(q=>q.c===c&&q.t===t); if(p.seen<4) return;
-    const r=p.ok/p.seen; if(!worst||r<worst.r) worst={c,t,r,name};
-  }));
-  if(!worst||worst.r>=0.85) return "";
-  return `<div class="weak"><b>Te conviene reforzar:</b> ${esc(worst.name)} <span class="muted">(${esc(CH[worst.c])}, ${Math.round(100*worst.r)}% bien)</span>
-    <button class="btn primary" style="margin-top:10px" data-ch="${worst.c}" data-t="${worst.t}">Practicar este subtema</button></div>`;
-}
-function confirmReset(){
-  app.insertAdjacentHTML("afterbegin",`<section class="card" id="confirmBox"><h2>¿Borrar todo tu avance?</h2>
-  <p class="muted">Se eliminarán el historial de ensayos y el registro de errores de este navegador.</p>
-  <div class="row"><button class="btn" id="cNo">Cancelar</button><button class="btn primary" id="cYes">Sí, borrar</button></div></section>`);
+  const rb=document.getElementById("resetBtn"); if(rb) rb.onclick=()=>confirmBox("¿Borrar todo tu avance?","Se eliminarán el historial de ensayos y el registro de errores de este dispositivo.","Sí, borrar",()=>{DB={q:{},h:[],s:[]};save();progressPage();});
   window.scrollTo(0,0);
-  document.getElementById("cNo").onclick=()=>document.getElementById("confirmBox").remove();
-  document.getElementById("cYes").onclick=()=>{DB={q:{},h:[]};save();home();};
+}
+function confirmBox(t,msg,yes,cb){
+  const d=document.createElement("div"); d.className="dim";
+  d.innerHTML=`<div class="modal"><div class="mh"><span>${t}</span><button aria-label="Cerrar">✕</button></div><div style="padding:16px"><p class="muted" style="margin:0 0 14px">${msg}</p>
+    <div class="row"><button class="btn light" data-n>Cancelar</button><button class="btn navy" data-y>${yes}</button></div></div></div>`;
+  document.body.appendChild(d);
+  const close=()=>d.remove();
+  d.onclick=e=>{if(e.target===d) close();}; d.querySelector(".mh button").onclick=close; d.querySelector("[data-n]").onclick=close;
+  d.querySelector("[data-y]").onclick=()=>{close();cb();};
 }
 
-/* ---------- inicio de modos ---------- */
-const SIM = {n:28, min:60};
+/* ---------- inicio de sesiones ---------- */
 const SITE_URL = "https://abgdanielm.github.io/ensayo-manual-unico/";
-function shareText(r,n){
-  const kind = S && S.sim ? "la simulación" : "un ensayo";
-  return `Saqué ${r}/${n} en ${kind} del Manual Único para entrar al Poder Judicial. ¿Cuánto sacas tú? Practica gratis aquí: ${SITE_URL}`;
-}
+function shareText(r,n){ const kind = S && S.sim ? "la simulación" : "un ensayo"; return `Saqué ${r}/${n} en ${kind} del Manual Único para entrar al Poder Judicial. ¿Cuánto sacas tú? Practica gratis aquí: ${SITE_URL}`; }
 function shareLink(r,n){ return "https://wa.me/?text="+encodeURIComponent(shareText(r,n)); }
-function startSim(){
-  const pool = shuffle(QS).slice(0, SIM.n);
-  S = {mode:"exam", sim:true, items: pool.map(prep), i:0, limit: SIM.min*60, start: Date.now()};
-  exitBtn.classList.remove("hidden");
-  timerId=setInterval(tick,1000);
-  renderQ();
-}
-function startExam(){
-  const src = cfg.c===-1 ? QS : QS.filter(q=>q.c===cfg.c);
-  const pool = shuffle(src).slice(0, Math.min(cfg.n, src.length));
-  S = {mode:"exam", instant:true, items: pool.map(prep), i:0, limit: cfg.min*60, start: Date.now()};
-  exitBtn.classList.remove("hidden");
+function begin(state, label){
+  S=state; setBar(label,"session");
   if(S.limit){ timerId=setInterval(tick,1000); }
   renderQ();
+}
+function startSim(){
+  const pool = shuffle(QS).slice(0, SIM.n);
+  begin({mode:"exam", sim:true, items: pool.map(prep), i:0, limit: SIM.min*60, start: Date.now(), label:"Simulación"}, "Simulación");
+}
+function startExam(c, m){
+  const src = c.c===-1 ? QS : QS.filter(q=>q.c===c.c);
+  const pool = shuffle(src).slice(0, Math.min(c.n, src.length));
+  const quick = (c===cfg) ? "Ensayo personalizado" : "Ensayo rápido";
+  begin({mode:"exam", instant: m==="learn", items: pool.map(prep), i:0, limit: c.min*60, start: Date.now(), label: quick, c:{...c}, m}, quick);
 }
 function startPractice(ch, t){
   if(t===undefined || isNaN(t)) t=-1;
   const pool = shuffle(QS.filter(q=>q.c===ch && (t===-1 || q.t===t)));
-  S = {mode:"practice", ch, t, items: pool.map(prep), i:0, start: Date.now()};
-  exitBtn.classList.remove("hidden"); renderQ();
+  begin({mode:"practice", ch, t, items: pool.map(prep), i:0, start: Date.now()}, "Practicar por tema");
+}
+function startSaved(){
+  const pool = shuffle(DB.s.filter(id=>QS[id]).map(id=>QS[id]));
+  if(!pool.length) return home();
+  begin({mode:"saved", items: pool.map(prep), i:0, start: Date.now()}, "Preguntas guardadas");
 }
 function startWrong(){
   const pool = shuffle(wrongIds().map(id=>QS[id]));
-  S = {mode:"wrong", items: pool.map(prep), i:0, start: Date.now()};
-  exitBtn.classList.remove("hidden"); renderQ();
+  if(!pool.length) return home();
+  begin({mode:"wrong", items: pool.map(prep), i:0, start: Date.now()}, "Repasar errores");
 }
 function tick(){
-  if(!S || S.mode!=="exam") return stopTimer();
+  if(!S || !S.limit) return stopTimer();
   const left = S.limit - (Date.now()-S.start)/1000;
-  const el=document.getElementById("timer");
-  if(el){ el.textContent=fmtTime(left); el.classList.toggle("low", left<=60); }
+  const el=document.getElementById("timer"); if(el) el.textContent="⏱ "+fmtTime(left);
   if(left<=0){ stopTimer(); finish(true); }
 }
 
@@ -368,8 +437,8 @@ function renderQ(){
   const exam = S.mode==="exam";
   const answered = it.chosen!==null;
   const showFb = (!exam || S.instant) && answered;
-  let timerHtml="";
-  if(exam && S.limit){ timerHtml=`<span class="timer" id="timer">${fmtTime(S.limit-(Date.now()-S.start)/1000)}</span>`; }
+  const right = S.limit ? `<span class="tm" id="timer">⏱ ${fmtTime(S.limit-(Date.now()-S.start)/1000)}</span>`
+              : `<span class="tm mode">${exam ? (S.instant?"Aprendizaje":"Examen") : "Práctica"}</span>`;
   const optsHtml = it.opts.map((o,k)=>{
     let cls="opt";
     if(showFb){ if(k===it.correct) cls+=" ok"; else if(k===it.chosen) cls+=" bad"; }
@@ -379,29 +448,25 @@ function renderQ(){
   let fb="";
   if(showFb){
     const ok = it.chosen===it.correct;
-    fb = `<div class="fb ${ok?"ok":"bad"}"><b>${ok?"Correcto.":"Incorrecto. La respuesta es "+LETTERS[it.correct]+"."}</b>${esc(q.e)}<div class="small muted" style="margin-top:6px">Manual: ${esc(CH[q.c])} · ${esc(q.s)}</div></div>`;
+    fb = `<div class="fb ${ok?"ok":"bad"}"><b>${ok?"Correcto":"La correcta es la "+LETTERS[it.correct]}</b>${esc(q.e)}<div class="small muted" style="margin-top:6px">Manual: ${esc(CH[q.c])} · ${esc(q.s)}</div></div>`;
   }
+  app.innerHTML = `<div class="page wrap">
+    <div class="qhead"><span class="pill">Pregunta ${S.i+1} de ${n}</span><span class="rt"><button class="star ${DB.s.includes(q.id)?"on":""}" id="starBtn" aria-label="Guardar pregunta"><svg viewBox="0 0 24 24" fill="${DB.s.includes(q.id)?"currentColor":"none"}" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 3l2.7 5.6 6.1.8-4.5 4.2 1.1 6.1L12 16.8 6.6 19.7l1.1-6.1L3.2 9.4l6.1-.8z"/></svg></button>${right}</span></div>
+    <div class="prog"><i style="width:${(100*(S.i+(answered?1:0))/n).toFixed(1)}%"></i></div>
+    <section class="card">
+      <span class="topic">${esc(CH[q.c])}${TP[q.c].length>1?" · "+esc(TP[q.c][q.t]):""}</span>
+      <div class="q">${esc(q.q)}</div>
+      ${optsHtml}${fb}
+    </section></div>`;
   const last = S.i===n-1;
-  let nav;
-  if(exam){
-    nav = `<div class="navq">${(S.sim||S.instant)?"":`<button class="btn" id="prevBtn" ${S.i===0?"disabled":""}>Anterior</button>`}
-      <button class="btn primary" id="nextBtn" ${answered?"":"disabled"}>${last?"Terminar ensayo":"Siguiente"}</button></div>
-      <p class="small muted" style="margin-top:10px;text-align:center">${S.items.filter(x=>x.chosen!==null).length} de ${n} respondidas</p>`;
-  } else {
-    nav = showFb ? `<button class="btn primary" id="nextBtn">${last?"Ver resultado":"Siguiente pregunta"}</button>` : "";
-  }
-  app.innerHTML = `<section class="card">
-    <div class="qmeta"><span>Pregunta ${S.i+1} de ${n}</span>${timerHtml}</div>
-    <div class="bar"><i style="width:${(100*(S.i+(answered?1:0))/n).toFixed(1)}%"></i></div>
-    <span class="tag">${esc(CH[q.c])}${TP[q.c].length>1?" · "+esc(TP[q.c][q.t]):""}</span>
-    <div class="q">${esc(q.q)}</div>
-    <div>${optsHtml}</div>
-    ${fb}
-    ${nav}
-  </section>`;
+  const done = S.items.filter(x=>x.chosen!==null).length;
+  let label, enabled;
+  if(exam && !S.instant){ label = last?"Terminar ensayo":"Siguiente pregunta →"; enabled = answered; }
+  else { label = last?"Ver resultado":"Siguiente pregunta →"; enabled = showFb; }
+  dock.innerHTML = `<div class="dock"><div class="in">${exam&&!S.instant?`<div class="cnt">${done} de ${n} respondidas</div>`:""}<button class="btn" id="nextBtn" ${enabled?"":"disabled"}>${label}</button></div></div>`;
   app.querySelectorAll(".opt").forEach(b=>b.onclick=()=>choose(+b.dataset.k));
-  const nb=document.getElementById("nextBtn"); if(nb) nb.onclick=next;
-  const pb=document.getElementById("prevBtn"); if(pb) pb.onclick=()=>{S.i--;renderQ();};
+  document.getElementById("nextBtn").onclick=next;
+  document.getElementById("starBtn").onclick=()=>{ const id=q.id, i=DB.s.indexOf(id); if(i>=0) DB.s.splice(i,1); else DB.s.push(id); save(); const b=document.getElementById("starBtn"); const on=DB.s.includes(id); b.classList.toggle("on",on); b.querySelector("svg").setAttribute("fill",on?"currentColor":"none"); };
   if(showFb){ const f=app.querySelector(".fb"); if(f) f.scrollIntoView({behavior:"smooth",block:"nearest"}); }
   else window.scrollTo(0,0);
 }
@@ -411,72 +476,75 @@ function choose(k){
   if(it.chosen!==null) return;
   it.chosen=k; record(it.q.id, k===it.correct); renderQ();
 }
-function next(){
-  if(S.i < S.items.length-1){ S.i++; renderQ(); }
-  else finish(false);
-}
+function next(){ if(S.i < S.items.length-1){ S.i++; renderQ(); } else finish(false); }
 
 /* ---------- resultado ---------- */
 function finish(timeUp){
   stopTimer();
-  const items=S.items, n=items.length;
-  const exam = S.mode==="exam";
+  const items=S.items, n=items.length, exam = S.mode==="exam";
   if(exam){ items.forEach(it=>{ if(it.chosen!==null) record(it.q.id, it.chosen===it.correct); }); }
   const r = items.filter(it=>it.chosen===it.correct).length;
   const blank = items.filter(it=>it.chosen===null).length;
   const secs=(Date.now()-S.start)/1000;
   if(exam){ DB.h.push({d:today(), n, r, s:!!S.sim}); if(DB.h.length>50) DB.h=DB.h.slice(-50); save(); }
-  const byCh={};
-  items.forEach(it=>{const c=it.q.c; byCh[c]=byCh[c]||{r:0,n:0}; byCh[c].n++; if(it.chosen===it.correct) byCh[c].r++;});
+  const byCh={}; items.forEach(it=>{const c=it.q.c; byCh[c]=byCh[c]||{r:0,n:0}; byCh[c].n++; if(it.chosen===it.correct) byCh[c].r++;});
   const pct=Math.round(100*r/n);
-  const review = items.map((it,idx)=>{
-    const ok=it.chosen===it.correct;
-    return `<div class="rev"><span class="tag">${idx+1} · ${esc(CH[it.q.c])}</span>
-      <div class="q">${esc(it.q.q)}</div>
+  const review = items.map((it,idx)=>{ const ok=it.chosen===it.correct;
+    return `<div class="rev"><span class="topic">${idx+1} · ${esc(CH[it.q.c])}</span><div class="q">${esc(it.q.q)}</div>
       ${it.chosen===null ? `<div class="ans bad">Sin responder.</div>` : ok ? `<div class="ans ok">Tu respuesta: ${LETTERS[it.chosen]}) ${esc(it.opts[it.chosen])} ✓</div>` : `<div class="ans bad">Tu respuesta: ${LETTERS[it.chosen]}) ${esc(it.opts[it.chosen])}</div>`}
       ${ok?"":`<div class="ans ok">Correcta: ${LETTERS[it.correct]}) ${esc(it.opts[it.correct])}</div>`}
-      <div class="small muted" style="margin-top:4px">${esc(it.q.e)} <i>(${esc(it.q.s)})</i></div></div>`;
-  }).join("");
-  app.innerHTML = `<section class="card">
-    ${timeUp?`<p class="small" style="color:var(--bad);font-weight:600">Se acabó el tiempo.</p>`:""}
+      <div class="small muted" style="margin-top:4px">${esc(it.q.e)} <i>(${esc(it.q.s)})</i></div></div>`; }).join("");
+  setBar("Resultado","sub");
+  app.innerHTML = `<div class="page wrap"><section class="card">
+    ${timeUp?`<p class="small" style="color:var(--bad);font-weight:700;margin:0 0 8px">Se acabó el tiempo.</p>`:""}
     <div class="score">${r}/${n}</div>
-    <p class="muted" style="margin-top:6px">${pct}% de respuestas correctas${blank?` · ${blank} sin responder`:""} · tiempo ${fmtTime(secs)}</p>
-    <table style="margin-top:6px"><tr><th>Capítulo</th><th class="num">Correctas</th></tr>
-      ${Object.keys(byCh).sort((a,b)=>a-b).map(c=>`<tr><td>${esc(CH[c])}</td><td class="num">${byCh[c].r}/${byCh[c].n}</td></tr>`).join("")}
-    </table>
-    ${exam ? `<div class="share">
-      <a class="btn wa" href="${shareLink(r,n)}" target="_blank" rel="noopener">Compartir resultado por WhatsApp</a>
-      <button class="btn ghost small" id="copyBtn">Copiar mensaje</button>
-    </div>` : ""}
-    <div class="row" style="margin-top:14px">
-      <button class="btn" id="homeBtn">Inicio</button>
-      <button class="btn primary" id="againBtn">${S.sim?"Nueva simulación":S.mode==="exam"?"Nuevo ensayo":S.mode==="wrong"?"Repasar de nuevo":"Repetir capítulo"}</button>
-    </div>
+    <p class="muted" style="margin:6px 0 0">${pct}% de respuestas correctas${blank?` · ${blank} sin responder`:""} · tiempo ${fmtTime(secs)}</p>
+    <table style="margin-top:12px"><tr><th>Capítulo</th><th class="num">Correctas</th></tr>
+      ${Object.keys(byCh).sort((a,b)=>a-b).map(c=>`<tr><td>${esc(CH[c])}</td><td class="num">${byCh[c].r}/${byCh[c].n}</td></tr>`).join("")}</table>
+    ${exam ? `<div class="share"><a class="btn wa" href="${shareLink(r,n)}" target="_blank" rel="noopener">Compartir resultado por WhatsApp</a><button class="btn light" id="copyBtn">Copiar mensaje</button></div>` : ""}
+    <div class="row" style="margin-top:12px"><button class="btn light" id="homeBtn">Inicio</button><button class="btn navy" id="againBtn">${S.sim?"Nueva simulación":exam?"Nuevo ensayo":S.mode==="wrong"?"Repasar de nuevo":S.mode==="saved"?"Repasar guardadas":"Repetir tema"}</button></div>
   </section>
-  ${exam ? `<section class="card"><h2>Revisión</h2>${review}</section>` : ""}`;
+  ${exam && !S.instant ? `<section class="card"><h2>Revisión</h2>${review}</section>` : ""}</div>`;
   document.getElementById("homeBtn").onclick=home;
   const cb=document.getElementById("copyBtn");
   if(cb) cb.onclick=async()=>{ try{ await navigator.clipboard.writeText(shareText(r,n)); cb.textContent="Mensaje copiado"; }catch(e){ cb.textContent="No se pudo copiar"; } };
-  const mode=S.mode, ch=S.ch, tt=S.t, sim=S.sim;
-  document.getElementById("againBtn").onclick=()=>{ if(sim) startSim(); else if(mode==="exam") startExam(); else if(mode==="wrong"){ wrongIds().length?startWrong():home(); } else startPractice(ch, tt); };
-  exitBtn.classList.add("hidden");
+  const st=S;
+  document.getElementById("againBtn").onclick=()=>{ if(st.sim) startSim(); else if(st.mode==="exam") startExam(st.c, st.m); else if(st.mode==="wrong") startWrong(); else if(st.mode==="saved") startSaved(); else startPractice(st.ch, st.t); };
   window.scrollTo(0,0);
 }
 
 exitBtn.onclick=()=>{
   if(!S) return home();
-  app.insertAdjacentHTML("afterbegin",`<section class="card" id="exitBox"><h2>¿Salir de esta sesión?</h2>
-  <p class="muted">${S.mode==="exam"?"Perderás las respuestas de este ensayo.":"Lo que ya respondiste queda guardado."}</p>
-  <div class="row"><button class="btn" id="eNo">Seguir</button><button class="btn primary" id="eYes">Salir</button></div></section>`);
-  window.scrollTo(0,0);
-  document.getElementById("eNo").onclick=()=>document.getElementById("exitBox").remove();
-  document.getElementById("eYes").onclick=home;
+  confirmBox("¿Salir de esta sesión?", S.mode==="exam"?"Perderás las respuestas de este ensayo.":"Lo que ya respondiste queda guardado.", "Salir", home);
 };
-// Fondo: si existe fondo.jpg junto a esta página, se muestra detrás del contenido.
-(function(){ const img=new Image(); img.onload=()=>document.documentElement.classList.add("has-bg"); img.src="fondo.jpg"; })();
-document.getElementById("homeLink").onclick=()=>{ if(S) exitBtn.onclick(); else home(); };
+const CONTACT = "aymaradan@gmail.com";
+const MAIL = "mailto:"+CONTACT+"?subject="+encodeURIComponent("Comentario sobre la app Manual Único");
+menuBtn.onclick=()=>{
+  const d=document.createElement("div"); d.className="drawer";
+  const it=(g,ic,t,on)=>`<button class="ditem ${on?"on":""}" data-g="${g}">${ICON[ic]}<span>${t}</span><span class="go">›</span></button>`;
+  d.innerHTML=`<nav>
+    <div class="dhead"><img src="icon-192.png" alt=""><div><b>Manual Único</b><span>AYMARADAN</span></div></div>
+    ${it("home","home","Inicio",true)}
+    ${it("rapido","rapido","Ensayo rápido")}
+    ${it("sim","sim","Simulación de examen")}
+    ${it("pers","pers","Ensayo personalizado")}
+    ${it("temas","temas","Practicar por tema")}
+    ${it("fav","fav","Preguntas guardadas")}
+    ${it("av","av","Mi avance")}
+    <div class="dsep"></div>
+    ${it("pdf","pdf","Leer el Manual Único")}
+    <a class="ditem" href="${MAIL}">${ICON.mail}<span>Contacto</span><span class="go">›</span></a>
+    <a class="ditem" href="https://wa.me/?text=${encodeURIComponent("Te recomiendo esta app para practicar el examen del Manual Único del Poder Judicial: "+SITE_URL)}" target="_blank" rel="noopener">${ICON.share}<span>Compartir la app</span><span class="go">›</span></a>
+    ${it("priv","priv","Política de privacidad")}
+    <div class="dfoot">¿Encontraste un error en una pregunta o tienes una sugerencia? Escríbenos a <a href="${MAIL}" style="color:inherit">${CONTACT}</a>.<br><br>Plataforma independiente, sin vinculación con el Poder Judicial.</div>
+  </nav><div class="bk"></div>`;
+  document.body.appendChild(d);
+  d.querySelector(".bk").onclick=()=>d.remove();
+  d.querySelectorAll("[data-g]").forEach(b=>b.onclick=()=>{ d.remove(); const g=b.dataset.g;
+    if(g==="home") home(); else if(g==="rapido") chooseMode(m=>startExam({n:10,min:15,c:-1},m)); else if(g==="sim") simPage(); else if(g==="pers") persPage();
+    else if(g==="temas") topicsPage(); else if(g==="fav") startSaved(); else if(g==="av") progressPage(); else if(g==="pdf") manualPage(); else location.href="privacidad.html"; });
+};
 home();
-// Funciona sin internet una vez abierta (necesario para instalarla como app)
 if("serviceWorker" in navigator && location.protocol==="https:"){ navigator.serviceWorker.register("sw.js").catch(()=>{}); }
 </script>
 </body>
